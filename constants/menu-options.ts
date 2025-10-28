@@ -1,11 +1,11 @@
 export const MENU_ITEMS = {
   HOME: "#home",
-  ABOUT: "#about",
+  SKILL: "#skill",
   PROJECTS: "#projects",
 };
 
 export enum MENU {
   HOME = "home",
-  ABOUT = "about",
+  SKILL = "skill",
   PROJECTS = "projects",
 }
