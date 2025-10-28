@@ -11,7 +11,7 @@ interface WordFadeInProps {
   variants?: Variants;
 }
 
-export default function WordFadeIn({
+export function WordFadeIn({
   words,
   delay = 0.15,
   variants = {

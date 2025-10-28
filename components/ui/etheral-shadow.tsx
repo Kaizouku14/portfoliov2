@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useId, useEffect, CSSProperties } from "react";
+import React, { useRef, useEffect, CSSProperties, useState } from "react";
 import { animate, useMotionValue, AnimationPlaybackControls } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -42,11 +42,15 @@ function mapRange(value: number, fromLow: number, fromHigh: number, toLow: numbe
   return toLow + percentage * (toHigh - toLow);
 }
 
-const useInstanceId = (): string => {
-  const id = useId();
-  const cleanId = id.replace(/:/g, "");
-  const instanceId = `shadowoverlay-${cleanId}`;
-  return instanceId;
+const useStableId = (prefix = "shadowoverlay"): string => {
+  const [id, setId] = useState<string>(prefix);
+
+  useEffect(() => {
+    // This runs only on the client, safe from SSR hydration mismatch
+    setId(`${prefix}-${Math.random().toString(36).substring(2, 9)}`);
+  }, [prefix]);
+
+  return id;
 };
 
 export function EtheralShadow({
@@ -58,7 +62,7 @@ export function EtheralShadow({
   className,
   children,
 }: EtheralShadowProps) {
-  const id = useInstanceId();
+  const id = useStableId();
   const animationEnabled = animation && animation.scale > 0;
   const feColorMatrixRef = useRef<SVGFEColorMatrixElement>(null);
   const hueRotateMotionValue = useMotionValue(180);

@@ -6,8 +6,8 @@ import About from "@/components/sections/about";
 const Main = () => {
   return (
     <main className="min-h-screen flex flex-col relative">
-      <div className="mx-auto w-full ">
-        <Home />
+      <Home />
+      <div className="px-8">
         <About />
         <Projects />
       </div>
