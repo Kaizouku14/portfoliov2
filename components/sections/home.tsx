@@ -5,6 +5,8 @@ import { TypingAnimation } from "../ui/typing-animation";
 import { EtheralShadow } from "../ui/etheral-shadow";
 import { Button } from "../ui/button";
 import { Download, FolderOpen } from "lucide-react";
+import { BlurFade } from "../ui/blur-fade";
+import WordFadeIn from "../ui/word-fade-in";
 
 const Home = () => {
   return (
@@ -36,20 +38,22 @@ const Home = () => {
               "Exploring the Space Between Code and Creativity",
             ]}
           />
+          <WordFadeIn
+            className="mt-4 text-lg max-w-2xl opacity-80"
+            delay={0.25}
+            words={"Crafting digital experiences where design meets performance."}
+          />
 
-          <p className="mt-4 text-lg max-w-2xl opacity-80">
-            Crafting digital experiences where design meets performance.
-          </p>
-          <div className="flex gap-2 items-center mt-4">
-            <Button className="font-medium flex items-center dark:text-muted-foreground cursor-pointer" variant="ghost">
+          <BlurFade className="flex gap-2 items-center mt-4" delay={0.25} inView>
+            <Button className="flex items-center dark:text-muted-foreground cursor-pointer " variant="ghost">
               <Download className="size-5" />
-              <span>Download CV</span>
+              <span className="font-semibold">Download CV</span>
             </Button>
             <Button className="cursor-pointer">
               <FolderOpen className="size-5" />
-              <span>View My Work</span>
+              <span className="font-semibold">View My Work</span>
             </Button>
-          </div>
+          </BlurFade>
         </div>
       </EtheralShadow>
 
