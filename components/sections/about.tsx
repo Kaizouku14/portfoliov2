@@ -1,8 +1,8 @@
-import { MENU_ITEMS } from "@/constants/menu-options";
+import { MENU } from "@/constants/menu-options";
 
 const About = () => {
   return (
-    <section id={MENU_ITEMS.ABOUT} className="h-120 scroll-mt-20">
+    <section id={MENU.ABOUT} className="h-screen">
       <h1>About</h1>
     </section>
   );

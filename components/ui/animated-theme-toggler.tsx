@@ -62,7 +62,7 @@ export function AnimatedThemeToggler({ className, duration = 400, ...props }: An
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
       ref={buttonRef}
       onClick={toggleTheme}
