@@ -1,18 +1,18 @@
 "use client";
 
 import { MENU } from "@/constants/menu-options";
-import { Header } from "../header";
-import { TypingAnimation } from "../ui/typing-animation";
-import { EtheralShadow } from "../ui/etheral-shadow";
-import { Button } from "../ui/button";
+import { HeroHeader } from "@/app/_components/header";
+import { TypingAnimation } from "@/components/ui/typing-animation";
+import { EtheralShadow } from "@/components/ui/etheral-shadow";
+import { Button } from "@/components/ui/button";
 import { Download, FolderOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { heroContent } from "@/data/data";
 
-const Home = () => {
+const HeroSection = () => {
   return (
     <section id={MENU.HOME} className="relative h-screen flex flex-col justify-center items-center w-full text-center">
-      <Header />
+      <HeroHeader />
 
       <EtheralShadow sizing="fill" animation={{ scale: 60, speed: 70 }}>
         <motion.div
@@ -33,7 +33,7 @@ const Home = () => {
           />
 
           <motion.p
-            className="mt-4 text-lg max-w-2xl opacity-80"
+            className="mt-4 text-lg max-w-2xl opacity-80 dark:text-muted-foreground"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -64,4 +64,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HeroSection;

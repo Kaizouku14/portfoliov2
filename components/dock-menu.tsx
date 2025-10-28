@@ -13,7 +13,7 @@ import { BotMessageSquare } from "lucide-react";
 const DockMenu = () => {
   return (
     <TooltipProvider>
-      <Dock direction="middle" className="z-10">
+      <Dock direction="middle" iconMagnification={60} className="z-10">
         {DATA.navbar.map((item) => (
           <DockIcon key={item.label}>
             <Tooltip>
@@ -58,12 +58,12 @@ const DockMenu = () => {
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="icon" variant="ghost" className="rounded-full">
+              <Button size="icon" variant="ghost" className="rounded-full size-12">
                 <BotMessageSquare />
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Ask About Me</p>
+              <p>Chat with Al-v</p>
             </TooltipContent>
           </Tooltip>
         </DockIcon>

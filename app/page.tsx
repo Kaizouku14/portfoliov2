@@ -1,12 +1,12 @@
-import Home from "@/components/sections/home";
+import HeroSection from "@/app/_components/sections/home";
+import About from "@/app/_components/sections/about";
+import Projects from "@/app/_components/sections/projects";
 import DockMenu from "@/components/dock-menu";
-import Projects from "@/components/sections/projects";
-import About from "@/components/sections/about";
 
 const Main = () => {
   return (
     <main className="min-h-screen flex flex-col relative">
-      <Home />
+      <HeroSection />
       <div className="px-8">
         <About />
         <Projects />

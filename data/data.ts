@@ -1,3 +1,8 @@
+export const heroHeader = {
+  name: "Al-v.",
+  profession: "Web Developer",
+};
+
 export const heroContent = {
   title: "Driven by curiosity, powered by passion!",
   typingWords: [
