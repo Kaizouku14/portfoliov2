@@ -6,11 +6,12 @@ interface AnimateProps {
   className?: string;
   splitBy?: "text" | "word" | "character" | "line";
   delay?: number;
+  once?: boolean;
 }
 
-export const Animate = ({ text, splitBy = "character", delay = 1, className }: AnimateProps) => {
+export const Animate = ({ text, splitBy = "character", delay = 1, once = true, className }: AnimateProps) => {
   return (
-    <TextAnimate by={splitBy} delay={delay} once className={cn(className)}>
+    <TextAnimate by={splitBy} delay={delay} once={once} className={cn(className)}>
       {text}
     </TextAnimate>
   );

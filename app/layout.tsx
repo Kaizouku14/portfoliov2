@@ -3,6 +3,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -21,10 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("antialiased", nunito.variable)}>
+      <body className={cn("antialiased cursor-none", nunito.variable)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        <SmoothCursor />
       </body>
     </html>
   );

@@ -9,11 +9,14 @@ import { Dock, DockIcon } from "./ui/dock";
 import { DATA } from "@/data/dock";
 import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 import { BotMessageSquare } from "lucide-react";
+import { useChat } from "@/hooks/use-chat";
 
 const DockMenu = () => {
+  const { toggleChat } = useChat();
+
   return (
     <TooltipProvider>
-      <Dock direction="middle" iconMagnification={60} className="z-10">
+      <Dock direction="middle" className="z-10 ">
         {DATA.navbar.map((item) => (
           <DockIcon key={item.label}>
             <Tooltip>
@@ -58,7 +61,7 @@ const DockMenu = () => {
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="icon" variant="ghost" className="rounded-full size-12">
+              <Button size="icon" variant="ghost" className="rounded-full size-12" onClick={toggleChat}>
                 <BotMessageSquare />
               </Button>
             </TooltipTrigger>
