@@ -22,14 +22,14 @@ const Chat = () => {
   const handleSendMessage = async () => {
     if (!message) return;
     setIsLoading(true);
-    const newConversation = [...conversation, { message, response: "..." }];
+    const newConversation = [...conversation, { message }];
     setConversation(newConversation);
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     setIsLoading(false);
-    const updatedConversation = [...newConversation, { message, response: "..." }];
+    const updatedConversation = [...newConversation, {  response: "..." }];
     setConversation(updatedConversation);
     setMessage("");
   };

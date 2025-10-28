@@ -9,10 +9,13 @@ interface AnimateProps {
   once?: boolean;
 }
 
-export const Animate = ({ text, splitBy = "character", delay = 1, once = true, className }: AnimateProps) => {
+ const Animate = ({ text, splitBy = "character", delay = 1, once = true, className }: AnimateProps) => {
   return (
     <TextAnimate by={splitBy} delay={delay} once={once} className={cn(className)}>
       {text}
     </TextAnimate>
   );
 };
+
+
+export default Animate

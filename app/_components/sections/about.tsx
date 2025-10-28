@@ -1,5 +1,6 @@
 import { MENU } from "@/constants/menu-options";
-import { Animate } from "@/components/animate";
+import Animate from "@/components/animate";
+import TechStackTree from "@/components/tech-stacks";
 
 const About = () => {
   return (
@@ -11,6 +12,8 @@ const About = () => {
           <p className="text-xl font-medium">Hello, I'm John Doe</p>
           <p className="text-gray-500">Full Stack Developer</p>
         </div>
+
+        <TechStackTree/>
       </div>
     </section>
   );

@@ -12,3 +12,10 @@ export const heroContent = {
   ],
   description: "Crafting digital experiences where design meets performance.",
 };
+
+export const MAIN_STACK = {
+  Languages: ["TypeScript"],
+  Frontend: ["React", "Next.js", "Tailwind CSS"],
+  Backend: ["Node.js", "Drizzle ORM", "Better-auth"],
+  "CI/CD": ["Git", "Vercel"],
+}

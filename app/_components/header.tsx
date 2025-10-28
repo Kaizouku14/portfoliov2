@@ -1,7 +1,7 @@
-import { Animate } from "@/components/animate";
+import  Animate  from "@/components/animate";
 import { heroHeader } from "@/data/data";
 
-export const HeroHeader = () => {
+ const HeroHeader = () => {
   return (
     <header className="absolute top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-8 z-10">
       <Animate
@@ -15,3 +15,5 @@ export const HeroHeader = () => {
     </header>
   );
 };
+
+export default HeroHeader
