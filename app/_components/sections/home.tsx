@@ -11,7 +11,7 @@ import { heroContent } from "@/data/data";
 
 const HeroSection = () => {
   return (
-    <section id={MENU.HOME} className="relative h-screen flex flex-col justify-center items-center w-full text-center">
+    <section id={MENU.HOME} className="relative h-170 md:h-screen flex flex-col justify-center items-center w-full text-center">
       <HeroHeader />
 
       <EtheralShadow sizing="fill" animation={{ scale: 60, speed: 70 }}>
@@ -21,10 +21,10 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-6xl md:text-7xl font-black">{heroContent.title}</h1>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black">{heroContent.title}</h1>
 
           <TypingAnimation
-            className="mt-2 text-2xl"
+            className="mt-2 text-xl sm:text-2xl"
             loop
             blinkCursor
             cursorStyle="underscore"
@@ -33,7 +33,7 @@ const HeroSection = () => {
           />
 
           <motion.p
-            className="mt-4 text-lg max-w-2xl opacity-80 dark:text-muted-foreground"
+            className="mt-4 sm:text-lg md:text-xl max-w-xl sm:max-w-2xl opacity-80 dark:text-muted-foreground"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}

@@ -1,11 +1,9 @@
 import { MENU_ITEMS } from "@/constants/menu-options";
-import { Github, HomeIcon, FolderOpen, Lightbulb, Linkedin, MailIcon } from "lucide-react";
+import {  Github, HomeIcon, Linkedin, MailIcon } from "lucide-react";
 
 export const DATA = {
   navbar: [
     { href: MENU_ITEMS.HOME, icon: HomeIcon, label: "Home" },
-    { href: MENU_ITEMS.ABOUT, icon: Lightbulb, label: "About" },
-    { href: MENU_ITEMS.PROJECTS, icon: FolderOpen, label: "Projects" },
   ],
   contact: {
     social: {

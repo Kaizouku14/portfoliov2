@@ -16,7 +16,7 @@ const DockMenu = () => {
 
   return (
     <TooltipProvider>
-      <Dock direction="middle" className="z-10 ">
+      <Dock direction="middle">
         {DATA.navbar.map((item) => (
           <DockIcon key={item.label}>
             <Tooltip>
@@ -35,6 +35,20 @@ const DockMenu = () => {
             </Tooltip>
           </DockIcon>
         ))}
+
+         <DockIcon>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button size="icon" variant="ghost" className="rounded-full size-12" onClick={toggleChat}>
+                <BotMessageSquare />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Chat with Al-v</p>
+            </TooltipContent>
+          </Tooltip>
+        </DockIcon>
+
         <Separator orientation="vertical" className="h-full" />
         {Object.entries(DATA.contact.social).map(([name, social]) => (
           <DockIcon key={name}>
@@ -58,18 +72,6 @@ const DockMenu = () => {
         ))}
         <Separator orientation="vertical" className="h-full" />
 
-        <DockIcon>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button size="icon" variant="ghost" className="rounded-full size-12" onClick={toggleChat}>
-                <BotMessageSquare />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Chat with Al-v</p>
-            </TooltipContent>
-          </Tooltip>
-        </DockIcon>
 
         <DockIcon>
           <AnimatedThemeToggler />

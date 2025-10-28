@@ -14,7 +14,7 @@ const Chat = () => {
   const [conversation, setConversation] = useState<Conversation[]>([
     {
       message: "",
-      response: "Hello!",
+      response: "Hey! I’m Al-v Manda, welcome to a glimpse of what I do.",
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,12 +44,12 @@ const Chat = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-3 right-14 w-90 rounded-t-xl rounded-b-xl flex flex-col z-50 bg-background backdrop-blur-sm border-border border shadow">
+    <div className="fixed bottom-3 md:right-14 w-90 rounded-t-xl rounded-b-xl flex flex-col z-50 bg-background backdrop-blur-sm border-border border shadow">
       <ChatHeader />
       <ChatBubble conversation={conversation} isLoading={isLoading} />
-      <InputGroup className="rounded-t-none h-11 bg-background">
+      <InputGroup className="rounded-t-none h-11 bg-background pr-1">
         <InputGroupInput
-          placeholder="Ask Al-v..."
+          placeholder="Ask a question about me..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleKeyDown}

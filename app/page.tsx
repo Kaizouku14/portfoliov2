@@ -6,13 +6,13 @@ import Chat from "@/components/chat/chat-dialog";
 
 const Main = () => {
   return (
-    <main className="min-h-screen flex flex-col relative">
+    <main className="min-h-screen flex flex-col relative z-0">
       <HeroSection />
       <div className="px-8">
         <About />
         <Projects />
       </div>
-      <div className="fixed bottom-2 w-full">
+      <div className="fixed bottom-2 w-full z-10">
         <DockMenu />
       </div>
       <Chat />

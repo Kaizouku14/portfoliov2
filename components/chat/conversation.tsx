@@ -21,7 +21,7 @@ const ChatBubble = ({ conversation, isLoading }: ChatBubbleProps) => {
             {item.response && (
               <div className="flex items-start gap-3">
                 <Profile />
-                <div className="bg-primary/10 text-foreground max-w-[80%] rounded-2xl px-3 py-2 text-sm shadow-inner h-auto">
+                <div className="bg-primary/10 text-foreground max-w-[70%] rounded-2xl px-3 py-2 text-sm shadow-inner h-auto">
                   <pre className="font-sans whitespace-pre-wrap prose">{item.response}</pre>
                 </div>
               </div>
@@ -29,7 +29,7 @@ const ChatBubble = ({ conversation, isLoading }: ChatBubbleProps) => {
 
             {item.message && (
               <div className="flex items-start justify-end gap-3">
-                <div className="flex max-w-[80%]">
+                <div className="flex max-w-[70%]">
                   {item.message && (
                     <div className="bg-muted text-muted-foreground rounded-2xl px-3 py-2 text-sm">{item.message}</div>
                   )}
