@@ -6,10 +6,11 @@ import TechStackTree from "@/components/tech-stacks";
 import SkillCard from "@/components/skill-card";
 import { SKILLS } from "@/data/data";
 import { motion } from "framer-motion";
+import { StripedPattern } from "@/components/magicui/striped-pattern";
 
 const Skill = () => {
   return (
-    <section id={MENU.SKILL} className="py-16 relative flex flex-col">
+    <section id={MENU.SKILL} className="md:h-screen relative flex flex-col md:px-12  justify-center">
       <Animate text="Skills" className="text-5xl font-semibold mb-12" />
 
       <motion.div
@@ -18,29 +19,22 @@ const Skill = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
           {SKILLS.map((skill) => (
             <motion.div
               key={skill.name}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true, amount: 0.2 }}
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              whileTap={{ scale: 0.95 }}
             >
               <SkillCard name={skill.name} icon={skill.icon} description={skill.description} />
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          className="flex-1 max-w-md w-full p-4 bg-card rounded-xl"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <TechStackTree />
-        </motion.div>
+        <TechStackTree />
       </motion.div>
     </section>
   );

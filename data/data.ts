@@ -1,4 +1,6 @@
-import { MousePointerClick, FlaskConical, CodeXml, Paintbrush } from "lucide-react";
+import { MousePointerClick, FlaskConical, CodeXml, Paintbrush, Fingerprint } from "lucide-react";
+import { SiTypescript, SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiGit, SiVercel } from "react-icons/si";
+import { DrizzleIcon } from "@/components/icons/drizzle-orm";
 
 export const heroHeader = {
   name: "Al-v.",
@@ -16,13 +18,29 @@ export const heroContent = {
 };
 
 export const MAIN_STACK = {
-  Language: ["TypeScript"],
-  Frontend: ["React", "Next.js", "Tailwind CSS"],
-  Backend: ["Node.js", "Drizzle ORM", "Better-auth"],
-  "CI/CD": ["Git", "Vercel"],
+  Language: [{ name: "TypeScript", icon: SiTypescript }],
+  Frontend: [
+    { name: "React", icon: SiReact },
+    { name: "Next.js", icon: SiNextdotjs },
+    { name: "Tailwind CSS", icon: SiTailwindcss },
+  ],
+  Backend: [
+    { name: "Node.js", icon: SiNodedotjs },
+    { name: "Drizzle ORM", icon: DrizzleIcon },
+    { name: "Better-auth", icon: Fingerprint }, // placeholder
+  ],
+  "CI/CD": [
+    { name: "Git", icon: SiGit },
+    { name: "Vercel", icon: SiVercel },
+  ],
 };
 
 export const SKILLS = [
+  {
+    name: "Full Stack Development",
+    icon: CodeXml,
+    description: "Develop full stack applications using React, Next.js, TypeScript, and Node.js.",
+  },
   {
     name: "UI Design",
     icon: Paintbrush,
@@ -37,10 +55,5 @@ export const SKILLS = [
     name: "UX Research",
     icon: FlaskConical,
     description: "Understand user needs and preferences through research.",
-  },
-  {
-    name: "Full Stack Development",
-    icon: CodeXml,
-    description: "Develop full stack applications using React, Next.js, TypeScript, and Node.js.",
   },
 ];

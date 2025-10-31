@@ -16,7 +16,7 @@ const DockMenu = () => {
 
   return (
     <TooltipProvider>
-      <Dock direction="middle">
+      <Dock direction="middle" className="shadow-xl">
         {DATA.navbar.map((item) => (
           <DockIcon key={item.label}>
             <Tooltip>
@@ -36,7 +36,7 @@ const DockMenu = () => {
           </DockIcon>
         ))}
 
-         <DockIcon>
+        <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button size="icon" variant="ghost" className="rounded-full size-12" onClick={toggleChat}>
@@ -71,7 +71,6 @@ const DockMenu = () => {
           </DockIcon>
         ))}
         <Separator orientation="vertical" className="h-full" />
-
 
         <DockIcon>
           <AnimatedThemeToggler />
