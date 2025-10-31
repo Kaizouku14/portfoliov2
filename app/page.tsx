@@ -6,7 +6,7 @@ import Chat from "@/components/chat/chat-dialog";
 
 const Main = () => {
   return (
-    <main className="flex flex-col relative z-0">
+    <main className="flex flex-col relative z-0 pb-20">
       <HeroSection />
       <Skill />
       <Projects />

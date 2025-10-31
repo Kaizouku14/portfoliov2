@@ -20,17 +20,7 @@ const Skill = () => {
       >
         <div className="grid md:grid-cols-2 gap-4 md:gap-6">
           {SKILLS.map((skill) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.2 }}
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <SkillCard name={skill.name} icon={skill.icon} description={skill.description} />
-            </motion.div>
+            <SkillCard key={skill.name} name={skill.name} icon={skill.icon} description={skill.description} />
           ))}
         </div>
         <TechStackTree />
