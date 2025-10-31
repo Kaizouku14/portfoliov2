@@ -6,11 +6,10 @@ import TechStackTree from "@/components/tech-stacks";
 import SkillCard from "@/components/skill-card";
 import { SKILLS } from "@/data/data";
 import { motion } from "framer-motion";
-import { StripedPattern } from "@/components/magicui/striped-pattern";
 
 const Skill = () => {
   return (
-    <section id={MENU.SKILL} className="md:h-screen relative flex flex-col md:px-12  justify-center">
+    <section id={MENU.SKILL} className="md:h-screen relative flex flex-col md:px-12 px-8 justify-center">
       <Animate text="Skills" className="text-5xl font-semibold mb-12" />
 
       <motion.div

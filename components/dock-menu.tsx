@@ -7,7 +7,6 @@ import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dock, DockIcon } from "./ui/dock";
 import { DATA } from "@/data/dock";
-import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 import { BotMessageSquare } from "lucide-react";
 import { useChat } from "@/hooks/use-chat";
 
@@ -70,11 +69,6 @@ const DockMenu = () => {
             </Tooltip>
           </DockIcon>
         ))}
-        <Separator orientation="vertical" className="h-full" />
-
-        <DockIcon>
-          <AnimatedThemeToggler />
-        </DockIcon>
       </Dock>
     </TooltipProvider>
   );

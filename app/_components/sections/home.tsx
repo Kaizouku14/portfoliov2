@@ -1,7 +1,7 @@
 "use client";
 
 import { MENU } from "@/constants/menu-options";
-import  HeroHeader  from "@/app/_components/header";
+import HeroHeader from "@/app/_components/header";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { EtheralShadow } from "@/components/ui/etheral-shadow";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,10 @@ import { heroContent } from "@/data/data";
 
 const HeroSection = () => {
   return (
-    <section id={MENU.HOME} className="relative h-170 md:h-screen flex flex-col justify-center items-center w-full text-center">
+    <section
+      id={MENU.HOME}
+      className="relative h-170 md:h-screen flex flex-col justify-center items-center w-full text-center"
+    >
       <HeroHeader />
 
       <EtheralShadow sizing="fill" animation={{ scale: 60, speed: 70 }}>
@@ -33,7 +36,7 @@ const HeroSection = () => {
           />
 
           <motion.p
-            className="mt-4 text-sm text-gray-600 md:text-xl max-w-xl sm:max-w-2xl opacity-80 dark:text-muted-foreground"
+            className="mt-4 text-sm  md:text-xl max-w-xl sm:max-w-2xl opacity-80 text-muted-foreground"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -47,7 +50,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            <Button className="flex items-center dark:text-muted-foreground" variant="ghost">
+            <Button className="flex items-center text-muted-foreground" variant="ghost">
               <Download className="size-5" />
               <span className="font-semibold">Download CV</span>
             </Button>
@@ -59,7 +62,7 @@ const HeroSection = () => {
         </motion.div>
       </EtheralShadow>
 
-      <div className="absolute bottom-0 w-full h-8 bg-[linear-gradient(to_top,oklch(0.9_0_0),transparent)] dark:bg-[linear-gradient(to_top,oklch(0.129_0.042_264.695),transparent)]" />
+      <div className="absolute bottom-0 w-full h-8 bg-[linear-gradient(to_top,oklch(0.129_0.042_264.695),transparent)]" />
     </section>
   );
 };

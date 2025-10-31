@@ -1,4 +1,13 @@
-import { MousePointerClick, FlaskConical, CodeXml, Paintbrush, Fingerprint } from "lucide-react";
+import {
+  MousePointerClick,
+  FlaskConical,
+  CodeXml,
+  Paintbrush,
+  Fingerprint,
+  Database,
+  ServerCog,
+  ShieldCheck,
+} from "lucide-react";
 import { SiTypescript, SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiGit, SiVercel } from "react-icons/si";
 import { DrizzleIcon } from "@/components/icons/drizzle-orm";
 
@@ -39,21 +48,21 @@ export const SKILLS = [
   {
     name: "Full Stack Development",
     icon: CodeXml,
-    description: "Develop full stack applications using React, Next.js, TypeScript, and Node.js.",
+    description: "Develop scalable web applications using React, Next.js, TypeScript, and Node.js.",
   },
   {
-    name: "UI Design",
+    name: "API & Database Design",
+    icon: Database,
+    description: "Build efficient REST and tRPC APIs with secure data models using Drizzle ORM.",
+  },
+  {
+    name: "UI/UX Design",
     icon: Paintbrush,
-    description: "Create attractive and clear designs for responsive web applications.",
+    description: "Design user-centered interfaces with modern, accessible, and responsive layouts.",
   },
   {
-    name: "Prototyping",
-    icon: MousePointerClick,
-    description: "Build interactive prototypes to test and showcase ideas.",
-  },
-  {
-    name: "UX Research",
-    icon: FlaskConical,
-    description: "Understand user needs and preferences through research.",
+    name: "Authentication & Security",
+    icon: ShieldCheck,
+    description: "Implement secure user authentication and authorization using Better Auth and modern standards.",
   },
 ];
