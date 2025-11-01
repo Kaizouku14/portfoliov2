@@ -58,7 +58,7 @@ const Projects = () => {
         >
           <AnimatePresence>
             {PROJECTS.map((project, index) => (
-              <ProjectCard key={index} {...project} />
+              <ProjectCard key={index} data={project} />
             ))}
           </AnimatePresence>
         </motion.div>

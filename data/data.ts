@@ -92,9 +92,8 @@ export const PROJECTS: ProjectCardProps[] = [
     github: "https://github.com/Kaizouku14/scholar-link",
     collaborators: [
       {
-        name: "Al-v Manda",
-        role: "Main Developer & Designer",
-        social: "https://www.linkedin.com/in/alv-manda/",
+        profileUrl: "",
+        imageUrl: "/me.jpg",
       },
     ],
   },
@@ -112,10 +111,8 @@ export const PROJECTS: ProjectCardProps[] = [
     github: "https://github.com/Kaizouku14/plantaria",
     collaborators: [
       {
-        profile: "/me.jpg",
-        name: "Al-v Manda",
-        role: "Frontend Developer",
-        social: "https://www.linkedin.com/in/alvin-manda/",
+        profileUrl: "/me.jpg",
+        imageUrl: "/me.jpg",
       },
     ],
   },
@@ -137,10 +134,8 @@ export const PROJECTS: ProjectCardProps[] = [
     github: "https://github.com/Kaizouku14/plantaria",
     collaborators: [
       {
-        profile: "/me.jpg",
-        name: "Al-v Manda",
-        role: "Frontend Developer",
-        social: "https://www.linkedin.com/in/alvin-manda/",
+        profileUrl: "/me.jpg",
+        imageUrl: "/me.jpg",
       },
     ],
   },
@@ -163,10 +158,8 @@ export const PROJECTS: ProjectCardProps[] = [
     github: "https://github.com/Kaizouku14/plantaria",
     collaborators: [
       {
-        profile: "/me.jpg",
-        name: "Al-v Manda",
-        role: "Frontend Developer",
-        social: "https://www.linkedin.com/in/alvin-manda/",
+        profileUrl: "/me.jpg",
+        imageUrl: "/me.jpg",
       },
     ],
   },
@@ -188,10 +181,8 @@ export const PROJECTS: ProjectCardProps[] = [
     github: "https://github.com/Kaizouku14/plantaria",
     collaborators: [
       {
-        profile: "/me.jpg",
-        name: "Al-v Manda",
-        role: "Frontend Developer",
-        social: "https://www.linkedin.com/in/alvin-manda/",
+        profileUrl: "/me.jpg",
+        imageUrl: "/me.jpg",
       },
     ],
   },
@@ -213,10 +204,8 @@ export const PROJECTS: ProjectCardProps[] = [
     github: "https://github.com/Kaizouku14/plantaria",
     collaborators: [
       {
-        profile: "/me.jpg",
-        name: "Al-v Manda",
-        role: "Frontend Developer",
-        social: "https://www.linkedin.com/in/alvin-manda/",
+        profileUrl: "/me.jpg",
+        imageUrl: "/me.jpg",
       },
     ],
   },

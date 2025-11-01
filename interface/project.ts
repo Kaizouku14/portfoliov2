@@ -6,10 +6,8 @@ interface Tech {
 }
 
 interface Collaborator {
-  profile?: string;
-  name: string;
-  role: string;
-  social: string;
+  profileUrl: string;
+  imageUrl: string;
 }
 
 export interface ProjectCardProps {
