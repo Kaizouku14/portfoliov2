@@ -3,13 +3,15 @@ import Skill from "@/app/_components/sections/skills";
 import Projects from "@/app/_components/sections/projects";
 import DockMenu from "@/components/dock-menu";
 import Chat from "@/components/chat/chat-dialog";
+import Footer from "./_components/footer";
 
 const Main = () => {
   return (
-    <main className="flex flex-col relative z-0 pb-20">
+    <main className="flex flex-col relative z-0 ">
       <HeroSection />
       <Skill />
       <Projects />
+      <Footer />
       <div className="fixed bottom-2 w-full z-10">
         <DockMenu />
       </div>
