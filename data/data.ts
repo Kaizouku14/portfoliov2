@@ -9,6 +9,9 @@ import {
   SiVercel,
   SiTurso,
   SiPostgresql,
+  SiLucia,
+  SiVite,
+  SiLangchain,
 } from "react-icons/si";
 import { DrizzleIcon } from "@/components/icons/drizzle-orm";
 import { ProjectCardProps } from "@/interface/project";
@@ -76,9 +79,9 @@ export const PROJECTS: ProjectCardProps[] = [
     id: "1",
     name: "ScholarLink",
     description:
-      "A Unified platform for scholarship and internship management system for Bulacan State University Sarmiento Campus, enabling seamless application and tracking processes.",
+      "A centralized scholarship and internship management system for Bulacan State University Sarmiento Campus. It simplifies applications, tracking, and administration for students.",
     link: "https://sarm-scholar-link.vercel.app",
-    image: "/globe.svg",
+    image: "/scholar-link.png",
     technologies: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
@@ -92,34 +95,70 @@ export const PROJECTS: ProjectCardProps[] = [
     github: "https://github.com/Kaizouku14/scholar-link",
     collaborators: [
       {
-        profileUrl: "",
+        profileUrl: "https://github.com/Kaizouku14",
         imageUrl: "/me.jpg",
+      },
+      {
+        profileUrl: "https://www.facebook.com/jocelchua.balotabot",
+        imageUrl: "/jocel.jpg",
+      },
+      {
+        profileUrl: "https://www.facebook.com/karlgt.paguio.9",
+        imageUrl: "/karl.jpg",
+      },
+      {
+        profileUrl: "https://www.facebook.com/itsSuprem0",
+        imageUrl: "/rojie.jpg",
+      },
+      {
+        profileUrl: "https://www.facebook.com/avoidtor",
+        imageUrl: "/placeholder.png",
       },
     ],
   },
   {
     id: "2",
     name: "Plantaria",
-    description: "A Web3-based urban farming platform developed for the PSITE RAITE 2024 Hackathon.",
-    image: "/globe.svg",
+    description:
+      "A Web3 urban farming platform built for the PSITE RAITE 2024 Hackathon. It promotes sustainable agriculture through blockchain-based transparency and user collaboration.",
+    image: "/plantaria.png",
+    video: "/plantaria.mp4",
     technologies: [
       { name: "React", icon: SiReact },
+      { name: "Vite", icon: SiVite },
       { name: "TypeScript", icon: SiTypescript },
       { name: "Node.js", icon: SiNodedotjs },
       { name: "Tailwind CSS", icon: SiReact },
     ],
-    github: "https://github.com/Kaizouku14/plantaria",
+    github: "https://github.com/pagzone/plantaria",
     collaborators: [
       {
-        profileUrl: "/me.jpg",
+        profileUrl: "https://github.com/Kaizouku14",
         imageUrl: "/me.jpg",
+      },
+      {
+        profileUrl: "https://github.com/xyugen",
+        imageUrl: "/jorym.jpg",
+      },
+      {
+        profileUrl: "https://github.com/darvey-trinidad",
+        imageUrl: "/darv.jpg",
+      },
+      {
+        profileUrl: "https://github.com/Dochiibells",
+        imageUrl: "/gian.jpg",
+      },
+      {
+        profileUrl: "https://www.facebook.com/joml.amv",
+        imageUrl: "/jomel.jpg",
       },
     ],
   },
   {
     id: "3",
-    name: "SJDM Christian Ministry RMS ",
-    description: "A management system for Christian ministries church ",
+    name: "SJDM Christian Ministry RMS",
+    description:
+      "A church management system for SJDM Christian Ministries that helps organize members, track events, and manage ministry operations efficiently.",
     image: "/globe.svg",
     technologies: [
       { name: "React", icon: SiReact },
@@ -131,20 +170,36 @@ export const PROJECTS: ProjectCardProps[] = [
       { name: "Better-auth", icon: Fingerprint },
       { name: "Tailwind CSS", icon: SiReact },
     ],
-    github: "https://github.com/Kaizouku14/plantaria",
+    github: "https://github.com/xyugen/sjdmchristianministries-rms",
     collaborators: [
       {
-        profileUrl: "/me.jpg",
+        profileUrl: "https://github.com/Kaizouku14",
         imageUrl: "/me.jpg",
+      },
+      {
+        profileUrl: "https://github.com/xyugen",
+        imageUrl: "/jorym.jpg",
+      },
+      {
+        profileUrl: "https://github.com/darvey-trinidad",
+        imageUrl: "/darv.jpg",
+      },
+      {
+        profileUrl: "https://github.com/Dochiibells",
+        imageUrl: "/gian.jpg",
+      },
+      {
+        profileUrl: "https://www.facebook.com/joml.amv",
+        imageUrl: "/jomel.jpg",
       },
     ],
   },
   {
     id: "4",
     name: "InnControl",
-    description: "A management system for Christian ministries church ",
-    link: "https://plantaria.vercel.app",
-    image: "/globe.svg",
+    description:
+      "A hotel management system for BSA Twin Tower in Ortigas. It manages bookings, guests, and reports to improve operational efficiency and customer experience.",
+    image: "/inncontrol.png",
     technologies: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
@@ -152,61 +207,68 @@ export const PROJECTS: ProjectCardProps[] = [
       { name: "Node.js", icon: SiNodedotjs },
       { name: "Neon", icon: SiPostgresql },
       { name: "Drizzle ORM", icon: DrizzleIcon },
-      { name: "Better-auth", icon: Fingerprint },
+      { name: "Lucia", icon: SiLucia },
       { name: "Tailwind CSS", icon: SiReact },
     ],
-    github: "https://github.com/Kaizouku14/plantaria",
+    github: "https://github.com/Kaizouku14/InnControl",
     collaborators: [
       {
-        profileUrl: "/me.jpg",
+        profileUrl: "https://github.com/Kaizouku14",
         imageUrl: "/me.jpg",
+      },
+      {
+        profileUrl: "https://www.facebook.com/jocelchua.balotabot",
+        imageUrl: "/jocel.jpg",
+      },
+      {
+        profileUrl: "https://www.facebook.com/karlgt.paguio.9",
+        imageUrl: "/karl.jpg",
+      },
+      {
+        profileUrl: "https://www.facebook.com/itsSuprem0",
+        imageUrl: "/rojie.jpg",
+      },
+      {
+        profileUrl: "https://www.facebook.com/avoidtor",
+        imageUrl: "/placeholder.png",
       },
     ],
   },
   {
     id: "5",
-    name: "Kanban-board",
-    description: "A management system for Christian ministries church ",
-    link: "https://plantaria.vercel.app",
-    image: "/globe.svg",
+    name: "Kanban Board",
+    description:
+      "A task management app that uses the Kanban method to help users organize projects, visualize progress, and boost productivity.",
+    link: "https://kanban-board-blue-tau.vercel.app",
+    image: "/kanban.png",
     technologies: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
       { name: "TypeScript", icon: SiTypescript },
       { name: "Node.js", icon: SiNodedotjs },
-      { name: "Drizzle ORM", icon: DrizzleIcon },
-      { name: "Better-auth", icon: Fingerprint },
+      { name: "Neon", icon: SiPostgresql },
+      { name: "Lucia", icon: SiLucia },
       { name: "Tailwind CSS", icon: SiReact },
     ],
-    github: "https://github.com/Kaizouku14/plantaria",
-    collaborators: [
-      {
-        profileUrl: "/me.jpg",
-        imageUrl: "/me.jpg",
-      },
-    ],
+    github: "https://github.com/Kaizouku14/kanban-board",
+    collaborators: [],
   },
   {
     id: "6",
-    name: "prompt-chain",
-    description: "A management system for Christian ministries church ",
-    link: "https://plantaria.vercel.app",
+    name: "Prompt Chain",
+    description:
+      "An AI-powered PDF summarizer built with LangChain and Groq API. It can adjust its persona and tone dynamically to fit different use cases.",
+    link: "https://prompt-chain-one.vercel.app/",
     image: "/globe.svg",
     technologies: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
       { name: "TypeScript", icon: SiTypescript },
+      { name: "LangChain", icon: SiLangchain },
       { name: "Node.js", icon: SiNodedotjs },
-      { name: "Drizzle ORM", icon: DrizzleIcon },
-      { name: "Better-auth", icon: Fingerprint },
       { name: "Tailwind CSS", icon: SiReact },
     ],
-    github: "https://github.com/Kaizouku14/plantaria",
-    collaborators: [
-      {
-        profileUrl: "/me.jpg",
-        imageUrl: "/me.jpg",
-      },
-    ],
+    github: "https://github.com/Kaizouku14/prompt-chain",
+    collaborators: [],
   },
 ];

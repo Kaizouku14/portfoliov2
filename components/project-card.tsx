@@ -16,7 +16,6 @@ export const ProjectCard = ({ data }: { data: ProjectCardProps }) => {
       viewport={{ once: true, amount: 0.2 }}
     >
       <ProjectInfoDialog data={data} />
-
       <div className="flex justify-between items-center gap-2">
         <div className="flex flex-col gap-2 h-30 ">
           <h3 className="text-lg font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
