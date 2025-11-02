@@ -22,7 +22,7 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="p-4 border border-border rounded-2xl cursor-pointer hover:border-foreground/20 transition-colors">
+        <div className="p-2 md:p-4 border border-border rounded-2xl cursor-pointer hover:border-foreground/20 transition-colors">
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-border">
             <Image
               src={data.image}
@@ -36,11 +36,11 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
       <DialogContent className="sm:max-w-6xl h-auto md:max-h-[90vh] overflow-hidden p-0" showCloseButton={false}>
         <div className="grid md:grid-cols-2 gap-0 h-full">
           <div className=" bg-muted/30 p-6 flex items-center justify-center">
-            <div className="w-full max-w-2xl relative ">
+            <div className="w-full max-w-xl relative ">
               {data.video ? (
-                <Safari url={data.link} videoSrc={data.video} />
+                <Safari url={data.link} videoSrc={data.video} mode="simple" />
               ) : (
-                <Safari url={data.link} imageSrc={data.image} />
+                <Safari url={data.link} imageSrc={data.preview} mode="simple" />
               )}
               {data.collaborators && data.collaborators.length > 0 && (
                 <motion.div

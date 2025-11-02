@@ -12,6 +12,7 @@ import {
   SiLucia,
   SiVite,
   SiLangchain,
+  SiEthereum,
 } from "react-icons/si";
 import { DrizzleIcon } from "@/components/icons/drizzle-orm";
 import { ProjectCardProps } from "@/interface/project";
@@ -81,7 +82,8 @@ export const PROJECTS: ProjectCardProps[] = [
     description:
       "A centralized scholarship and internship management system for Bulacan State University Sarmiento Campus. It simplifies applications, tracking, and administration for students.",
     link: "https://sarm-scholar-link.vercel.app",
-    image: "/scholar-link.png",
+    image: "/scholar-link-logo.png",
+    preview: "/scholar-link.png",
     technologies: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
@@ -126,6 +128,7 @@ export const PROJECTS: ProjectCardProps[] = [
     technologies: [
       { name: "React", icon: SiReact },
       { name: "Vite", icon: SiVite },
+      { name: "Web3", icon: SiEthereum },
       { name: "TypeScript", icon: SiTypescript },
       { name: "Node.js", icon: SiNodedotjs },
       { name: "Tailwind CSS", icon: SiReact },
@@ -160,6 +163,7 @@ export const PROJECTS: ProjectCardProps[] = [
     description:
       "A church management system for SJDM Christian Ministries that helps organize members, track events, and manage ministry operations efficiently.",
     image: "/globe.svg",
+    preview: "/globe.svg",
     technologies: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
@@ -199,7 +203,8 @@ export const PROJECTS: ProjectCardProps[] = [
     name: "InnControl",
     description:
       "A hotel management system for BSA Twin Tower in Ortigas. It manages bookings, guests, and reports to improve operational efficiency and customer experience.",
-    image: "/inncontrol.png",
+    image: "/globe.svg",
+    preview: "/globe.svg",
     technologies: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
@@ -240,7 +245,8 @@ export const PROJECTS: ProjectCardProps[] = [
     description:
       "A task management app that uses the Kanban method to help users organize projects, visualize progress, and boost productivity.",
     link: "https://kanban-board-blue-tau.vercel.app",
-    image: "/kanban.png",
+    image: "/globe.svg",
+    preview: "/globe.svg",
     technologies: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
@@ -260,6 +266,7 @@ export const PROJECTS: ProjectCardProps[] = [
       "An AI-powered PDF summarizer built with LangChain and Groq API. It can adjust its persona and tone dynamically to fit different use cases.",
     link: "https://prompt-chain-one.vercel.app/",
     image: "/globe.svg",
+    preview: "/prompt-chain.png",
     technologies: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },

@@ -3,10 +3,10 @@ import type { HTMLAttributes } from "react";
 
 const SAFARI_WIDTH = 1203;
 const SAFARI_HEIGHT = 753;
-const SCREEN_X = 0; // Change from 1 to 0
-const SCREEN_Y = 51; // Fine-tune this
-const SCREEN_WIDTH = 1202; // Change from 1200 to 1202
-const SCREEN_HEIGHT = 701; // Change from 700 to 701
+const SCREEN_X = 1;
+const SCREEN_Y = 52;
+const SCREEN_WIDTH = 1200;
+const SCREEN_HEIGHT = 700;
 
 // Calculated percentages
 const LEFT_PCT = (SCREEN_X / SAFARI_WIDTH) * 100;
@@ -47,7 +47,7 @@ export function Safari({ imageSrc, videoSrc, url, mode = "default", className, s
           }}
         >
           <video
-            className="block size-full object-cover"
+            className="block size-full object-cover rounded-sm"
             src={videoSrc}
             autoPlay
             loop
