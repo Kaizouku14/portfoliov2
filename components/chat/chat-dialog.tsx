@@ -7,9 +7,11 @@ import ChatBubble from "./conversation";
 import { ChatHeader } from "./chat-header";
 import { useState, type KeyboardEvent } from "react";
 import { Conversation } from "@/interface/chat";
+import { chatMessage } from "@/lib/groq";
 
 const Chat = () => {
   const { isOpen } = useChat();
+  const THREAD_ID = "1"; //TODO: Replace with actual thread ID
   const [message, setMessage] = useState("");
   const [conversation, setConversation] = useState<Conversation[]>([
     {
@@ -20,18 +22,21 @@ const Chat = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSendMessage = async () => {
-    if (!message) return;
-    setIsLoading(true);
-    const newConversation = [...conversation, { message }];
-    setConversation(newConversation);
+    try {
+      if (!message) return;
+      setIsLoading(true);
+      const newConversation = [...conversation, { message }];
+      setConversation(newConversation);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+      const { message: response } = await chatMessage({ thread_id: THREAD_ID, content: message });
 
-    setIsLoading(false);
-    const updatedConversation = [...newConversation, {  response: "..." }];
-    setConversation(updatedConversation);
-    setMessage("");
+      setIsLoading(false);
+      const updatedConversation = [...newConversation, { response }];
+      setConversation(updatedConversation);
+      setMessage("");
+    } catch {
+      setIsLoading(false);
+    }
   };
 
   const handleKeyDown = async (e: KeyboardEvent<HTMLInputElement>) => {

@@ -18,7 +18,7 @@ export interface ProjectCardProps {
   image: string;
   preview?: string;
   video?: string;
-  technologies: Tech[];
+  technoWlogies: Tech[];
   github: string;
   collaborators: Collaborator[];
 }
