@@ -50,7 +50,16 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            <Button className="flex items-center text-muted-foreground" variant="ghost">
+            <Button
+              className="flex items-center text-muted-foreground"
+              variant="ghost"
+              onClick={() => {
+                const link = document.createElement("a");
+                link.href = "/cv.pdf";
+                link.download = "alv-cv.pdf";
+                link.click();
+              }}
+            >
               <Download className="size-5" />
               <span className="font-semibold">Download CV</span>
             </Button>
