@@ -17,6 +17,7 @@ import { Badge } from "./ui/badge";
 import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ScrollArea } from "./ui/scroll-area";
 
 const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
   return (
@@ -33,10 +34,11 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-6xl h-auto md:max-h-[90vh] overflow-hidden p-0" showCloseButton={false}>
+      <DialogContent className="sm:max-w-6xl p-0" showCloseButton={false}>
+        <ScrollArea className="h-140 md:h-129 rounded-sm md:max-h-[90vh] p-0 ">
         <div className="grid md:grid-cols-2 gap-0 h-full">
           <div className=" bg-muted/30 p-6 flex items-center justify-center">
-            <div className="w-full max-w-xl relative ">
+            <div className="w-full max-w-xl relative">
               {data.video ? (
                 <Safari url={data.link} videoSrc={data.video} mode="simple" />
               ) : (
@@ -129,7 +131,7 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
             </motion.div>
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.6 }}>
-              <DialogFooter className="mt-8 pt-6 border-t">
+              <DialogFooter className="mt-8 pt-6 border-t flex items-end ">
                 <DialogClose asChild>
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button type="button" variant="ghost">
@@ -141,6 +143,7 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
             </motion.div>
           </motion.div>
         </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );

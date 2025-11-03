@@ -50,7 +50,7 @@ const Projects = () => {
         <motion.div
           ref={containerRef}
           className={cn(
-            "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden justify-center gap-6 p-4",
+            "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden justify-center gap-2 md:gap-6 md:p-4",
             seeMore ? "max-h-none" : "max-h-112",
           )}
           layout

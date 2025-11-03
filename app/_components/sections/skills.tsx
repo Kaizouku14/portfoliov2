@@ -13,7 +13,7 @@ const Skill = () => {
       <Animate text="Skills" className="text-5xl font-semibold mb-12" />
 
       <motion.div
-        className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl gap-12"
+        className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl gap-8 md:gap-12"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}

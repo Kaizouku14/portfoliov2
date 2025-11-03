@@ -8,7 +8,7 @@ import ProjectInfoDialog from "./project-dialog";
 export const ProjectCard = ({ data }: { data: ProjectCardProps }) => {
   return (
     <motion.div
-      className="h-88 w-105 p-4 flex flex-col gap-2"
+      className="md:h-88 w-75 md:w-105 p-4 flex flex-col gap-2 "
       layout
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -17,7 +17,7 @@ export const ProjectCard = ({ data }: { data: ProjectCardProps }) => {
     >
       <ProjectInfoDialog data={data} />
       <div className="flex justify-between items-center gap-2">
-        <div className="flex flex-col gap-2 h-30 ">
+        <div className="flex flex-col gap-2 md:h-30 h-20">
           <h3 className="text-lg font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
             {data.name}
           </h3>
