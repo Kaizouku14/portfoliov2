@@ -34,7 +34,7 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-6xl p-0" showCloseButton={false}>
+      <DialogContent className="sm:max-w-6xl  p-0" showCloseButton={false}>
         <ScrollArea className="h-140 md:h-129 rounded-sm md:max-h-[90vh] p-0 ">
         <div className="grid md:grid-cols-2 gap-0 h-full">
           <div className=" bg-muted/30 p-6 flex items-center justify-center">
@@ -75,7 +75,7 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
               >
-                <DialogDescription className="text-base leading-relaxed">{data.description}</DialogDescription>
+                <DialogDescription className="text-base leading-relaxed md:h-19.5">{data.description}</DialogDescription>
               </motion.div>
             </DialogHeader>
 
