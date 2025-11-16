@@ -1,7 +1,14 @@
-import { CodeXml, Paintbrush, Fingerprint, Database, ShieldCheck } from "lucide-react";
+import {
+  CodeXml,
+  Paintbrush,
+  Fingerprint,
+  Database,
+  ShieldCheck,
+} from "lucide-react";
 import {
   SiTypescript,
   SiReact,
+  SiSvelte,
   SiNextdotjs,
   SiTailwindcss,
   SiNodedotjs,
@@ -56,22 +63,26 @@ export const SKILLS = [
   {
     name: "Full Stack Development",
     icon: CodeXml,
-    description: "Develop scalable web applications using React, Next.js, TypeScript, and Node.js.",
+    description:
+      "Develop scalable web applications using React, Next.js, TypeScript, and Node.js.",
   },
   {
     name: "API & Database Design",
     icon: Database,
-    description: "Build efficient REST and tRPC APIs with secure data models using Drizzle ORM.",
+    description:
+      "Build efficient REST and tRPC APIs with secure data models using Drizzle ORM.",
   },
   {
     name: "UI/UX Design",
     icon: Paintbrush,
-    description: "Design user-centered interfaces with modern, accessible, and responsive layouts.",
+    description:
+      "Design user-centered interfaces with modern, accessible, and responsive layouts.",
   },
   {
     name: "Authentication & Security",
     icon: ShieldCheck,
-    description: "Implement secure user authentication and authorization using Better Auth and modern standards.",
+    description:
+      "Implement secure user authentication and authorization using Better Auth and modern standards.",
   },
 ];
 
@@ -92,7 +103,7 @@ export const PROJECTS: ProjectCardProps[] = [
       { name: "Drizzle ORM", icon: DrizzleIcon },
       { name: "Turso", icon: SiTurso },
       { name: "Better-auth", icon: Fingerprint },
-      { name: "Tailwind CSS", icon: SiReact },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
     ],
     github: "https://github.com/Kaizouku14/scholar-link",
     collaborators: [
@@ -131,7 +142,7 @@ export const PROJECTS: ProjectCardProps[] = [
       { name: "Web3", icon: SiEthereum },
       { name: "TypeScript", icon: SiTypescript },
       { name: "Node.js", icon: SiNodedotjs },
-      { name: "Tailwind CSS", icon: SiReact },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
     ],
     github: "https://github.com/pagzone/plantaria",
     collaborators: [
@@ -141,15 +152,15 @@ export const PROJECTS: ProjectCardProps[] = [
       },
       {
         profileUrl: "https://github.com/xyugen",
-        imageUrl: "/jorym.jpg",
+        imageUrl: "https://github.com/xyugen.png",
       },
       {
         profileUrl: "https://github.com/darvey-trinidad",
-        imageUrl: "/darv.jpg",
+        imageUrl: "https://github.com/darvey-trinidad.png",
       },
       {
         profileUrl: "https://github.com/Dochiibells",
-        imageUrl: "/gian.jpg",
+        imageUrl: "https://github.com/Dochiidev.png",
       },
       {
         profileUrl: "https://www.facebook.com/joml.amv",
@@ -172,7 +183,7 @@ export const PROJECTS: ProjectCardProps[] = [
       { name: "Drizzle ORM", icon: DrizzleIcon },
       { name: "Turso", icon: SiTurso },
       { name: "Better-auth", icon: Fingerprint },
-      { name: "Tailwind CSS", icon: SiReact },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
     ],
     github: "https://github.com/xyugen/sjdmchristianministries-rms",
     collaborators: [
@@ -182,15 +193,15 @@ export const PROJECTS: ProjectCardProps[] = [
       },
       {
         profileUrl: "https://github.com/xyugen",
-        imageUrl: "/jorym.jpg",
+        imageUrl: "https://github.com/xyugen.png",
       },
       {
         profileUrl: "https://github.com/darvey-trinidad",
-        imageUrl: "/darv.jpg",
+        imageUrl: "https://github.com/darvey-trinidad.png",
       },
       {
         profileUrl: "https://github.com/Dochiibells",
-        imageUrl: "/gian.jpg",
+        imageUrl: "https://github.com/Dochiidev.png",
       },
       {
         profileUrl: "https://www.facebook.com/joml.amv",
@@ -213,7 +224,7 @@ export const PROJECTS: ProjectCardProps[] = [
       { name: "Neon", icon: SiPostgresql },
       { name: "Drizzle ORM", icon: DrizzleIcon },
       { name: "Lucia", icon: SiLucia },
-      { name: "Tailwind CSS", icon: SiReact },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
     ],
     github: "https://github.com/Kaizouku14/InnControl",
     collaborators: [
@@ -254,13 +265,31 @@ export const PROJECTS: ProjectCardProps[] = [
       { name: "Node.js", icon: SiNodedotjs },
       { name: "Neon", icon: SiPostgresql },
       { name: "Lucia", icon: SiLucia },
-      { name: "Tailwind CSS", icon: SiReact },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
     ],
     github: "https://github.com/Kaizouku14/kanban-board",
     collaborators: [],
   },
   {
     id: "6",
+    name: "Zynkly — Modern URL Shortener",
+    description:
+      "A fast, privacy-focused URL shortener built with SvelteKit, Turso, and Drizzle ORM. Features include custom slugs, QR codes, password protection, link analytics, and link organization with folders.",
+    link: "https://zynkly.vercel.app/",
+    image: "/globe.svg",
+    preview: "/zynkly-preview.png",
+    technologies: [
+      { name: "Svelte kit", icon: SiSvelte },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Node.js", icon: SiNodedotjs },
+      { name: "Turso", icon: SiTurso },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+    ],
+    github: "https://github.com/Kaizouku14/IT403-Final-Project",
+    collaborators: [],
+  },
+  {
+    id: "7",
     name: "Prompt Chain",
     description:
       "An AI-powered PDF summarizer built with LangChain and Groq API. It can adjust its persona and tone dynamically to fit different use cases.",
@@ -273,7 +302,7 @@ export const PROJECTS: ProjectCardProps[] = [
       { name: "TypeScript", icon: SiTypescript },
       { name: "LangChain", icon: SiLangchain },
       { name: "Node.js", icon: SiNodedotjs },
-      { name: "Tailwind CSS", icon: SiReact },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
     ],
     github: "https://github.com/Kaizouku14/prompt-chain",
     collaborators: [],

@@ -59,9 +59,21 @@ const DefaultCursorSVG: FC = () => {
           <feOffset dy={2.25825} />
           <feGaussianBlur stdDeviation={2.25825} />
           <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0" />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_91_7928" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_91_7928" result="shape" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_91_7928"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_91_7928"
+            result="shape"
+          />
         </filter>
       </defs>
     </svg>
@@ -71,10 +83,10 @@ const DefaultCursorSVG: FC = () => {
 export function SmoothCursor({
   cursor = <DefaultCursorSVG />,
   springConfig = {
-    damping: 35,
-    stiffness: 400,
-    mass: 1,
-    restDelta: 0.001,
+    damping: 25,
+    stiffness: 200,
+    mass: 0.8,
+    restDelta: 0.01,
   },
 }: SmoothCursorProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -118,13 +130,17 @@ export function SmoothCursor({
       const currentPos = { x: e.clientX, y: e.clientY };
       updateVelocity(currentPos);
 
-      const speed = Math.sqrt(Math.pow(velocity.current.x, 2) + Math.pow(velocity.current.y, 2));
+      const speed = Math.sqrt(
+        Math.pow(velocity.current.x, 2) + Math.pow(velocity.current.y, 2),
+      );
 
       cursorX.set(currentPos.x);
       cursorY.set(currentPos.y);
 
       if (speed > 0.1) {
-        const currentAngle = Math.atan2(velocity.current.y, velocity.current.x) * (180 / Math.PI) + 90;
+        const currentAngle =
+          Math.atan2(velocity.current.y, velocity.current.x) * (180 / Math.PI) +
+          90;
 
         let angleDiff = currentAngle - previousAngle.current;
         if (angleDiff > 180) angleDiff -= 360;
