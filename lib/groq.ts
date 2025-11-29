@@ -23,8 +23,11 @@ const agent = createAgent({
   responseFormat: ResponseFormat,
 });
 
-export const chatMessage = async ({ thread_id, content }: ChatMessage) => {
-  const response = await agent.invoke({ messages: [{ role: "user", content }] }, { configurable: { thread_id } });
+export const chatMessage = async ({ content }: ChatMessage) => {
+  const response = await agent.invoke(
+    { messages: [{ role: "user", content }] },
+    { configurable: { thread_id: 1 } },
+  );
 
   return response.structuredResponse;
 };

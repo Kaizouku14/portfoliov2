@@ -31,7 +31,9 @@ const Projects = () => {
     const checkOverflow = () => {
       const el = containerRef.current;
       if (!el) return;
-      setIsOverflowing(el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth);
+      setIsOverflowing(
+        el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth,
+      );
     };
 
     const handleResize = () => requestAnimationFrame(checkOverflow);
@@ -43,7 +45,10 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id={MENU.PROJECTS} className="h-auto flex flex-col md:px-12 px-8 py-4 justify-center ">
+    <section
+      id={MENU.PROJECTS}
+      className="h-auto flex flex-col md:px-12 px-8 py-4 justify-center "
+    >
       <Animate text="Projects" className="text-5xl font-semibold mb-12" />
 
       <div className="relative">
@@ -65,6 +70,7 @@ const Projects = () => {
         {!seeMore && (
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-background to-transparent pointer-events-none" />
         )}
+        --
       </div>
 
       {isOverflowing && (

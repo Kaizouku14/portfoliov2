@@ -1,6 +1,11 @@
 "use client";
 
-import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "../ui/input-group";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "../ui/input-group";
 import { ArrowUpIcon, MessageCircleMoreIcon } from "lucide-react";
 import { useChat } from "@/hooks/use-chat";
 import ChatBubble from "./conversation";
@@ -11,7 +16,6 @@ import { chatMessage } from "@/lib/groq";
 
 const Chat = () => {
   const { isOpen } = useChat();
-  const THREAD_ID = "1"; //TODO: Replace with actual thread ID
   const [message, setMessage] = useState("");
   const [conversation, setConversation] = useState<Conversation[]>([
     {
@@ -28,7 +32,7 @@ const Chat = () => {
       const newConversation = [...conversation, { message }];
       setConversation(newConversation);
 
-      const { message: response } = await chatMessage({ thread_id: THREAD_ID, content: message });
+      const { message: response } = await chatMessage({ content: message });
 
       setIsLoading(false);
       const updatedConversation = [...newConversation, { response }];
@@ -63,7 +67,12 @@ const Chat = () => {
           <MessageCircleMoreIcon />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
-          <InputGroupButton variant="default" className="rounded-full" size="icon-xs" onClick={handleSendMessage}>
+          <InputGroupButton
+            variant="default"
+            className="rounded-full"
+            size="icon-xs"
+            onClick={handleSendMessage}
+          >
             <ArrowUpIcon />
             <span className="sr-only">Send</span>
           </InputGroupButton>

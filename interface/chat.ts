@@ -9,6 +9,6 @@ export interface ChatBubbleProps {
 }
 
 export interface ChatMessage {
-  thread_id: string;
+  // thread_id: string;
   content: string;
 }
