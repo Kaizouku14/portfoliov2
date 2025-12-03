@@ -20,7 +20,10 @@ const Chat = () => {
   const [conversation, setConversation] = useState<Conversation[]>([
     {
       message: "",
-      response: "Hey! I’m Al-v Manda, welcome to a glimpse of what I do.",
+      system: {
+        response: "Hey! I’m Al-v Manda, welcome to a glimpse of what I do.",
+        links: [],
+      },
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,10 +35,10 @@ const Chat = () => {
       const newConversation = [...conversation, { message }];
       setConversation(newConversation);
 
-      const { message: response } = await chatMessage({ content: message });
+      const system = await chatMessage({ content: message });
 
       setIsLoading(false);
-      const updatedConversation = [...newConversation, { response }];
+      const updatedConversation = [...newConversation, { system }];
       setConversation(updatedConversation);
       setMessage("");
     } catch {

@@ -18,12 +18,29 @@ const ChatBubble = ({ conversation, isLoading }: ChatBubbleProps) => {
       <div className="border-border bg-background flex w-full flex-col gap-4 overflow-y-auto border px-4 backdrop-blur-sm h-70 py-6 ">
         {conversation?.map((item, index) => (
           <div key={index} className="flex flex-col gap-3">
-            {item.response && (
+            {item.system?.response && (
               <div className="flex items-start gap-3">
                 <Profile />
                 <div className="bg-primary/10 text-foreground max-w-[70%] rounded-2xl px-3 py-2 text-sm shadow-inner h-auto">
                   <pre className="font-sans whitespace-pre-wrap prose">
-                    {item.response}
+                    {item.system.response}
+
+                    {item.system?.links && item.system.links?.length > 0 && (
+                      <ol className="inline-flex flex-wrap gap-1">
+                        {item.system.links.map((l) => (
+                          <li key={l.social}>
+                            <a
+                              href={l.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-500 underline hover:text-blue-600 transition-colors"
+                            >
+                              {l.social}
+                            </a>
+                          </li>
+                        ))}
+                      </ol>
+                    )}
                   </pre>
                 </div>
               </div>

@@ -1,6 +1,14 @@
+interface SystemStructuredResponse {
+  response: string;
+  links?: {
+    social: string;
+    link: string;
+  }[];
+}
+
 export interface Conversation {
   message?: string;
-  response?: string;
+  system?: SystemStructuredResponse;
 }
 
 export interface ChatBubbleProps {

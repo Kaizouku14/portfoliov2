@@ -24,7 +24,9 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black">{heroContent.title}</h1>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black">
+            {heroContent.title}
+          </h1>
 
           <TypingAnimation
             className="mt-2 text-base sm:text-2xl"
@@ -63,7 +65,13 @@ const HeroSection = () => {
               <Download className="size-5" />
               <span className="font-semibold">Download CV</span>
             </Button>
-            <Button onClick={() => document.getElementById(MENU.PROJECTS)?.scrollIntoView({ behavior: "smooth" })}>
+            <Button
+              onClick={() =>
+                document
+                  .getElementById(MENU.PROJECTS)
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               <FolderOpen className="size-5" />
               <span className="font-semibold">View My Work</span>
             </Button>

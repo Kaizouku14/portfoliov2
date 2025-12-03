@@ -18,7 +18,6 @@ import {
   SiPostgresql,
   SiLucia,
   SiVite,
-  SiLangchain,
   SiEthereum,
 } from "react-icons/si";
 import { DrizzleIcon } from "@/components/icons/drizzle-orm";
@@ -286,25 +285,6 @@ export const PROJECTS: ProjectCardProps[] = [
       { name: "Tailwind CSS", icon: SiTailwindcss },
     ],
     github: "https://github.com/Kaizouku14/IT403-Final-Project",
-    collaborators: [],
-  },
-  {
-    id: "7",
-    name: "Prompt Chain",
-    description:
-      "An AI-powered PDF summarizer built with LangChain and Groq API. It can adjust its persona and tone dynamically to fit different use cases.",
-    link: "https://prompt-chain-one.vercel.app/",
-    image: "/globe.svg",
-    preview: "/prompt-chain.png",
-    technologies: [
-      { name: "React", icon: SiReact },
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "LangChain", icon: SiLangchain },
-      { name: "Node.js", icon: SiNodedotjs },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
-    ],
-    github: "https://github.com/Kaizouku14/prompt-chain",
     collaborators: [],
   },
 ];
