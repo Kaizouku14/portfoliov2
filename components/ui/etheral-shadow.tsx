@@ -1,7 +1,11 @@
 "use client";
 
-import React, { useRef, useEffect, CSSProperties, useState } from "react";
-import { animate, useMotionValue, AnimationPlaybackControls } from "framer-motion";
+import React, { useRef, useEffect, CSSProperties, useMemo } from "react";
+import {
+  animate,
+  useMotionValue,
+  AnimationPlaybackControls,
+} from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface ResponsiveImage {
@@ -34,7 +38,13 @@ export interface EtheralShadowProps {
   children?: React.ReactNode;
 }
 
-function mapRange(value: number, fromLow: number, fromHigh: number, toLow: number, toHigh: number): number {
+function mapRange(
+  value: number,
+  fromLow: number,
+  fromHigh: number,
+  toLow: number,
+  toHigh: number,
+): number {
   if (fromLow === fromHigh) {
     return toLow;
   }
@@ -42,15 +52,10 @@ function mapRange(value: number, fromLow: number, fromHigh: number, toLow: numbe
   return toLow + percentage * (toHigh - toLow);
 }
 
-const useStableId = (prefix = "shadowoverlay"): string => {
-  const [id, setId] = useState<string>(prefix);
-
-  useEffect(() => {
-    // This runs only on the client, safe from SSR hydration mismatch
-    setId(`${prefix}-${Math.random().toString(36).substring(2, 9)}`);
-  }, [prefix]);
-
-  return id;
+// Optimized ID generation - no state, no extra render, no ref access during render
+let idCounter = 0;
+const generateId = (prefix = "shadowoverlay"): string => {
+  return `${prefix}-${++idCounter}`;
 };
 
 export function EtheralShadow({
@@ -62,50 +67,126 @@ export function EtheralShadow({
   className,
   children,
 }: EtheralShadowProps) {
-  const id = useStableId();
-  const animationEnabled = animation && animation.scale > 0;
+  // Generate ID only once using useMemo - no extra render, no ref access
+  const id = useMemo(() => generateId(), []);
+
+  // Memoize animation enabled check
+  const animationEnabled = useMemo(
+    () => animation && animation.scale > 0,
+    [animation],
+  );
+
+  // Memoize expensive calculations
+  const displacementScale = useMemo(
+    () => (animation ? mapRange(animation.scale, 1, 100, 20, 100) : 0),
+    [animation],
+  );
+
+  const animationDuration = useMemo(
+    () => (animation ? mapRange(animation.speed, 1, 100, 1000, 50) : 1),
+    [animation],
+  );
+
+  const baseFrequency = useMemo(
+    () =>
+      animation
+        ? `${mapRange(animation.scale, 0, 100, 0.001, 0.0005)},${mapRange(animation.scale, 0, 100, 0.004, 0.002)}`
+        : "0.001,0.004",
+    [animation],
+  );
+
   const feColorMatrixRef = useRef<SVGFEColorMatrixElement>(null);
-  const hueRotateMotionValue = useMotionValue(180);
   const hueRotateAnimation = useRef<AnimationPlaybackControls | null>(null);
-  const displacementScale = animation ? mapRange(animation.scale, 1, 100, 20, 100) : 0;
-  const animationDuration = animation ? mapRange(animation.speed, 1, 100, 1000, 50) : 1;
+
+  // Reuse motion value across renders
+  const hueRotateMotionValueRef = useRef(useMotionValue(0));
+  // eslint-disable-next-line react-hooks/refs
+  const hueRotateMotionValue = hueRotateMotionValueRef.current;
 
   useEffect(() => {
-    if (feColorMatrixRef.current && animationEnabled) {
+    if (!feColorMatrixRef.current || !animationEnabled) {
+      return;
+    }
+
+    const element = feColorMatrixRef.current;
+
+    // Stop existing animation
+    if (hueRotateAnimation.current) {
+      hueRotateAnimation.current.stop();
+    }
+
+    // Reset and start animation
+    hueRotateMotionValue.set(0);
+
+    // Use direct animation with optimized callback
+    hueRotateAnimation.current = animate(hueRotateMotionValue, 360, {
+      duration: animationDuration / 25,
+      repeat: Infinity,
+      repeatType: "loop",
+      repeatDelay: 0,
+      ease: "linear",
+      delay: 0,
+      onUpdate: (value: number) => {
+        // Direct attribute update - fastest approach for SVG
+        element.setAttribute("values", String(value));
+      },
+    });
+
+    return () => {
       if (hueRotateAnimation.current) {
         hueRotateAnimation.current.stop();
       }
-      hueRotateMotionValue.set(0);
-      hueRotateAnimation.current = animate(hueRotateMotionValue, 360, {
-        duration: animationDuration / 25,
-        repeat: Infinity,
-        repeatType: "loop",
-        repeatDelay: 0,
-        ease: "linear",
-        delay: 0,
-        onUpdate: (value: number) => {
-          if (feColorMatrixRef.current) {
-            feColorMatrixRef.current.setAttribute("values", String(value));
-          }
-        },
-      });
-      return () => {
-        if (hueRotateAnimation.current) {
-          hueRotateAnimation.current.stop();
-        }
-      };
-    }
+    };
   }, [animationEnabled, animationDuration, hueRotateMotionValue]);
 
+  // Memoize noise styles to prevent object recreation
+  const noiseStyles = useMemo(
+    () =>
+      noise && noise.opacity > 0
+        ? ({
+            position: "absolute" as const,
+            inset: 0,
+            backgroundImage: `url("https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png")`,
+            backgroundSize: noise.scale * 200,
+            backgroundRepeat: "repeat" as const,
+            opacity: noise.opacity / 2,
+          } as CSSProperties)
+        : null,
+    [noise],
+  );
+
+  // Memoize mask styles
+  const maskStyles = useMemo(
+    () =>
+      ({
+        backgroundColor: color,
+        maskImage: `url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png')`,
+        maskSize: sizing === "stretch" ? "100% 100%" : "cover",
+        maskRepeat: "no-repeat" as const,
+        maskPosition: "center" as const,
+        width: "100%",
+        height: "100%",
+      }) as CSSProperties,
+    [color, sizing],
+  );
+
+  // Memoize outer container style
+  const outerStyle = useMemo(
+    () =>
+      ({
+        position: "absolute" as const,
+        inset: -displacementScale,
+        filter: animationEnabled ? `url(#${id}) blur(4px)` : "none",
+      }) as CSSProperties,
+    [displacementScale, animationEnabled, id],
+  );
+
   return (
-    <div className={cn("relative overflow-hidden w-full h-full", className)} style={style}>
-      <div
-        style={{
-          position: "absolute",
-          inset: -displacementScale,
-          filter: animationEnabled ? `url(#${id}) blur(4px)` : "none",
-        }}
-      >
+    <div
+      className={cn("relative overflow-hidden w-full h-full", className)}
+      style={style}
+    >
+      <div style={outerStyle}>
         {animationEnabled && (
           <svg style={{ position: "absolute" }}>
             <defs>
@@ -113,52 +194,46 @@ export function EtheralShadow({
                 <feTurbulence
                   result="undulation"
                   numOctaves="2"
-                  baseFrequency={`${mapRange(animation.scale, 0, 100, 0.001, 0.0005)},${mapRange(animation.scale, 0, 100, 0.004, 0.002)}`}
+                  baseFrequency={baseFrequency}
                   seed="0"
                   type="turbulence"
                 />
-                <feColorMatrix ref={feColorMatrixRef} in="undulation" type="hueRotate" values="180" />
+                <feColorMatrix
+                  ref={feColorMatrixRef}
+                  in="undulation"
+                  type="hueRotate"
+                  values="0"
+                />
                 <feColorMatrix
                   in="dist"
                   result="circulation"
                   type="matrix"
                   values="4 0 0 0 1  4 0 0 0 1  4 0 0 0 1  1 0 0 0 0"
                 />
-                <feDisplacementMap in="SourceGraphic" in2="circulation" scale={displacementScale} result="dist" />
-                <feDisplacementMap in="dist" in2="undulation" scale={displacementScale} result="output" />
+                <feDisplacementMap
+                  in="SourceGraphic"
+                  in2="circulation"
+                  scale={displacementScale}
+                  result="dist"
+                />
+                <feDisplacementMap
+                  in="dist"
+                  in2="undulation"
+                  scale={displacementScale}
+                  result="output"
+                />
               </filter>
             </defs>
           </svg>
         )}
-        <div
-          style={{
-            backgroundColor: color,
-            maskImage: `url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png')`,
-            maskSize: sizing === "stretch" ? "100% 100%" : "cover",
-            maskRepeat: "no-repeat",
-            maskPosition: "center",
-            width: "100%",
-            height: "100%",
-          }}
-        />
+        <div style={maskStyles} />
       </div>
       {children && (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
           {children}
         </div>
       )}
-      {noise && noise.opacity > 0 && (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `url("https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png")`,
-            backgroundSize: noise.scale * 200,
-            backgroundRepeat: "repeat",
-            opacity: noise.opacity / 2,
-          }}
-        />
-      )}
+      {noiseStyles && <div style={noiseStyles} />}
     </div>
   );
 }

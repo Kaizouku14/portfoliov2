@@ -83,13 +83,12 @@ const DefaultCursorSVG: FC = () => {
 export function SmoothCursor({
   cursor = <DefaultCursorSVG />,
   springConfig = {
-    damping: 25,
-    stiffness: 200,
-    mass: 0.8,
-    restDelta: 0.01,
+    damping: 45,
+    stiffness: 400,
+    mass: 1,
+    restDelta: 0.001,
   },
 }: SmoothCursorProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMoving, setIsMoving] = useState(false);
   const lastMousePos = useRef<Position>({ x: 0, y: 0 });
   const velocity = useRef<Position>({ x: 0, y: 0 });
@@ -101,13 +100,13 @@ export function SmoothCursor({
   const cursorY = useSpring(0, springConfig);
   const rotation = useSpring(0, {
     ...springConfig,
-    damping: 50,
+    damping: 60,
     stiffness: 300,
   });
   const scale = useSpring(1, {
     ...springConfig,
-    stiffness: 400,
-    damping: 30,
+    stiffness: 500,
+    damping: 35,
   });
 
   useEffect(() => {
