@@ -1,32 +1,75 @@
 "use client";
 
+import { memo, useMemo } from "react";
+import { motion, type Variants } from "framer-motion";
 import { MENU } from "@/constants/menu-options";
 import Animate from "@/components/animate";
 import TechStackTree from "@/components/tech-stacks";
 import SkillCard from "@/components/skill-card";
 import { SKILLS } from "@/data/data";
-import { motion } from "framer-motion";
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
+const MemoizedSkillCard = memo(SkillCard);
 
 const Skill = () => {
+  const skillCards = useMemo(
+    () =>
+      SKILLS.map((skill) => (
+        <motion.div key={skill.name} variants={itemVariants}>
+          <MemoizedSkillCard
+            name={skill.name}
+            icon={skill.icon}
+            description={skill.description}
+          />
+        </motion.div>
+      )),
+    [],
+  );
+
   return (
-    <section id={MENU.SKILL} className="md:h-screen relative flex flex-col md:px-12 px-8 justify-center">
+    <section
+      id={MENU.SKILL}
+      className="md:h-screen relative flex flex-col md:px-12 px-8 justify-center"
+    >
       <Animate text="Skills" className="text-5xl font-semibold mb-12" />
 
-      <motion.div
-        className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl gap-8 md:gap-12"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
-          {SKILLS.map((skill) => (
-            <SkillCard key={skill.name} name={skill.name} icon={skill.icon} description={skill.description} />
-          ))}
-        </div>
+      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl gap-8 md:gap-12">
+        <motion.div
+          className="grid md:grid-cols-2 gap-4 md:gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {skillCards}
+        </motion.div>
+
         <TechStackTree />
-      </motion.div>
+      </div>
     </section>
   );
 };
 
-export default Skill;
+export default memo(Skill);

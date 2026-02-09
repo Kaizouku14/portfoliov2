@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect, CSSProperties, useMemo } from "react";
+import React, {
+  useRef,
+  useEffect,
+  CSSProperties,
+  useMemo,
+  useState,
+} from "react";
 import {
   animate,
   useMotionValue,
@@ -52,7 +58,6 @@ function mapRange(
   return toLow + percentage * (toHigh - toLow);
 }
 
-// Optimized ID generation - no state, no extra render, no ref access during render
 let idCounter = 0;
 const generateId = (prefix = "shadowoverlay"): string => {
   return `${prefix}-${++idCounter}`;
@@ -67,16 +72,15 @@ export function EtheralShadow({
   className,
   children,
 }: EtheralShadowProps) {
-  // Generate ID only once using useMemo - no extra render, no ref access
   const id = useMemo(() => generateId(), []);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
 
-  // Memoize animation enabled check
   const animationEnabled = useMemo(
     () => animation && animation.scale > 0,
     [animation],
   );
 
-  // Memoize expensive calculations
   const displacementScale = useMemo(
     () => (animation ? mapRange(animation.scale, 1, 100, 20, 100) : 0),
     [animation],
@@ -97,11 +101,31 @@ export function EtheralShadow({
 
   const feColorMatrixRef = useRef<SVGFEColorMatrixElement>(null);
   const hueRotateAnimation = useRef<AnimationPlaybackControls | null>(null);
-
-  // Reuse motion value across renders
   const hueRotateMotionValueRef = useRef(useMotionValue(0));
   // eslint-disable-next-line react-hooks/refs
   const hueRotateMotionValue = hueRotateMotionValueRef.current;
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0,
+        rootMargin: "50px", // Start animation slightly before visible
+      },
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (!feColorMatrixRef.current || !animationEnabled) {
@@ -110,15 +134,23 @@ export function EtheralShadow({
 
     const element = feColorMatrixRef.current;
 
-    // Stop existing animation
-    if (hueRotateAnimation.current) {
-      hueRotateAnimation.current.stop();
+    // Pause/resume based on visibility
+    if (!isVisible) {
+      if (hueRotateAnimation.current) {
+        hueRotateAnimation.current.pause();
+      }
+      return;
     }
 
-    // Reset and start animation
+    // Resume if already exists
+    if (hueRotateAnimation.current) {
+      hueRotateAnimation.current.play();
+      return;
+    }
+
+    // Initialize animation
     hueRotateMotionValue.set(0);
 
-    // Use direct animation with optimized callback
     hueRotateAnimation.current = animate(hueRotateMotionValue, 360, {
       duration: animationDuration / 25,
       repeat: Infinity,
@@ -127,7 +159,6 @@ export function EtheralShadow({
       ease: "linear",
       delay: 0,
       onUpdate: (value: number) => {
-        // Direct attribute update - fastest approach for SVG
         element.setAttribute("values", String(value));
       },
     });
@@ -135,11 +166,11 @@ export function EtheralShadow({
     return () => {
       if (hueRotateAnimation.current) {
         hueRotateAnimation.current.stop();
+        hueRotateAnimation.current = null;
       }
     };
-  }, [animationEnabled, animationDuration, hueRotateMotionValue]);
+  }, [animationEnabled, isVisible, animationDuration, hueRotateMotionValue]);
 
-  // Memoize noise styles to prevent object recreation
   const noiseStyles = useMemo(
     () =>
       noise && noise.opacity > 0
@@ -150,12 +181,13 @@ export function EtheralShadow({
             backgroundSize: noise.scale * 200,
             backgroundRepeat: "repeat" as const,
             opacity: noise.opacity / 2,
+            // OPTIMIZATION: Help browser optimize rendering
+            willChange: isVisible ? "opacity" : "auto",
           } as CSSProperties)
         : null,
-    [noise],
+    [noise, isVisible],
   );
 
-  // Memoize mask styles
   const maskStyles = useMemo(
     () =>
       ({
@@ -166,29 +198,44 @@ export function EtheralShadow({
         maskPosition: "center" as const,
         width: "100%",
         height: "100%",
+        // OPTIMIZATION: Force GPU layer for smoother rendering
+        transform: "translateZ(0)",
       }) as CSSProperties,
     [color, sizing],
   );
 
-  // Memoize outer container style
   const outerStyle = useMemo(
     () =>
       ({
         position: "absolute" as const,
         inset: -displacementScale,
         filter: animationEnabled ? `url(#${id}) blur(4px)` : "none",
+        // OPTIMIZATION: Tell browser this will change
+        willChange: animationEnabled && isVisible ? "filter" : "auto",
+        // OPTIMIZATION: Promote to own layer for GPU acceleration
+        transform: "translateZ(0)",
       }) as CSSProperties,
-    [displacementScale, animationEnabled, id],
+    [displacementScale, animationEnabled, isVisible, id],
+  );
+
+  // OPTIMIZATION: CSS containment helps browser optimize painting
+  const containerStyle = useMemo(
+    () => ({
+      ...style,
+      contain: "layout style paint" as const,
+    }),
+    [style],
   );
 
   return (
     <div
+      ref={containerRef}
       className={cn("relative overflow-hidden w-full h-full", className)}
-      style={style}
+      style={containerStyle}
     >
       <div style={outerStyle}>
         {animationEnabled && (
-          <svg style={{ position: "absolute" }}>
+          <svg style={{ position: "absolute", width: 0, height: 0 }}>
             <defs>
               <filter id={id}>
                 <feTurbulence
