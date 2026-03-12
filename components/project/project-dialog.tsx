@@ -43,16 +43,20 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
         </div>
       </DialogTrigger>
       <DialogContent className="sm:max-w-6xl  p-0" showCloseButton={true}>
-        <ScrollArea className="h-140 md:h-129 rounded-sm md:max-h-[90vh] p-0 ">
+        <ScrollArea className="h-140 rounded-sm md:max-h-[90vh] p-0 ">
           <div className="grid md:grid-cols-2 gap-0 h-full">
-            <div className=" bg-muted/30 p-6 flex items-center justify-center">
+            <div className="bg-muted/30 h-140 p-6 flex items-center justify-center">
               <div className="w-full max-w-xl relative">
                 <Carousel className="w-full group">
                   <CarouselContent>
                     {data.media.map((item, idx) => (
                       <CarouselItem key={idx}>
                         {item.type === "video" ? (
-                          <Safari url={data.link} videoSrc={item.url} mode="simple" />
+                          <Safari
+                            url={data.link}
+                            videoSrc={item.url}
+                            mode="simple"
+                          />
                         ) : (
                           <Safari
                             url={data.link}
