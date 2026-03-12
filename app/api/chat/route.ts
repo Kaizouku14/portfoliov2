@@ -1,17 +1,28 @@
-import { groq } from "@/lib/groq";
-import { SYSTEM_PROMPT } from "@/lib/prompt";
-import { convertToModelMessages, streamText, UIMessage } from "ai";
+import { NextResponse } from "next/server";
+import { chatRequestSchema } from "@/lib/validations/chat.schema";
+import { streamChatResponse } from "@/lib/services/chat.service";
 
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages }: { messages: UIMessage[] } = await req.json();
+  try {
+    const body = await req.json();
 
-  const result = streamText({
-    model: groq("llama-3.3-70b-versatile"),
-    system: SYSTEM_PROMPT,
-    messages: await convertToModelMessages(messages),
-  });
+    const parsed = chatRequestSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { success: false, message: "Invalid request body", errors: parsed.error.flatten() },
+        { status: 400 }
+      );
+    }
 
-  return result.toUIMessageStreamResponse();
+    return await streamChatResponse(parsed.data.messages);
+
+  } catch (error) {
+    console.error("Chat API error:", error);
+    return NextResponse.json(
+      { success: false, message: "Internal server error" },
+      { status: 500 }
+    );
+  }
 }

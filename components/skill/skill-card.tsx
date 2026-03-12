@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
 import { ElementType } from "react";
+import { motion } from "motion/react";
 
 interface SkillCardProps {
   name: string;

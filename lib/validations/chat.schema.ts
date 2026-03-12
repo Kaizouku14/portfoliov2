@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+export const chatRequestSchema = z.object({
+  messages: z.array(z.any()),
+});
+
 export const ResponseFormat = z.object({
   response: z.string().describe("The conversational response from Al-v"),
   links: z

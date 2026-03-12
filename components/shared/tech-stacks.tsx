@@ -1,6 +1,8 @@
-import { MAIN_STACK } from "@/data/data";
-import { Folder, Tree, File } from "./ui/file-tree";
-import { motion } from "framer-motion";
+"use client";
+
+import { MAIN_STACK } from "@/data";
+import { Folder, Tree, File } from "@/components/ui/file-tree";
+import { motion } from "motion/react";
 
 const TechStackTree = () => {
   return (

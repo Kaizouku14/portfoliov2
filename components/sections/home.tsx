@@ -4,11 +4,11 @@ import { useCallback, useRef, memo } from "react";
 import { motion, Variants } from "motion/react";
 import { Download, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import HeroHeader from "../header";
-import { MENU } from "@/constants/menu-options";
+import HeroHeader from "@/components/layout/header";
+import { MENU } from "@/constants";
 import { EtheralShadow } from "@/components/ui/etheral-shadow";
 import { TypingAnimation } from "@/components/ui/typing-animation";
-import { heroContent } from "@/data/data";
+import { heroContent } from "@/data";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },

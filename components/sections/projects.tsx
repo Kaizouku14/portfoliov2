@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback, useMemo, memo } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowDown, ArrowUp } from "lucide-react";
-import Animate from "@/components/animate";
-import { ProjectCard } from "@/components/project-card";
+import Animate from "@/components/shared/animate";
+import { ProjectCard } from "@/components/project/project-card";
 import { Button } from "@/components/ui/button";
-import { MENU } from "@/constants/menu-options";
-import { PROJECTS } from "@/data/data";
+import { MENU } from "@/constants";
+import { PROJECTS } from "@/data";
 import { cn } from "@/lib/utils";
 
 const GradientOverlay = memo(() => (

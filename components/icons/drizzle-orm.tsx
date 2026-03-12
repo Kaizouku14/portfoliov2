@@ -1,10 +1,10 @@
-export const DrizzleIcon = () => (
+export const DrizzleIcon = ({ className }: { className?: string }) => (
   <svg
     viewBox="0 0 80 70"
     xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
     aria-label="Drizzle ORM"
-    className="size-4 scale-135"
+    className={`size-4 scale-135 ${className || ""}`}
   >
     <rect
       width="5.25"

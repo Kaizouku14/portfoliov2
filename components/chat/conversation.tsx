@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import { ScrollArea } from "../ui/scroll-area";
 import LoadingBubble from "./loading-bubble";
-import { Profile } from "../profile";
-import { ChatBubbleProps } from "@/interface/chat";
+import { Profile } from "@/components/shared/profile";
+import { ChatBubbleProps } from "@/types";
 
 const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, isLoading }) => {
   const bottomRef = useRef<HTMLDivElement | null>(null);

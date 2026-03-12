@@ -1,11 +1,11 @@
-import { IconType } from "react-icons/lib";
+import { ElementType } from "react";
 
-interface Tech {
+export interface Tech {
   name: string;
-  icon: IconType;
+  icon: ElementType;
 }
 
-interface Collaborator {
+export interface Collaborator {
   profileUrl: string;
   imageUrl: string;
 }

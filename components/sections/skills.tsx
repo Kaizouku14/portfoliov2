@@ -1,12 +1,12 @@
 "use client";
 
 import { memo, useMemo } from "react";
-import { motion, type Variants } from "framer-motion";
-import { MENU } from "@/constants/menu-options";
-import Animate from "@/components/animate";
-import TechStackTree from "@/components/tech-stacks";
-import SkillCard from "@/components/skill-card";
-import { SKILLS } from "@/data/data";
+import { motion, type Variants } from "motion/react";
+import { MENU } from "@/constants";
+import Animate from "@/components/shared/animate";
+import TechStackTree from "@/components/shared/tech-stacks";
+import SkillCard from "@/components/skill/skill-card";
+import { SKILLS } from "@/data";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },

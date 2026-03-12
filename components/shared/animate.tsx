@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { TextAnimate } from "./ui/text-animate";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 interface AnimateProps {
   text: string;
@@ -9,7 +9,7 @@ interface AnimateProps {
   once?: boolean;
 }
 
- const Animate = ({ text, splitBy = "character", delay = 1, once = true, className }: AnimateProps) => {
+const Animate = ({ text, splitBy = "character", delay = 1, once = true, className }: AnimateProps) => {
   return (
     <TextAnimate by={splitBy} delay={delay} once={once} className={cn(className)}>
       {text}
@@ -17,5 +17,4 @@ interface AnimateProps {
   );
 };
 
-
-export default Animate
+export default Animate;

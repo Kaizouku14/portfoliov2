@@ -9,15 +9,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ProjectCardProps } from "@/interface/project";
+import { ProjectCardProps } from "@/types";
 import Image from "next/image";
-import { Safari } from "./ui/safari";
-import { AvatarCircles } from "./ui/avatar-circles";
-import { Badge } from "./ui/badge";
+import { Safari } from "@/components/ui/safari";
+import { AvatarCircles } from "@/components/ui/avatar-circles";
+import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ScrollArea } from "./ui/scroll-area";
+import { motion } from "motion/react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
   return (

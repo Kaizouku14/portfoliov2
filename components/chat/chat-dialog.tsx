@@ -11,35 +11,19 @@ import { ArrowUpIcon, MessageCircleMoreIcon } from "lucide-react";
 import { useChatStore } from "@/store/use-chat.store";
 import ChatBubble from "./conversation";
 import { ChatHeader } from "./chat-header";
-import { useState, type KeyboardEvent } from "react";
-
-import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport } from "ai";
+import { useChatMessages } from "@/hooks/use-chat-messages";
 
 const Chat = () => {
   const { isOpen } = useChatStore();
-  const { messages, sendMessage, status, error } = useChat({
-    transport: new DefaultChatTransport({
-      api: "/api/chat",
-    }),
-  });
-  const [message, setMessage] = useState("");
-
-  const handleSendMessage = async () => {
-    try {
-      if (!message) return;
-      await sendMessage({ text: message });
-
-      setMessage("");
-    } catch {}
-  };
-
-  const handleKeyDown = async (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      await handleSendMessage();
-    }
-  };
+  const {
+    messages,
+    message,
+    setMessage,
+    status,
+    error,
+    handleSendMessage,
+    handleKeyDown,
+  } = useChatMessages();
 
   if (!isOpen) return null;
 

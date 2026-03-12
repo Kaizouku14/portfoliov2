@@ -1,9 +1,5 @@
 import {
-  CodeXml,
-  Paintbrush,
   Fingerprint,
-  Database,
-  ShieldCheck,
 } from "lucide-react";
 import {
   SiTypescript,
@@ -12,8 +8,6 @@ import {
   SiNextdotjs,
   SiTailwindcss,
   SiNodedotjs,
-  SiGit,
-  SiVercel,
   SiTurso,
   SiPostgresql,
   SiLucia,
@@ -21,69 +15,24 @@ import {
   SiEthereum,
 } from "react-icons/si";
 import { DrizzleIcon } from "@/components/icons/drizzle-orm";
-import { ProjectCardProps } from "@/interface/project";
+import { ProjectCardProps } from "@/types";
 
-export const heroHeader = {
-  name: "Al-v.",
-  profession: "Web Developer",
-};
-
-export const heroContent = {
-  title: "Driven by curiosity, powered by passion!",
-  typingWords: [
-    "Building Beautiful, Performant Web Apps",
-    "Turning Ideas into Interactive Experiences",
-    "Exploring the Space Between Code and Creativity",
-  ],
-  description: "Crafting digital experiences where design meets performance.",
-};
-
-export const MAIN_STACK = {
-  Language: [{ name: "TypeScript", icon: SiTypescript }],
-  Frontend: [
-    { name: "React", icon: SiReact },
-    { name: "Next.js", icon: SiNextdotjs },
-    { name: "Tailwind CSS", icon: SiTailwindcss },
-  ],
-  Backend: [
-    { name: "Node.js", icon: SiNodedotjs },
-    { name: "Drizzle ORM", icon: DrizzleIcon },
-    { name: "Better-auth", icon: Fingerprint }, // placeholder
-    { name: "Turso", icon: SiTurso },
-    { name: "Neon", icon: SiPostgresql },
-  ],
-  "CI/CD": [
-    { name: "Git", icon: SiGit },
-    { name: "Vercel", icon: SiVercel },
-  ],
-};
-
-export const SKILLS = [
-  {
-    name: "Full Stack Development",
-    icon: CodeXml,
-    description:
-      "Develop scalable web applications using React, Next.js, TypeScript, and Node.js.",
-  },
-  {
-    name: "API & Database Design",
-    icon: Database,
-    description:
-      "Build efficient REST and tRPC APIs with secure data models using Drizzle ORM.",
-  },
-  {
-    name: "UI/UX Design",
-    icon: Paintbrush,
-    description:
-      "Design user-centered interfaces with modern, accessible, and responsive layouts.",
-  },
-  {
-    name: "Authentication & Security",
-    icon: ShieldCheck,
-    description:
-      "Implement secure user authentication and authorization using Better Auth and modern standards.",
-  },
-];
+// Reusable tech constants — define once, reuse across projects
+const TECH = {
+  REACT: { name: "React", icon: SiReact },
+  NEXTJS: { name: "Next.js", icon: SiNextdotjs },
+  TYPESCRIPT: { name: "TypeScript", icon: SiTypescript },
+  NODEJS: { name: "Node.js", icon: SiNodedotjs },
+  TAILWIND: { name: "Tailwind CSS", icon: SiTailwindcss },
+  DRIZZLE: { name: "Drizzle ORM", icon: DrizzleIcon },
+  TURSO: { name: "Turso", icon: SiTurso },
+  NEON: { name: "Neon", icon: SiPostgresql },
+  BETTER_AUTH: { name: "Better-auth", icon: Fingerprint },
+  LUCIA: { name: "Lucia", icon: SiLucia },
+  VITE: { name: "Vite", icon: SiVite },
+  SVELTE: { name: "Svelte kit", icon: SiSvelte },
+  WEB3: { name: "Web3", icon: SiEthereum },
+} as const;
 
 export const PROJECTS: ProjectCardProps[] = [
   {
@@ -95,14 +44,14 @@ export const PROJECTS: ProjectCardProps[] = [
     image: "/scholar-link-logo.png",
     preview: "/scholar-link.png",
     technologies: [
-      { name: "React", icon: SiReact },
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "Node.js", icon: SiNodedotjs },
-      { name: "Drizzle ORM", icon: DrizzleIcon },
-      { name: "Turso", icon: SiTurso },
-      { name: "Better-auth", icon: Fingerprint },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
+      TECH.REACT,
+      TECH.NEXTJS,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.DRIZZLE,
+      TECH.TURSO,
+      TECH.BETTER_AUTH,
+      TECH.TAILWIND,
     ],
     github: "https://github.com/Kaizouku14/scholar-link",
     collaborators: [
@@ -136,12 +85,12 @@ export const PROJECTS: ProjectCardProps[] = [
     image: "/plantaria.png",
     video: "/plantaria.mp4",
     technologies: [
-      { name: "React", icon: SiReact },
-      { name: "Vite", icon: SiVite },
-      { name: "Web3", icon: SiEthereum },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "Node.js", icon: SiNodedotjs },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
+      TECH.REACT,
+      TECH.VITE,
+      TECH.WEB3,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.TAILWIND,
     ],
     github: "https://github.com/pagzone/plantaria",
     collaborators: [
@@ -175,14 +124,14 @@ export const PROJECTS: ProjectCardProps[] = [
     image: "/globe.svg",
     preview: "/globe.svg",
     technologies: [
-      { name: "React", icon: SiReact },
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "Node.js", icon: SiNodedotjs },
-      { name: "Drizzle ORM", icon: DrizzleIcon },
-      { name: "Turso", icon: SiTurso },
-      { name: "Better-auth", icon: Fingerprint },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
+      TECH.REACT,
+      TECH.NEXTJS,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.DRIZZLE,
+      TECH.TURSO,
+      TECH.BETTER_AUTH,
+      TECH.TAILWIND,
     ],
     github: "https://github.com/xyugen/sjdmchristianministries-rms",
     collaborators: [
@@ -216,14 +165,14 @@ export const PROJECTS: ProjectCardProps[] = [
     image: "/globe.svg",
     preview: "/globe.svg",
     technologies: [
-      { name: "React", icon: SiReact },
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "Node.js", icon: SiNodedotjs },
-      { name: "Neon", icon: SiPostgresql },
-      { name: "Drizzle ORM", icon: DrizzleIcon },
-      { name: "Lucia", icon: SiLucia },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
+      TECH.REACT,
+      TECH.NEXTJS,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.NEON,
+      TECH.DRIZZLE,
+      TECH.LUCIA,
+      TECH.TAILWIND,
     ],
     github: "https://github.com/Kaizouku14/InnControl",
     collaborators: [
@@ -258,13 +207,13 @@ export const PROJECTS: ProjectCardProps[] = [
     image: "/globe.svg",
     preview: "/globe.svg",
     technologies: [
-      { name: "React", icon: SiReact },
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "Node.js", icon: SiNodedotjs },
-      { name: "Neon", icon: SiPostgresql },
-      { name: "Lucia", icon: SiLucia },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
+      TECH.REACT,
+      TECH.NEXTJS,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.NEON,
+      TECH.LUCIA,
+      TECH.TAILWIND,
     ],
     github: "https://github.com/Kaizouku14/kanban-board",
     collaborators: [],
@@ -278,11 +227,11 @@ export const PROJECTS: ProjectCardProps[] = [
     image: "/globe.svg",
     preview: "/zynkly-preview.png",
     technologies: [
-      { name: "Svelte kit", icon: SiSvelte },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "Node.js", icon: SiNodedotjs },
-      { name: "Turso", icon: SiTurso },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
+      TECH.SVELTE,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.TURSO,
+      TECH.TAILWIND,
     ],
     github: "https://github.com/Kaizouku14/IT403-Final-Project",
     collaborators: [],

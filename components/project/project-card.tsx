@@ -1,7 +1,7 @@
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
-import { ProjectCardProps } from "@/interface/project";
-import { motion } from "framer-motion";
+import { ProjectCardProps } from "@/types";
+import { motion } from "motion/react";
 import Link from "next/link";
 import ProjectInfoDialog from "./project-dialog";
 

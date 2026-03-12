@@ -1,5 +1,5 @@
-import Animate from "@/components/animate";
-import { heroHeader } from "@/data/data";
+import Animate from "@/components/shared/animate";
+import { heroHeader } from "@/data";
 
 const HeroHeader = () => {
   return (

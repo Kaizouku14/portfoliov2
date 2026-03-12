@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 import { Button } from "../ui/button";
 import { useChatStore } from "@/store/use-chat.store";
-import { Profile } from "../profile";
+import { Profile } from "@/components/shared/profile";
 
 export const ChatHeader = () => {
   const { toggleChat } = useChatStore();

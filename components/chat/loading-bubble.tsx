@@ -1,4 +1,4 @@
-import { Profile } from "../profile";
+import { Profile } from "@/components/shared/profile";
 
 const LoadingBubble = () => {
   return (

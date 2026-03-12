@@ -1,9 +1,9 @@
-import HeroSection from "@/app/_components/sections/home";
-import Skill from "@/app/_components/sections/skills";
-import Projects from "@/app/_components/sections/projects";
-import DockMenu from "@/components/dock-menu";
+import HeroSection from "@/components/sections/home";
+import Skill from "@/components/sections/skills";
+import Projects from "@/components/sections/projects";
+import DockMenu from "@/components/shared/dock-menu";
 import Chat from "@/components/chat/chat-dialog";
-import Footer from "./_components/footer";
+import Footer from "@/components/layout/footer";
 
 const Main = () => {
   return (

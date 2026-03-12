@@ -10,8 +10,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Dock, DockIcon } from "./ui/dock";
-import { DATA } from "@/data/dock";
+import { Dock, DockIcon } from "@/components/ui/dock";
+import { DOCK_DATA } from "@/constants";
 import { BotMessageSquare } from "lucide-react";
 import { useChatStore } from "@/store/use-chat.store";
 
@@ -21,7 +21,7 @@ const DockMenu = () => {
   return (
     <TooltipProvider>
       <Dock direction="middle" className="shadow-xl">
-        {DATA.navbar.map((item) => (
+        {DOCK_DATA.navbar.map((item) => (
           <DockIcon key={item.label}>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -62,7 +62,7 @@ const DockMenu = () => {
         </DockIcon>
 
         <Separator orientation="vertical" className="h-full" />
-        {Object.entries(DATA.contact.social).map(([name, social]) => (
+        {Object.entries(DOCK_DATA.contact.social).map(([name, social]) => (
           <DockIcon key={name}>
             <Tooltip>
               <TooltipTrigger asChild>
