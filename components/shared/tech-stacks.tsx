@@ -5,7 +5,7 @@ import { Folder, Tree, File } from "@/components/ui/file-tree";
 import { motion } from "motion/react";
 
 const TechStackTree = () => {
-  const expandedItems = ["root", "1", "2", "4"];
+  const expandedItems = ["root", "1", "3", "4"];
 
   return (
     <motion.div

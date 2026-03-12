@@ -42,7 +42,7 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-6xl  p-0" showCloseButton={false}>
+      <DialogContent className="sm:max-w-6xl  p-0" showCloseButton={true}>
         <ScrollArea className="h-140 md:h-129 rounded-sm md:max-h-[90vh] p-0 ">
           <div className="grid md:grid-cols-2 gap-0 h-full">
             <div className=" bg-muted/30 p-6 flex items-center justify-center">

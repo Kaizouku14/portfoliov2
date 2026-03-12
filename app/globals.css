@@ -98,7 +98,7 @@
 /* --- Base Styles --- */
 @layer base {
     * {
-        @apply border-border outline-ring/50 cursor-none scroll-smooth font-nunito;
+        @apply border-border outline-ring/50 scroll-smooth font-nunito;
     }
     body {
         @apply bg-background text-foreground;

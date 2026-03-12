@@ -40,7 +40,7 @@ const TECH = {
 export const PROJECTS: ProjectCardProps[] = [
   {
     id: "1",
-    name: "ScholarLink",
+    name: "ScholarLink - A Unified Platform",
     description:
       "A platform built for Bulacan State University to help students easily find, apply for, and track scholarships and internships in one place.",
     link: "https://sarm-scholar-link.vercel.app",

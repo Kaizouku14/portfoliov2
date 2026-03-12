@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Github } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 import { ProjectCardProps } from "@/types";
 import { motion } from "motion/react";
 import Link from "next/link";
@@ -21,15 +21,29 @@ export const ProjectCard = ({ data }: { data: ProjectCardProps }) => {
           <h3 className="text-lg font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
             {data.name}
           </h3>
-          <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed" title={data.description}>
+          <p
+            className="text-sm text-muted-foreground line-clamp-2 leading-relaxed"
+            title={data.description}
+          >
             {data.description}
           </p>
         </div>
-        <Link href={data.github} target="_blank">
-          <Button size="icon" variant="outline">
-            <Github className="size-4" />
-          </Button>
-        </Link>
+        <div className="flex gap-2">
+          {data.github && (
+            <Link href={data.github} target="_blank">
+              <Button size="icon" variant="outline" className="size-8">
+                <Github className="size-4" />
+              </Button>
+            </Link>
+          )}
+          {data.link && (
+            <Link href={data.link} target="_blank">
+              <Button size="icon" variant="outline" className="size-8">
+                <ExternalLink className="size-4" />
+              </Button>
+            </Link>
+          )}
+        </div>
       </div>
     </motion.div>
   );

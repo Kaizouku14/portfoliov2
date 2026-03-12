@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -11,7 +10,6 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: "Al-v Manda",
-  description: "Portfolio of Al-v Manda, a Web Developer crafting digital experiences where design meets performance.",
 };
 
 export default function RootLayout({
@@ -21,10 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("antialiased cursor-none", nunito.variable)}>
-        {children}
-        <SmoothCursor />
-      </body>
+      <body className={cn("antialiased ", nunito.variable)}>{children}</body>
     </html>
   );
 }
