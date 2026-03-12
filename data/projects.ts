@@ -90,44 +90,47 @@ export const PROJECTS: ProjectCardProps[] = [
     ],
   },
   {
-    id: "2",
-    name: "Plantaria",
+    id: "4",
+    name: "InnControl",
     description:
-      "A Web3 urban farming platform built for the PSITE RAITE 2024 Hackathon. It promotes sustainable agriculture through blockchain-based transparency and user collaboration.",
-    image: "/plantaria.png",
+      "A hotel management system for BSA Twin Tower in Ortigas. It manages bookings, guests, and reports to improve operational efficiency and customer experience.",
+    image: "/globe.svg",
     media: [
+      { type: "image", url: "/globe.svg", alt: "InnControl Dashboard Mockup" },
       {
-        type: "video",
-        url: "/plantaria.mp4",
-        alt: "Plantaria Video Demonstration",
+        type: "image",
+        url: "/project-placeholder-1.png",
+        alt: "InnControl Feature Preview",
       },
     ],
     technologies: [
       TECH.REACT,
-      TECH.VITE,
-      TECH.WEB3,
+      TECH.NEXTJS,
       TECH.TYPESCRIPT,
       TECH.NODEJS,
+      TECH.NEON,
+      TECH.DRIZZLE,
+      TECH.LUCIA,
       TECH.TAILWIND,
     ],
-    github: "https://github.com/pagzone/plantaria",
+    github: "https://github.com/Kaizouku14/InnControl",
     collaborators: [
       { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
-        profileUrl: "https://github.com/xyugen",
-        imageUrl: "https://github.com/xyugen.png",
+        profileUrl: "https://www.facebook.com/jocelchua.balotabot",
+        imageUrl: "/jocel.jpg",
       },
       {
-        profileUrl: "https://github.com/darvey-trinidad",
-        imageUrl: "https://github.com/darvey-trinidad.png",
+        profileUrl: "https://www.facebook.com/karlgt.paguio.9",
+        imageUrl: "/karl.jpg",
       },
       {
-        profileUrl: "https://github.com/Dochiibells",
-        imageUrl: "https://github.com/Dochiidev.png",
+        profileUrl: "https://www.facebook.com/itsSuprem0",
+        imageUrl: "/rojie.jpg",
       },
       {
-        profileUrl: "https://www.facebook.com/joml.amv",
-        imageUrl: "/jomel.jpg",
+        profileUrl: "https://www.facebook.com/avoidtor",
+        imageUrl: "/placeholder.png",
       },
     ],
   },
@@ -177,101 +180,46 @@ export const PROJECTS: ProjectCardProps[] = [
     ],
   },
   {
-    id: "4",
-    name: "InnControl",
+    id: "2",
+    name: "Plantaria",
     description:
-      "A hotel management system for BSA Twin Tower in Ortigas. It manages bookings, guests, and reports to improve operational efficiency and customer experience.",
-    image: "/globe.svg",
+      "A Web3 urban farming platform built for the PSITE RAITE 2024 Hackathon. It promotes sustainable agriculture through blockchain-based transparency and user collaboration.",
+    image: "/plantaria.png",
     media: [
-      { type: "image", url: "/globe.svg", alt: "InnControl Dashboard Mockup" },
       {
-        type: "image",
-        url: "/project-placeholder-1.png",
-        alt: "InnControl Feature Preview",
+        type: "video",
+        url: "/plantaria.mp4",
+        alt: "Plantaria Video Demonstration",
       },
     ],
     technologies: [
       TECH.REACT,
-      TECH.NEXTJS,
+      TECH.VITE,
+      TECH.WEB3,
       TECH.TYPESCRIPT,
       TECH.NODEJS,
-      TECH.NEON,
-      TECH.DRIZZLE,
-      TECH.LUCIA,
       TECH.TAILWIND,
     ],
-    github: "https://github.com/Kaizouku14/InnControl",
+    github: "https://github.com/pagzone/plantaria",
     collaborators: [
       { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
-        profileUrl: "https://www.facebook.com/jocelchua.balotabot",
-        imageUrl: "/jocel.jpg",
+        profileUrl: "https://github.com/xyugen",
+        imageUrl: "https://github.com/xyugen.png",
       },
       {
-        profileUrl: "https://www.facebook.com/karlgt.paguio.9",
-        imageUrl: "/karl.jpg",
+        profileUrl: "https://github.com/darvey-trinidad",
+        imageUrl: "https://github.com/darvey-trinidad.png",
       },
       {
-        profileUrl: "https://www.facebook.com/itsSuprem0",
-        imageUrl: "/rojie.jpg",
+        profileUrl: "https://github.com/Dochiibells",
+        imageUrl: "https://github.com/Dochiidev.png",
       },
       {
-        profileUrl: "https://www.facebook.com/avoidtor",
-        imageUrl: "/placeholder.png",
+        profileUrl: "https://www.facebook.com/joml.amv",
+        imageUrl: "/jomel.jpg",
       },
     ],
-  },
-  {
-    id: "5",
-    name: "Kanban Board",
-    description:
-      "A task management app that uses the Kanban method to help users organize projects, visualize progress, and boost productivity.",
-    link: "https://kanban-board-blue-tau.vercel.app",
-    image: "/globe.svg",
-    media: [
-      { type: "image", url: "/globe.svg", alt: "Kanban Board Preview" },
-      {
-        type: "image",
-        url: "/project-placeholder-2.png",
-        alt: "Kanban Board Drag & Drop",
-      },
-    ],
-    technologies: [
-      TECH.REACT,
-      TECH.NEXTJS,
-      TECH.TYPESCRIPT,
-      TECH.NODEJS,
-      TECH.NEON,
-      TECH.LUCIA,
-      TECH.TAILWIND,
-    ],
-    github: "https://github.com/Kaizouku14/kanban-board",
-    collaborators: [],
-  },
-  {
-    id: "6",
-    name: "Zynkly — Modern URL Shortener",
-    description:
-      "A fast, privacy-focused URL shortener built with SvelteKit, Turso, and Drizzle ORM. Features include custom slugs, QR codes, password protection, link analytics, and link organization with folders.",
-    link: "https://zynkly.vercel.app/",
-    image: "/globe.svg",
-    media: [
-      { type: "image", url: "/zynkly-preview.png", alt: "Zynkly Dashboard" },
-      {
-        type: "image",
-        url: "/project-placeholder-3.png",
-        alt: "Zynkly Link Analytics",
-      },
-    ],
-    technologies: [
-      TECH.SVELTE,
-      TECH.TYPESCRIPT,
-      TECH.NODEJS,
-      TECH.TURSO,
-      TECH.TAILWIND,
-    ],
-    github: "https://github.com/Kaizouku14/IT403-Final-Project",
-    collaborators: [],
   },
   {
     id: "7",
@@ -304,6 +252,31 @@ export const PROJECTS: ProjectCardProps[] = [
     collaborators: [],
   },
   {
+    id: "6",
+    name: "Zynkly — Modern URL Shortener",
+    description:
+      "A fast, privacy-focused URL shortener built with SvelteKit, Turso, and Drizzle ORM. Features include custom slugs, QR codes, password protection, link analytics, and link organization with folders.",
+    link: "https://zynkly.vercel.app/",
+    image: "/globe.svg",
+    media: [
+      { type: "image", url: "/zynkly-preview.png", alt: "Zynkly Dashboard" },
+      {
+        type: "image",
+        url: "/project-placeholder-3.png",
+        alt: "Zynkly Link Analytics",
+      },
+    ],
+    technologies: [
+      TECH.SVELTE,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.TURSO,
+      TECH.TAILWIND,
+    ],
+    github: "https://github.com/Kaizouku14/IT403-Final-Project",
+    collaborators: [],
+  },
+  {
     id: "8",
     name: "Sail",
     description:
@@ -330,9 +303,9 @@ export const PROJECTS: ProjectCardProps[] = [
   },
   {
     id: "9",
-    name: "mja-finance-management",
-    description: "", // Placeholder, user will provide later
-    link: "", // Placeholder
+    name: "MJA Finance Management",
+    description: "A finance management system for MJA.",
+    link: "",
     image: "/globe.svg",
     media: [
       {
@@ -341,8 +314,41 @@ export const PROJECTS: ProjectCardProps[] = [
         alt: "MJA Finance Preview",
       },
     ],
-    technologies: [], // Empty, user will fill later
-    github: "", // Empty for now
+    technologies: [
+      TECH.NEXTJS,
+      TECH.TAILWIND,
+      TECH.TURSO,
+      TECH.TRPC,
+      TECH.BETTER_AUTH,
+    ],
+    github: "",
+    collaborators: [],
+  },
+  {
+    id: "5",
+    name: "Kanban Board",
+    description:
+      "A task management app that uses the Kanban method to help users organize projects, visualize progress, and boost productivity.",
+    link: "https://kanban-board-blue-tau.vercel.app",
+    image: "/globe.svg",
+    media: [
+      { type: "image", url: "/globe.svg", alt: "Kanban Board Preview" },
+      {
+        type: "image",
+        url: "/project-placeholder-2.png",
+        alt: "Kanban Board Drag & Drop",
+      },
+    ],
+    technologies: [
+      TECH.REACT,
+      TECH.NEXTJS,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.NEON,
+      TECH.LUCIA,
+      TECH.TAILWIND,
+    ],
+    github: "https://github.com/Kaizouku14/kanban-board",
     collaborators: [],
   },
 ];
