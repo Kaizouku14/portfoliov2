@@ -1,18 +1,7 @@
-interface SystemStructuredResponse {
-  response: string;
-  links?: {
-    social: string;
-    link: string;
-  }[];
-}
-
-export interface Conversation {
-  message?: string;
-  system?: SystemStructuredResponse;
-}
+import { UIMessage } from "ai";
 
 export interface ChatBubbleProps {
-  conversation?: Conversation[];
+  messages?: UIMessage[];
   isLoading?: boolean;
 }
 

@@ -7,43 +7,31 @@ import {
   InputGroupInput,
 } from "../ui/input-group";
 import { ArrowUpIcon, MessageCircleMoreIcon } from "lucide-react";
-import { useChat } from "@/hooks/use-chat";
+
+import { useChatStore } from "@/store/use-chat.store";
 import ChatBubble from "./conversation";
 import { ChatHeader } from "./chat-header";
 import { useState, type KeyboardEvent } from "react";
-import { Conversation } from "@/interface/chat";
-import { chatMessage } from "@/lib/groq";
+
+import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
 
 const Chat = () => {
-  const { isOpen } = useChat();
+  const { isOpen } = useChatStore();
+  const { messages, sendMessage, status, error } = useChat({
+    transport: new DefaultChatTransport({
+      api: "/api/chat",
+    }),
+  });
   const [message, setMessage] = useState("");
-  const [conversation, setConversation] = useState<Conversation[]>([
-    {
-      message: "",
-      system: {
-        response: "Hey! I’m Al-v Manda, welcome to a glimpse of what I do.",
-        links: [],
-      },
-    },
-  ]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleSendMessage = async () => {
     try {
       if (!message) return;
-      setIsLoading(true);
-      const newConversation = [...conversation, { message }];
-      setConversation(newConversation);
+      await sendMessage({ text: message });
 
-      const system = await chatMessage({ content: message });
-
-      setIsLoading(false);
-      const updatedConversation = [...newConversation, { system }];
-      setConversation(updatedConversation);
       setMessage("");
-    } catch {
-      setIsLoading(false);
-    }
+    } catch {}
   };
 
   const handleKeyDown = async (e: KeyboardEvent<HTMLInputElement>) => {
@@ -58,7 +46,12 @@ const Chat = () => {
   return (
     <div className="fixed bottom-3 md:right-14 w-90 rounded-t-xl rounded-b-xl flex flex-col z-50 bg-background backdrop-blur-sm border-border border shadow">
       <ChatHeader />
-      <ChatBubble conversation={conversation} isLoading={isLoading} />
+      <ChatBubble messages={messages} isLoading={status === "submitted"} />
+      {error && (
+        <div className="border-border bg-secondary-background text-muted-foreground border-2 px-3 py-2 text-center text-xs">
+          Something went wrong. Try again.
+        </div>
+      )}
       <InputGroup className="rounded-t-none h-11 bg-background pr-1">
         <InputGroupInput
           placeholder="Ask a question about me..."

@@ -1,10 +1,10 @@
 import { X } from "lucide-react";
 import { Button } from "../ui/button";
-import { useChat } from "@/hooks/use-chat";
+import { useChatStore } from "@/store/use-chat.store";
 import { Profile } from "../profile";
 
 export const ChatHeader = () => {
-  const { toggleChat } = useChat();
+  const { toggleChat } = useChatStore();
 
   return (
     <div className="flex items-center justify-between p-4 text-foreground rounded-t-xl">
@@ -17,7 +17,9 @@ export const ChatHeader = () => {
               <span className="size-1.5 bg-chart-2 rounded-full animate-pulse" />
               Active now
             </p>
-            <span className="whitespace-nowrap text-muted-foreground">Powered by Groq</span>
+            <span className="whitespace-nowrap text-muted-foreground">
+              Powered by Groq
+            </span>
           </div>
         </div>
       </div>

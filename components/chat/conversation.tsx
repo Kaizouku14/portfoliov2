@@ -3,57 +3,46 @@
 import { useEffect, useRef } from "react";
 import { ScrollArea } from "../ui/scroll-area";
 import LoadingBubble from "./loading-bubble";
-import { ChatBubbleProps } from "@/interface/chat";
 import { Profile } from "../profile";
+import { ChatBubbleProps } from "@/interface/chat";
 
-const ChatBubble = ({ conversation, isLoading }: ChatBubbleProps) => {
+const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, isLoading }) => {
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [conversation, isLoading]);
+  }, [messages, isLoading]);
 
   return (
     <ScrollArea className="h-70">
-      <div className="border-border bg-background flex w-full flex-col gap-4 overflow-y-auto border px-4 backdrop-blur-sm h-70 py-6 ">
-        {conversation?.map((item, index) => (
-          <div key={index} className="flex flex-col gap-3">
-            {item.system?.response && (
+      <div className="border-border bg-background flex w-full flex-col gap-4 overflow-y-auto border px-4 backdrop-blur-sm h-70 py-6">
+        {messages?.map((message) => (
+          <div key={message.id} className="flex flex-col gap-3">
+            {message.role === "assistant" && (
               <div className="flex items-start gap-3">
                 <Profile />
                 <div className="bg-primary/10 text-foreground max-w-[70%] rounded-2xl px-3 py-2 text-sm shadow-inner h-auto">
                   <pre className="font-sans whitespace-pre-wrap prose">
-                    {item.system.response}
-
-                    {item.system?.links && item.system.links?.length > 0 && (
-                      <ol className="inline-flex flex-wrap gap-1">
-                        {item.system.links.map((l) => (
-                          <li key={l.social}>
-                            <a
-                              href={l.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-blue-500 underline hover:text-blue-600 transition-colors"
-                            >
-                              {l.social}
-                            </a>
-                          </li>
-                        ))}
-                      </ol>
-                    )}
+                    {message.parts.map((part, i) => {
+                      if (part.type === "text")
+                        return <span key={i}>{part.text}</span>;
+                      return null;
+                    })}
                   </pre>
                 </div>
               </div>
             )}
 
-            {item.message && (
+            {message.role === "user" && (
               <div className="flex items-start justify-end gap-3">
                 <div className="flex max-w-[70%]">
-                  {item.message && (
-                    <div className="bg-muted text-muted-foreground rounded-2xl px-3 py-2 text-sm">
-                      {item.message}
-                    </div>
-                  )}
+                  <div className="bg-muted text-muted-foreground rounded-2xl px-3 py-2 text-sm">
+                    {message.parts.map((part, i) => {
+                      if (part.type === "text")
+                        return <span key={i}>{part.text}</span>;
+                      return null;
+                    })}
+                  </div>
                 </div>
                 <div className="bg-primary text-primary-foreground flex size-8 shrink-0 items-center justify-center rounded-full font-bold">
                   U

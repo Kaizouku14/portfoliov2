@@ -4,14 +4,19 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Dock, DockIcon } from "./ui/dock";
 import { DATA } from "@/data/dock";
 import { BotMessageSquare } from "lucide-react";
-import { useChat } from "@/hooks/use-chat";
+import { useChatStore } from "@/store/use-chat.store";
 
 const DockMenu = () => {
-  const { toggleChat } = useChat();
+  const { toggleChat } = useChatStore();
 
   return (
     <TooltipProvider>
@@ -23,7 +28,10 @@ const DockMenu = () => {
                 <a
                   href={item.href}
                   aria-label={item.label}
-                  className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-12 rounded-full")}
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "size-12 rounded-full",
+                  )}
                 >
                   <item.icon className="size-4.5" />
                 </a>
@@ -38,7 +46,12 @@ const DockMenu = () => {
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="icon" variant="ghost" className="rounded-full size-12" onClick={toggleChat}>
+              <Button
+                size="icon"
+                variant="ghost"
+                className="rounded-full size-12"
+                onClick={toggleChat}
+              >
                 <BotMessageSquare />
               </Button>
             </TooltipTrigger>
@@ -58,7 +71,10 @@ const DockMenu = () => {
                   aria-label={social.name}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-12 rounded-full")}
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "size-12 rounded-full",
+                  )}
                 >
                   <social.icon className="size-4.5" />
                 </Link>
