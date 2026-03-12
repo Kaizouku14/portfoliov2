@@ -9,11 +9,11 @@ export const heroHeader = {
 };
 
 export const heroContent = {
-  title: "Driven by curiosity, powered by passion!",
+  title: "I build fast, reliable web applications.",
   typingWords: [
-    "Building Beautiful, Performant Web Apps",
-    "Turning Ideas into Interactive Experiences",
-    "Exploring the Space Between Code and Creativity",
+    "Writing clean, maintainable code",
+    "Designing user-centric interfaces",
+    "Solving real problems with technology",
   ],
-  description: "Crafting digital experiences where design meets performance.",
+  description: "I'm a full-stack developer specializing in React, Next.js, and creating digital experiences that just work without the fluff.",
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback, useMemo, memo } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import Animate from "@/components/shared/animate";
@@ -10,29 +10,23 @@ import { MENU } from "@/constants";
 import { PROJECTS } from "@/data";
 import { cn } from "@/lib/utils";
 
-const GradientOverlay = memo(() => (
+const GradientOverlay = () => (
   <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-background to-transparent pointer-events-none" />
-));
+);
 
-GradientOverlay.displayName = "GradientOverlay";
-
-const SeeMoreContent = memo(() => (
+const SeeMoreContent = () => (
   <>
     <ArrowDown className="size-4 animate-bounce-slow" />
     <span>See More</span>
   </>
-));
+);
 
-SeeMoreContent.displayName = "SeeMoreContent";
-
-const SeeLessContent = memo(() => (
+const SeeLessContent = () => (
   <>
     <ArrowUp className="size-4 animate-bounce-slow" />
     <span>See Less</span>
   </>
-));
-
-SeeLessContent.displayName = "SeeLessContent";
+);
 
 const Projects = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -151,4 +145,4 @@ const Projects = () => {
   );
 };
 
-export default memo(Projects);
+export default Projects;

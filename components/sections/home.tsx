@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, memo } from "react";
+import { useCallback, useRef } from "react";
 import { motion, Variants } from "motion/react";
 import { Download, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,18 +44,16 @@ const descriptionVariants: Variants = {
   },
 };
 
-const BottomGradient = memo(() => (
+const BottomGradient = () => (
   <div className="absolute bottom-0 w-full h-8 bg-[linear-gradient(to_top,oklch(0.129_0.042_264.695),transparent)]" />
-));
-
-BottomGradient.displayName = "BottomGradient";
+);
 
 const HeroSection = () => {
   const projectsRef = useRef<HTMLElement | null>(null);
 
   const handleDownloadCV = useCallback(() => {
-  window.open("/cv.pdf", "_blank");
-}, []);
+    window.open("/cv.pdf", "_blank");
+  }, []);
 
   const handleViewWork = useCallback(() => {
     if (!projectsRef.current) {
@@ -125,4 +123,4 @@ const HeroSection = () => {
   );
 };
 
-export default memo(HeroSection);
+export default HeroSection;

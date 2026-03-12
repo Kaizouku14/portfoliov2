@@ -15,11 +15,18 @@ import {
   SiVercel,
   SiTurso,
   SiPostgresql,
+  SiExpress,
+  SiNestjs,
 } from "react-icons/si";
+import { RiJavaLine } from "react-icons/ri";
+
 import { DrizzleIcon } from "@/components/icons/drizzle-orm";
 
 export const MAIN_STACK = {
-  Language: [{ name: "TypeScript", icon: SiTypescript }],
+  Language: [
+    { name: "TypeScript", icon: SiTypescript },
+    { name: "Java", icon: RiJavaLine },
+  ],
   Frontend: [
     { name: "React", icon: SiReact },
     { name: "Next.js", icon: SiNextdotjs },
@@ -27,10 +34,12 @@ export const MAIN_STACK = {
   ],
   Backend: [
     { name: "Node.js", icon: SiNodedotjs },
+    { name: "Express", icon: SiExpress },
+    { name: "Nest.js", icon: SiNestjs },
     { name: "Drizzle ORM", icon: DrizzleIcon },
     { name: "Better-auth", icon: Fingerprint },
-    { name: "Turso", icon: SiTurso },
-    { name: "Neon", icon: SiPostgresql },
+    { name: "Turso (SQLite)", icon: SiTurso },
+    { name: "Neon (PostgreSQL)", icon: SiPostgresql },
   ],
   "CI/CD": [
     { name: "Git", icon: SiGit },
@@ -43,24 +52,24 @@ export const SKILLS = [
     name: "Full Stack Development",
     icon: CodeXml,
     description:
-      "Develop scalable web applications using React, Next.js, TypeScript, and Node.js.",
+      "Building full-stack web applications with React, Next.js, TypeScript, and Node.js.",
   },
   {
     name: "API & Database Design",
     icon: Database,
     description:
-      "Build efficient REST and tRPC APIs with secure data models using Drizzle ORM.",
+      "Designing and building REST and tRPC APIs, backed by solid database schemas using Drizzle ORM.",
   },
   {
     name: "UI/UX Design",
     icon: Paintbrush,
     description:
-      "Design user-centered interfaces with modern, accessible, and responsive layouts.",
+      "Creating clean, responsive, and accessible user interfaces that prioritize user experience.",
   },
   {
     name: "Authentication & Security",
     icon: ShieldCheck,
     description:
-      "Implement secure user authentication and authorization using Better Auth and modern standards.",
+      "Implementing secure authentication flows using modern libraries like Better Auth.",
   },
 ];

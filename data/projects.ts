@@ -27,8 +27,8 @@ const TECH = {
   FASTIFY: { name: "Fastify", icon: SiFastify },
   TAILWIND: { name: "Tailwind CSS", icon: SiTailwindcss },
   DRIZZLE: { name: "Drizzle ORM", icon: DrizzleIcon },
-  TURSO: { name: "Turso", icon: SiTurso },
-  NEON: { name: "Neon", icon: SiPostgresql },
+  TURSO: { name: "Turso (SQLite)", icon: SiTurso },
+  NEON: { name: "Neon (PostgreSQL)", icon: SiPostgresql },
   BETTER_AUTH: { name: "Better-auth", icon: Fingerprint },
   LUCIA: { name: "Lucia", icon: SiLucia },
   VITE: { name: "Vite", icon: SiVite },
@@ -42,7 +42,7 @@ export const PROJECTS: ProjectCardProps[] = [
     id: "1",
     name: "ScholarLink",
     description:
-      "A centralized scholarship and internship management system for Bulacan State University Sarmiento Campus. It simplifies applications, tracking, and administration for students.",
+      "A platform built for Bulacan State University to help students easily find, apply for, and track scholarships and internships in one place.",
     link: "https://sarm-scholar-link.vercel.app",
     image: "/scholar-link-logo.png",
     media: [
@@ -93,7 +93,7 @@ export const PROJECTS: ProjectCardProps[] = [
     id: "4",
     name: "InnControl",
     description:
-      "A hotel management system for BSA Twin Tower in Ortigas. It manages bookings, guests, and reports to improve operational efficiency and customer experience.",
+      "A custom property management system built for BSA Twin Tower. It handles everything from room bookings to guest check-ins and operational reporting.",
     image: "/globe.svg",
     media: [
       { type: "image", url: "/globe.svg", alt: "InnControl Dashboard Mockup" },
@@ -138,7 +138,7 @@ export const PROJECTS: ProjectCardProps[] = [
     id: "3",
     name: "SJDM Christian Ministry RMS",
     description:
-      "A church management system for SJDM Christian Ministries that helps organize members, track events, and manage ministry operations efficiently. Due to client privacy, internal system screenshots are not available.",
+      "A member and event management platform developed for SJDM Christian Ministries to streamline their daily operations. (Screenshots omitted for client privacy).",
     image: "/globe.svg",
     media: [
       { type: "video", url: "/globe.svg", alt: "SJDM Video Preview" },
@@ -183,7 +183,7 @@ export const PROJECTS: ProjectCardProps[] = [
     id: "2",
     name: "Plantaria",
     description:
-      "A Web3 urban farming platform built for the PSITE RAITE 2024 Hackathon. It promotes sustainable agriculture through blockchain-based transparency and user collaboration.",
+      "My team's entry for the PSITE RAITE 2024 Hackathon. It's a Web3 platform aimed at urban farmers, using blockchain to track produce and encourage community collaboration.",
     image: "/plantaria.png",
     media: [
       {
@@ -225,7 +225,7 @@ export const PROJECTS: ProjectCardProps[] = [
     id: "7",
     name: "Aurafy",
     description:
-      "Your AI-Powered Music & Study Companion Aurafy is a modern web application spanning the divide between productivity and relaxation. It seamlessly blends conversational AI, mood-based Spotify music discovery, and scientifically-proven study tools into one centralized, beautifully designed platform.",
+      "A study app that pairs productivity tools with personalized music. It uses AI to recommend Spotify playlists based on your mood and includes built-in focus timers.",
     link: "https://aurafy-ai.vercel.app",
     image: "/globe.svg",
     media: [
@@ -328,7 +328,7 @@ export const PROJECTS: ProjectCardProps[] = [
     id: "5",
     name: "Kanban Board",
     description:
-      "A task management app that uses the Kanban method to help users organize projects, visualize progress, and boost productivity.",
+      "A Trello-style task management app with drag-and-drop functionality to help users organize their work visually.",
     link: "https://kanban-board-blue-tau.vercel.app",
     image: "/globe.svg",
     media: [
