@@ -6,7 +6,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "../ui/input-group";
-import { ArrowUpIcon, MessageCircleMoreIcon } from "lucide-react";
+import { ArrowUpIcon } from "lucide-react";
 
 import { useChatStore } from "@/store/use-chat.store";
 import ChatBubble from "./conversation";
@@ -28,36 +28,39 @@ const Chat = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-3 md:right-14 w-90 rounded-t-xl rounded-b-xl flex flex-col z-50 bg-background backdrop-blur-sm border-border border shadow">
+    <div className="fixed bottom-4 right-4 md:right-10 w-[min(90vw,360px)] h-[500px] flex flex-col z-50 bg-background/80 backdrop-blur-xl border border-primary/10 shadow-2xl rounded-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
       <ChatHeader />
-      <ChatBubble messages={messages} isLoading={status === "submitted"} />
+      <div className="flex-1 overflow-hidden">
+        <ChatBubble messages={messages} isLoading={status === "submitted"} />
+      </div>
       {error && (
-        <div className="border-border bg-secondary-background text-muted-foreground border-2 px-3 py-2 text-center text-xs">
+        <div className="bg-destructive/10 text-destructive text-center py-2 text-xs font-medium">
           Something went wrong. Try again.
         </div>
       )}
-      <InputGroup className="rounded-t-none h-11 bg-background pr-1">
-        <InputGroupInput
-          placeholder="Ask a question about me..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <InputGroupAddon>
-          <MessageCircleMoreIcon />
-        </InputGroupAddon>
-        <InputGroupAddon align="inline-end">
-          <InputGroupButton
-            variant="default"
-            className="rounded-full"
-            size="icon-xs"
-            onClick={handleSendMessage}
-          >
-            <ArrowUpIcon />
-            <span className="sr-only">Send</span>
-          </InputGroupButton>
-        </InputGroupAddon>
-      </InputGroup>
+      <div className="p-3 border-t border-border/50 bg-background/50">
+        <InputGroup className="bg-muted/50 rounded-xl px-2 h-10 border border-border focus-within:border-primary/50 focus-within:ring-1 focus-within:ring-primary/20 transition-all">
+          <InputGroupInput
+            placeholder="Ask a question..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="bg-transparent border-none focus-visible:ring-0 text-sm"
+          />
+          <InputGroupAddon align="inline-end" className="pr-1">
+            <InputGroupButton
+              variant="default"
+              className="rounded-lg size-7 shrink-0"
+              size="icon-xs"
+              onClick={handleSendMessage}
+              disabled={!message.trim() || status === "submitted"}
+            >
+              <ArrowUpIcon className="size-4" />
+              <span className="sr-only">Send</span>
+            </InputGroupButton>
+          </InputGroupAddon>
+        </InputGroup>
+      </div>
     </div>
   );
 };

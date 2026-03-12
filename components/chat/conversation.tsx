@@ -5,6 +5,10 @@ import { ScrollArea } from "../ui/scroll-area";
 import LoadingBubble from "./loading-bubble";
 import { Profile } from "@/components/shared/profile";
 import { ChatBubbleProps } from "@/types";
+import { motion, AnimatePresence } from "motion/react";
+import { User } from "lucide-react";
+import { cn } from "@/lib/utils";
+import ReactMarkdown from "react-markdown";
 
 const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, isLoading }) => {
   const bottomRef = useRef<HTMLDivElement | null>(null);
@@ -14,45 +18,89 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, isLoading }) => {
   }, [messages, isLoading]);
 
   return (
-    <ScrollArea className="h-70">
-      <div className="border-border bg-background flex w-full flex-col gap-4 overflow-y-auto border px-4 backdrop-blur-sm h-70 py-6">
-        {messages?.map((message) => (
-          <div key={message.id} className="flex flex-col gap-3">
-            {message.role === "assistant" && (
-              <div className="flex items-start gap-3">
-                <Profile />
-                <div className="bg-primary/10 text-foreground max-w-[70%] rounded-2xl px-3 py-2 text-sm shadow-inner h-auto">
-                  <pre className="font-sans whitespace-pre-wrap prose">
-                    {message.parts.map((part, i) => {
-                      if (part.type === "text")
-                        return <span key={i}>{part.text}</span>;
-                      return null;
-                    })}
-                  </pre>
-                </div>
+    <ScrollArea className="h-full">
+      <div className="flex w-full flex-col gap-4 px-4 py-6 backdrop-blur-sm">
+        <AnimatePresence initial={false}>
+          {messages?.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-start gap-3"
+            >
+              <Profile />
+              <div className="bg-linear-to-br from-primary/10 to-primary/5 text-foreground max-w-[85%] rounded-2xl rounded-tl-none px-4 py-3 text-sm border border-primary/10 shadow-sm leading-relaxed ">
+                Hello! I&apos;m Al-v. How can I help you today?
               </div>
-            )}
+            </motion.div>
+          )}
 
-            {message.role === "user" && (
-              <div className="flex items-start justify-end gap-3">
-                <div className="flex max-w-[70%]">
-                  <div className="bg-muted text-muted-foreground rounded-2xl px-3 py-2 text-sm">
-                    {message.parts.map((part, i) => {
-                      if (part.type === "text")
-                        return <span key={i}>{part.text}</span>;
-                      return null;
-                    })}
-                  </div>
-                </div>
-                <div className="bg-primary text-primary-foreground flex size-8 shrink-0 items-center justify-center rounded-full font-bold">
-                  U
-                </div>
+          {messages?.map((message) => (
+            <motion.div
+              key={message.id}
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className={cn(
+                "flex w-full gap-3",
+                message.role === "user" ? "justify-end" : "justify-start",
+              )}
+            >
+              {message.role === "assistant" && <Profile />}
+
+              <div
+                className={cn(
+                  "max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm md:max-w-[75%] leading-relaxed",
+                  message.role === "assistant"
+                    ? "bg-linear-to-br from-primary/10 to-primary/5 text-foreground rounded-tl-none border border-primary/10"
+                    : "bg-primary text-primary-foreground rounded-tr-none",
+                )}
+              >
+                {message.parts.map((part, i) => {
+                  if (part.type === "text")
+                    return (
+                      <div
+                        key={i}
+                        className="whitespace-pre-wrap prose prose-sm dark:prose-invert"
+                      >
+                        <ReactMarkdown
+                          components={{
+                            a: ({ ...props }) => (
+                              <a
+                                {...props}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-primary hover:underline font-bold"
+                              />
+                            ),
+                          }}
+                        >
+                          {part.text}
+                        </ReactMarkdown>
+                      </div>
+                    );
+                  return null;
+                })}
               </div>
-            )}
-          </div>
-        ))}
-        {isLoading && <LoadingBubble />}
-        <div ref={bottomRef} />
+
+              {message.role === "user" && (
+                <div className="bg-primary/20 text-primary flex size-9 shrink-0 items-center justify-center rounded-full border border-primary/30 shadow-sm">
+                  <User className="size-5" />
+                </div>
+              )}
+            </motion.div>
+          ))}
+
+          {isLoading && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
+            >
+              <LoadingBubble />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div ref={bottomRef} className="h-2" />
       </div>
     </ScrollArea>
   );
