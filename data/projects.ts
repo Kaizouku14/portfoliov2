@@ -1,6 +1,4 @@
-import {
-  Fingerprint,
-} from "lucide-react";
+import { Fingerprint } from "lucide-react";
 import {
   SiTypescript,
   SiReact,
@@ -12,17 +10,21 @@ import {
   SiPostgresql,
   SiLucia,
   SiVite,
+  SiNestjs,
   SiEthereum,
+  SiTrpc,
+  SiFastify,
 } from "react-icons/si";
 import { DrizzleIcon } from "@/components/icons/drizzle-orm";
 import { ProjectCardProps } from "@/types";
 
-// Reusable tech constants — define once, reuse across projects
 const TECH = {
   REACT: { name: "React", icon: SiReact },
   NEXTJS: { name: "Next.js", icon: SiNextdotjs },
+  NESTJS: { name: "Nest.js", icon: SiNestjs },
   TYPESCRIPT: { name: "TypeScript", icon: SiTypescript },
   NODEJS: { name: "Node.js", icon: SiNodedotjs },
+  FASTIFY: { name: "Fastify", icon: SiFastify },
   TAILWIND: { name: "Tailwind CSS", icon: SiTailwindcss },
   DRIZZLE: { name: "Drizzle ORM", icon: DrizzleIcon },
   TURSO: { name: "Turso", icon: SiTurso },
@@ -32,6 +34,7 @@ const TECH = {
   VITE: { name: "Vite", icon: SiVite },
   SVELTE: { name: "Svelte kit", icon: SiSvelte },
   WEB3: { name: "Web3", icon: SiEthereum },
+  TRPC: { name: "TRPC", icon: SiTrpc },
 } as const;
 
 export const PROJECTS: ProjectCardProps[] = [
@@ -42,7 +45,19 @@ export const PROJECTS: ProjectCardProps[] = [
       "A centralized scholarship and internship management system for Bulacan State University Sarmiento Campus. It simplifies applications, tracking, and administration for students.",
     link: "https://sarm-scholar-link.vercel.app",
     image: "/scholar-link-logo.png",
-    preview: "/scholar-link.png",
+    media: [
+      { type: "image", url: "/scholar-link.png", alt: "ScholarLink Dashboard" },
+      {
+        type: "image",
+        url: "/project-placeholder-1.png",
+        alt: "ScholarLink Feature 1",
+      },
+      {
+        type: "image",
+        url: "/project-placeholder-2.png",
+        alt: "ScholarLink Feature 2",
+      },
+    ],
     technologies: [
       TECH.REACT,
       TECH.NEXTJS,
@@ -55,10 +70,7 @@ export const PROJECTS: ProjectCardProps[] = [
     ],
     github: "https://github.com/Kaizouku14/scholar-link",
     collaborators: [
-      {
-        profileUrl: "https://github.com/Kaizouku14",
-        imageUrl: "/me.jpg",
-      },
+      { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
         profileUrl: "https://www.facebook.com/jocelchua.balotabot",
         imageUrl: "/jocel.jpg",
@@ -83,7 +95,13 @@ export const PROJECTS: ProjectCardProps[] = [
     description:
       "A Web3 urban farming platform built for the PSITE RAITE 2024 Hackathon. It promotes sustainable agriculture through blockchain-based transparency and user collaboration.",
     image: "/plantaria.png",
-    video: "/plantaria.mp4",
+    media: [
+      {
+        type: "video",
+        url: "/plantaria.mp4",
+        alt: "Plantaria Video Demonstration",
+      },
+    ],
     technologies: [
       TECH.REACT,
       TECH.VITE,
@@ -94,10 +112,7 @@ export const PROJECTS: ProjectCardProps[] = [
     ],
     github: "https://github.com/pagzone/plantaria",
     collaborators: [
-      {
-        profileUrl: "https://github.com/Kaizouku14",
-        imageUrl: "/me.jpg",
-      },
+      { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
         profileUrl: "https://github.com/xyugen",
         imageUrl: "https://github.com/xyugen.png",
@@ -120,9 +135,16 @@ export const PROJECTS: ProjectCardProps[] = [
     id: "3",
     name: "SJDM Christian Ministry RMS",
     description:
-      "A church management system for SJDM Christian Ministries that helps organize members, track events, and manage ministry operations efficiently.",
+      "A church management system for SJDM Christian Ministries that helps organize members, track events, and manage ministry operations efficiently. Due to client privacy, internal system screenshots are not available.",
     image: "/globe.svg",
-    preview: "/globe.svg",
+    media: [
+      { type: "video", url: "/globe.svg", alt: "SJDM Video Preview" },
+      {
+        type: "image",
+        url: "/project-placeholder-3.png",
+        alt: "System Description and Mockups",
+      },
+    ],
     technologies: [
       TECH.REACT,
       TECH.NEXTJS,
@@ -135,10 +157,7 @@ export const PROJECTS: ProjectCardProps[] = [
     ],
     github: "https://github.com/xyugen/sjdmchristianministries-rms",
     collaborators: [
-      {
-        profileUrl: "https://github.com/Kaizouku14",
-        imageUrl: "/me.jpg",
-      },
+      { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
         profileUrl: "https://github.com/xyugen",
         imageUrl: "https://github.com/xyugen.png",
@@ -163,7 +182,14 @@ export const PROJECTS: ProjectCardProps[] = [
     description:
       "A hotel management system for BSA Twin Tower in Ortigas. It manages bookings, guests, and reports to improve operational efficiency and customer experience.",
     image: "/globe.svg",
-    preview: "/globe.svg",
+    media: [
+      { type: "image", url: "/globe.svg", alt: "InnControl Dashboard Mockup" },
+      {
+        type: "image",
+        url: "/project-placeholder-1.png",
+        alt: "InnControl Feature Preview",
+      },
+    ],
     technologies: [
       TECH.REACT,
       TECH.NEXTJS,
@@ -176,10 +202,7 @@ export const PROJECTS: ProjectCardProps[] = [
     ],
     github: "https://github.com/Kaizouku14/InnControl",
     collaborators: [
-      {
-        profileUrl: "https://github.com/Kaizouku14",
-        imageUrl: "/me.jpg",
-      },
+      { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
         profileUrl: "https://www.facebook.com/jocelchua.balotabot",
         imageUrl: "/jocel.jpg",
@@ -205,7 +228,14 @@ export const PROJECTS: ProjectCardProps[] = [
       "A task management app that uses the Kanban method to help users organize projects, visualize progress, and boost productivity.",
     link: "https://kanban-board-blue-tau.vercel.app",
     image: "/globe.svg",
-    preview: "/globe.svg",
+    media: [
+      { type: "image", url: "/globe.svg", alt: "Kanban Board Preview" },
+      {
+        type: "image",
+        url: "/project-placeholder-2.png",
+        alt: "Kanban Board Drag & Drop",
+      },
+    ],
     technologies: [
       TECH.REACT,
       TECH.NEXTJS,
@@ -225,7 +255,14 @@ export const PROJECTS: ProjectCardProps[] = [
       "A fast, privacy-focused URL shortener built with SvelteKit, Turso, and Drizzle ORM. Features include custom slugs, QR codes, password protection, link analytics, and link organization with folders.",
     link: "https://zynkly.vercel.app/",
     image: "/globe.svg",
-    preview: "/zynkly-preview.png",
+    media: [
+      { type: "image", url: "/zynkly-preview.png", alt: "Zynkly Dashboard" },
+      {
+        type: "image",
+        url: "/project-placeholder-3.png",
+        alt: "Zynkly Link Analytics",
+      },
+    ],
     technologies: [
       TECH.SVELTE,
       TECH.TYPESCRIPT,
@@ -234,6 +271,78 @@ export const PROJECTS: ProjectCardProps[] = [
       TECH.TAILWIND,
     ],
     github: "https://github.com/Kaizouku14/IT403-Final-Project",
+    collaborators: [],
+  },
+  {
+    id: "7",
+    name: "Aurafy",
+    description:
+      "Your AI-Powered Music & Study Companion Aurafy is a modern web application spanning the divide between productivity and relaxation. It seamlessly blends conversational AI, mood-based Spotify music discovery, and scientifically-proven study tools into one centralized, beautifully designed platform.",
+    link: "https://aurafy-ai.vercel.app",
+    image: "/globe.svg",
+    media: [
+      {
+        type: "image",
+        url: "/project-placeholder-1.png",
+        alt: "Aurafy Preview 1",
+      },
+      {
+        type: "image",
+        url: "/project-placeholder-2.png",
+        alt: "Aurafy Preview 2",
+      },
+    ],
+    technologies: [
+      TECH.NEXTJS,
+      TECH.TYPESCRIPT,
+      TECH.TAILWIND,
+      TECH.TRPC,
+      TECH.TURSO,
+      TECH.BETTER_AUTH,
+    ],
+    github: "https://github.com/Kaizouku14/Aurafy",
+    collaborators: [],
+  },
+  {
+    id: "8",
+    name: "Sail",
+    description:
+      "A full-stack multiplayer word game with AI-powered hints, real-time race mode, and stat tracking.",
+    link: "https://sail-psi.vercel.app",
+    image: "/globe.svg",
+    media: [
+      {
+        type: "image",
+        url: "/project-placeholder-3.png",
+        alt: "Sail Preview 1",
+      },
+    ],
+    technologies: [
+      TECH.REACT,
+      TECH.TAILWIND,
+      TECH.TYPESCRIPT,
+      TECH.NESTJS,
+      TECH.FASTIFY,
+      TECH.NEON,
+    ],
+    github: "https://github.com/Kaizouku14/sail",
+    collaborators: [],
+  },
+  {
+    id: "9",
+    name: "mja-finance-management",
+    description: "", // Placeholder, user will provide later
+    link: "", // Placeholder
+    image: "/globe.svg",
+    media: [
+      {
+        type: "image",
+        url: "/project-placeholder-1.png",
+        alt: "MJA Finance Preview",
+      },
+    ],
+    technologies: [], // Empty, user will fill later
+    github: "", // Empty for now
     collaborators: [],
   },
 ];

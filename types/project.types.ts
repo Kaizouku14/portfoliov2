@@ -10,14 +10,21 @@ export interface Collaborator {
   imageUrl: string;
 }
 
+export type MediaType = "image" | "video";
+
+export interface ProjectMedia {
+  type: MediaType;
+  url: string;
+  alt?: string;
+}
+
 export interface ProjectCardProps {
   id: string;
   name: string;
   description: string;
   link?: string;
   image: string;
-  preview?: string;
-  video?: string;
+  media: ProjectMedia[];
   technologies: Tech[];
   github: string;
   collaborators: Collaborator[];

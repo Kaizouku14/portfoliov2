@@ -18,6 +18,13 @@ import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
   return (
@@ -29,6 +36,7 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
               src={data.image}
               alt={data.name}
               fill
+              priority
               className="object-cover transform hover:scale-105 transition-transform duration-500 ease-in-out"
             />
           </div>
@@ -39,15 +47,29 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
           <div className="grid md:grid-cols-2 gap-0 h-full">
             <div className=" bg-muted/30 p-6 flex items-center justify-center">
               <div className="w-full max-w-xl relative">
-                {data.video ? (
-                  <Safari url={data.link} videoSrc={data.video} mode="simple" />
-                ) : (
-                  <Safari
-                    url={data.link}
-                    imageSrc={data.preview}
-                    mode="simple"
-                  />
-                )}
+                <Carousel className="w-full group">
+                  <CarouselContent>
+                    {data.media.map((item, idx) => (
+                      <CarouselItem key={idx}>
+                        {item.type === "video" ? (
+                          <Safari url={data.link} videoSrc={item.url} mode="simple" />
+                        ) : (
+                          <Safari
+                            url={data.link}
+                            imageSrc={item.url}
+                            mode="simple"
+                          />
+                        )}
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  {data.media.length > 1 && (
+                    <>
+                      <CarouselPrevious className="left-2 opacity-0 group-hover:opacity-100 transition-opacity bg-background/50 hover:bg-background/90" />
+                      <CarouselNext className="right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-background/50 hover:bg-background/90" />
+                    </>
+                  )}
+                </Carousel>
                 {data.collaborators && data.collaborators.length > 0 && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -83,8 +105,9 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 }}
+                  className="space-y-4"
                 >
-                  <DialogDescription className="text-base leading-relaxed md:h-19.5">
+                  <DialogDescription className="text-base leading-relaxed">
                     {data.description}
                   </DialogDescription>
                 </motion.div>

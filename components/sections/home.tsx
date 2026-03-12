@@ -44,7 +44,6 @@ const descriptionVariants: Variants = {
   },
 };
 
-// Memoized static gradient
 const BottomGradient = memo(() => (
   <div className="absolute bottom-0 w-full h-8 bg-[linear-gradient(to_top,oklch(0.129_0.042_264.695),transparent)]" />
 ));
@@ -55,11 +54,8 @@ const HeroSection = () => {
   const projectsRef = useRef<HTMLElement | null>(null);
 
   const handleDownloadCV = useCallback(() => {
-    const link = document.createElement("a");
-    link.href = "/cv.pdf";
-    link.download = "alv-cv.pdf";
-    link.click();
-  }, []);
+  window.open("/cv.pdf", "_blank");
+}, []);
 
   const handleViewWork = useCallback(() => {
     if (!projectsRef.current) {
