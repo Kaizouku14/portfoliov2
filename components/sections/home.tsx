@@ -106,7 +106,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.p
-          className="mt-4 text-sm md:text-xl max-w-xl sm:max-w-2xl opacity-80 text-muted-foreground"
+          className="mt-4 w-80 md:w-full text-sm md:text-xl max-w-xl sm:max-w-2xl opacity-80 text-muted-foreground"
           variants={descriptionVariants}
         >
           {heroContent.description}

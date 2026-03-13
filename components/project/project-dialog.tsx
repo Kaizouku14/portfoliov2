@@ -43,9 +43,9 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
         </div>
       </DialogTrigger>
       <DialogContent className="sm:max-w-6xl  p-0" showCloseButton={true}>
-        <ScrollArea className="h-140 rounded-sm md:max-h-[90vh] p-0 ">
+        <ScrollArea className="h-120 md:h-140 rounded-sm md:max-h-[90vh] p-0 ">
           <div className="grid md:grid-cols-2 gap-0 h-full">
-            <div className="bg-muted/30 h-140 p-6 flex items-center justify-center">
+            <div className="bg-muted/30 h-fit md:h-140 p-6 flex items-center justify-center">
               <div className="w-full max-w-xl relative">
                 <Carousel className="w-full group">
                   <CarouselContent>
@@ -101,7 +101,7 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
-                  <DialogTitle className="text-3xl font-bold">
+                  <DialogTitle className="text-2xl md:text-3xl font-bold">
                     {data.name}
                   </DialogTitle>
                 </motion.div>

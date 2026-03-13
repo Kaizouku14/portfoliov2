@@ -242,7 +242,82 @@ export const PROJECTS: ProjectCardProps[] = [
       },
     ],
   },
-
+  {
+    id: "6",
+    name: "Zynkly — Modern URL Shortener",
+    description:
+      "A fast, privacy-focused URL shortener built with SvelteKit, Turso, and Drizzle ORM. Developed as the final project for IT403 – Web Development. Features include custom slugs, QR codes, password protection, link analytics, and folder-based link organization.",
+    link: "https://zynkly.vercel.app",
+    image: "/zynkly/zynkly.png",
+    media: [
+      { type: "image", url: "/zynkly/zynkly.png", alt: "Zynkly Dashboard" },
+      {
+        type: "image",
+        url: "/zynkly/zynkly-1.png",
+        alt: "Zynkly Preview 1",
+      },
+      {
+        type: "image",
+        url: "/zynkly/zynkly-2.png",
+        alt: "Zynkly Preview 2",
+      },
+      {
+        type: "image",
+        url: "/zynkly/zynkly-3.png",
+        alt: "Zynkly Preview 3",
+      },
+      {
+        type: "image",
+        url: "/zynkly/zynkly-4.png",
+        alt: "Zynkly Preview 4",
+      },
+      {
+        type: "image",
+        url: "/zynkly/zynkly-5.png",
+        alt: "Zynkly Preview 5",
+      },
+    ],
+    technologies: [
+      TECH.SVELTE,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.TURSO,
+      TECH.TAILWIND,
+    ],
+    github: "https://github.com/Kaizouku14/IT403-Final-Project",
+    collaborators: [],
+  },
+  {
+    id: "5",
+    name: "Kanban Board",
+    description:
+      "A Trello-style task management app with drag-and-drop functionality to help users organize their work visually.",
+    link: "https://kanban-board-blue-tau.vercel.app",
+    image: "/kanban/kanban.png",
+    media: [
+      {
+        type: "image",
+        url: "/kanban/kanban-1.png",
+        alt: "Kanban Board Preview 1",
+      },
+      {
+        type: "image",
+        url: "/kanban/kanban-2.png",
+        alt: "Kanban Board Preview 2",
+      },
+    ],
+    technologies: [
+      TECH.REACT,
+      TECH.NEXTJS,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.NEON,
+      TECH.LUCIA,
+      TECH.TAILWIND,
+    ],
+    github: "https://github.com/Kaizouku14/kanban-board",
+    collaborators: [],
+  },
   {
     id: "9",
     name: "MJA Finance Management",
@@ -367,81 +442,5 @@ export const PROJECTS: ProjectCardProps[] = [
         imageUrl: "/jomel.jpg",
       },
     ],
-  },
-  {
-    id: "6",
-    name: "Zynkly — Modern URL Shortener",
-    description:
-      "A fast, privacy-focused URL shortener built with SvelteKit, Turso, and Drizzle ORM. Developed as the final project for IT403 – Web Development. Features include custom slugs, QR codes, password protection, link analytics, and folder-based link organization.",
-    link: "https://zynkly.vercel.app",
-    image: "/zynkly/zynkly.png",
-    media: [
-      { type: "image", url: "/zynkly/zynkly.png", alt: "Zynkly Dashboard" },
-      {
-        type: "image",
-        url: "/zynkly/zynkly-1.png",
-        alt: "Zynkly Preview 1",
-      },
-      {
-        type: "image",
-        url: "/zynkly/zynkly-2.png",
-        alt: "Zynkly Preview 2",
-      },
-      {
-        type: "image",
-        url: "/zynkly/zynkly-3.png",
-        alt: "Zynkly Preview 3",
-      },
-      {
-        type: "image",
-        url: "/zynkly/zynkly-4.png",
-        alt: "Zynkly Preview 4",
-      },
-      {
-        type: "image",
-        url: "/zynkly/zynkly-5.png",
-        alt: "Zynkly Preview 5",
-      },
-    ],
-    technologies: [
-      TECH.SVELTE,
-      TECH.TYPESCRIPT,
-      TECH.NODEJS,
-      TECH.TURSO,
-      TECH.TAILWIND,
-    ],
-    github: "https://github.com/Kaizouku14/IT403-Final-Project",
-    collaborators: [],
-  },
-  {
-    id: "5",
-    name: "Kanban Board",
-    description:
-      "A Trello-style task management app with drag-and-drop functionality to help users organize their work visually.",
-    link: "https://kanban-board-blue-tau.vercel.app",
-    image: "/kanban/kanban.png",
-    media: [
-      {
-        type: "image",
-        url: "/kanban/kanban-1.png",
-        alt: "Kanban Board Preview 1",
-      },
-      {
-        type: "image",
-        url: "/kanban/kanban-2.png",
-        alt: "Kanban Board Preview 2",
-      },
-    ],
-    technologies: [
-      TECH.REACT,
-      TECH.NEXTJS,
-      TECH.TYPESCRIPT,
-      TECH.NODEJS,
-      TECH.NEON,
-      TECH.LUCIA,
-      TECH.TAILWIND,
-    ],
-    github: "https://github.com/Kaizouku14/kanban-board",
-    collaborators: [],
   },
 ];

@@ -10,8 +10,16 @@ import { MENU } from "@/constants";
 import { PROJECTS } from "@/data";
 import { cn } from "@/lib/utils";
 
-const GradientOverlay = () => (
-  <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-background to-transparent pointer-events-none" />
+const GradientOverlay = ({ className }: { className?: string }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className={cn(
+      "absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-background via-background/80 to-transparent z-20 pointer-events-none",
+      className
+    )}
+  />
 );
 
 const SeeMoreContent = () => (
@@ -52,6 +60,8 @@ const Projects = () => {
     };
 
     checkOverflow();
+    // Safety check after initial animations might have settled
+    const timer = setTimeout(checkOverflow, 1000);
 
     resizeObserverRef.current = new ResizeObserver(() => {
       requestAnimationFrame(checkOverflow);
@@ -62,6 +72,7 @@ const Projects = () => {
     }
 
     return () => {
+      clearTimeout(timer);
       if (resizeObserverRef.current) {
         resizeObserverRef.current.disconnect();
       }
@@ -122,7 +133,9 @@ const Projects = () => {
           </AnimatePresence>
         </motion.div>
 
-        {!seeMore && <GradientOverlay />}
+        <AnimatePresence>
+          {!seeMore && isOverflowing && <GradientOverlay />}
+        </AnimatePresence>
       </div>
 
       {isOverflowing && (
