@@ -69,7 +69,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, isLoading }) => {
                                 {...props}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-primary hover:underline font-bold"
+                                className="text-blue-600 hover:underline font-bold"
                               />
                             ),
                           }}

@@ -205,7 +205,7 @@ export const PROJECTS: ProjectCardProps[] = [
     name: "Plantaria",
     description:
       "My team's entry for the PSITE RAITE 2024 Hackathon. It's a Web3 platform aimed at urban farmers, using blockchain to track produce and encourage community collaboration.",
-    image: "/plantaria.png",
+    image: "/plantaria/plantaria.png",
     media: [
       {
         type: "video",
@@ -238,7 +238,7 @@ export const PROJECTS: ProjectCardProps[] = [
       },
       {
         profileUrl: "https://www.facebook.com/joml.amv",
-        imageUrl: "/jomel.jpg",
+        imageUrl: "/collaborators/jomel.jpg",
       },
     ],
   },
@@ -349,7 +349,7 @@ export const PROJECTS: ProjectCardProps[] = [
       },
       {
         profileUrl: "https://www.facebook.com/joml.amv",
-        imageUrl: "/jomel.jpg",
+        imageUrl: "/collaborators/jomel.jpg",
       },
     ],
   },
@@ -439,7 +439,7 @@ export const PROJECTS: ProjectCardProps[] = [
       },
       {
         profileUrl: "https://www.facebook.com/joml.amv",
-        imageUrl: "/jomel.jpg",
+        imageUrl: "/collaborators/jomel.jpg",
       },
     ],
   },
