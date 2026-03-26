@@ -67,15 +67,15 @@ export const PROJECTS: ProjectCardProps[] = [
       { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
         profileUrl: "https://www.facebook.com/jocelchua.balotabot",
-        imageUrl: "/jocel.jpg",
+        imageUrl: "/collaborators/jocel.jpg",
       },
       {
         profileUrl: "https://www.facebook.com/karlgt.paguio.9",
-        imageUrl: "/karl.jpg",
+        imageUrl: "/collaborators/karl.jpg",
       },
       {
         profileUrl: "https://www.facebook.com/itsSuprem0",
-        imageUrl: "/rojie.jpg",
+        imageUrl: "/collaborators/rojie.jpg",
       },
       {
         profileUrl: "https://www.facebook.com/avoidtor",
@@ -328,7 +328,7 @@ export const PROJECTS: ProjectCardProps[] = [
     media: [
       {
         type: "image",
-        url: "/project-placeholder-1.png",
+        url: "/globe.svg",
         alt: "MJA Finance Preview",
       },
     ],
@@ -382,15 +382,15 @@ export const PROJECTS: ProjectCardProps[] = [
       { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
         profileUrl: "https://www.facebook.com/jocelchua.balotabot",
-        imageUrl: "/jocel.jpg",
+        imageUrl: "/collaborators/jocel.jpg",
       },
       {
         profileUrl: "https://www.facebook.com/karlgt.paguio.9",
-        imageUrl: "/karl.jpg",
+        imageUrl: "/collaborators/karl.jpg",
       },
       {
         profileUrl: "https://www.facebook.com/itsSuprem0",
-        imageUrl: "/rojie.jpg",
+        imageUrl: "/collaborators/rojie.jpg",
       },
       {
         profileUrl: "https://www.facebook.com/avoidtor",
@@ -405,10 +405,9 @@ export const PROJECTS: ProjectCardProps[] = [
       "A member and event management platform developed for SJDM Christian Ministries to streamline their daily operations. This project was donated to the church as a contribution to support their ministry. (Screenshots omitted for client privacy).",
     image: "/globe.svg",
     media: [
-      { type: "video", url: "/globe.svg", alt: "SJDM Video Preview" },
       {
         type: "image",
-        url: "/project-placeholder-3.png",
+        url: "/globe.svg",
         alt: "System Description and Mockups",
       },
     ],
