@@ -17,6 +17,7 @@ export const SITE_CONFIG = {
   shortName: "Al-v.",
   profession: "Web Developer",
   email: "mandaalv72@gmail.com",
+  url: process.env.NEXT_PUBLIC_APP_URL || "https://alvmanda.vercel.app",
 } as const;
 
 export const DOCK_DATA = {
