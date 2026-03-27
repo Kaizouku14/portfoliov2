@@ -2,18 +2,20 @@
 
 import { MAIN_STACK } from "@/data";
 import { Folder, Tree, File } from "@/components/ui/file-tree";
-import { motion } from "motion/react";
+import { AnimateItem } from "@/components/shared/animate-element";
 
 const TechStackTree = () => {
-  const expandedItems = ["root", "1", "3", "4"];
+  const expandedItems = ["root", "1", "2", "3", "4"];
 
   return (
-    <motion.div
+    <AnimateItem
       className="flex md:w-96 flex-col items-center justify-center p-4 border-none"
-      initial={{ opacity: 0, x: 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
+      direction="left"
+      distance={50}
+      duration={0.7}
     >
       <Tree className="p-2" initialExpandedItems={expandedItems}>
         <Folder element="Tech Stack" value="root" isSelectable={false}>
@@ -33,7 +35,7 @@ const TechStackTree = () => {
           ))}
         </Folder>
       </Tree>
-    </motion.div>
+    </AnimateItem>
   );
 };
 

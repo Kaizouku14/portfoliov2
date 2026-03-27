@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { AnimateItem } from "@/components/shared/animate-element";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Carousel,
@@ -75,53 +76,67 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
                   )}
                 </Carousel>
                 {data.collaborators && data.collaborators.length > 0 && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 }}
+                  <AnimateItem
+                    direction="up"
+                    distance={20}
+                    duration={0.4}
+                    delay={0.4}
+                    initial="hidden"
+                    animate="visible"
                   >
                     <AvatarCircles
                       avatarUrls={data.collaborators}
                       className="absolute left-1 bottom-1"
                     />
-                  </motion.div>
+                  </AnimateItem>
                 )}
               </div>
             </div>
 
-            <motion.div
+            <AnimateItem
+              direction="left"
+              distance={50}
+              duration={0.5}
+              initial="hidden"
+              animate="visible"
               className="flex flex-col p-8 overflow-y-auto"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <DialogHeader className="space-y-4 text-left">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
+                <AnimateItem
+                  direction="up"
+                  distance={20}
+                  duration={0.4}
+                  delay={0.1}
+                  initial="hidden"
+                  animate="visible"
                 >
                   <DialogTitle className="text-2xl md:text-3xl font-bold">
                     {data.name}
                   </DialogTitle>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
+                </AnimateItem>
+                <AnimateItem
+                  direction="up"
+                  distance={20}
+                  duration={0.4}
+                  delay={0.2}
+                  initial="hidden"
+                  animate="visible"
                   className="space-y-4"
                 >
                   <DialogDescription className="text-base leading-relaxed">
                     {data.description}
                   </DialogDescription>
-                </motion.div>
+                </AnimateItem>
               </DialogHeader>
 
-              <motion.div
+              <AnimateItem
+                direction="up"
+                distance={20}
+                duration={0.4}
+                delay={0.3}
+                initial="hidden"
+                animate="visible"
                 className="flex flex-col gap-4 mt-8 flex-1"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
               >
                 <h3 className="text-lg font-semibold">Technologies</h3>
                 <div className="flex flex-wrap gap-2">
@@ -143,13 +158,16 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
                     </motion.div>
                   ))}
                 </div>
-              </motion.div>
+              </AnimateItem>
 
-              <motion.div
+              <AnimateItem
+                direction="up"
+                distance={20}
+                duration={0.4}
+                delay={0.5}
+                initial="hidden"
+                animate="visible"
                 className="flex gap-3 mt-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.5 }}
               >
                 <Link
                   href={data.github}
@@ -183,12 +201,14 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
                     </motion.div>
                   </Link>
                 )}
-              </motion.div>
+              </AnimateItem>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.6 }}
+              <AnimateItem
+                direction="none"
+                duration={0.4}
+                delay={0.6}
+                initial="hidden"
+                animate="visible"
               >
                 <DialogFooter className="mt-8 pt-6 border-t flex items-end ">
                   <DialogClose asChild>
@@ -202,8 +222,8 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
                     </motion.div>
                   </DialogClose>
                 </DialogFooter>
-              </motion.div>
-            </motion.div>
+              </AnimateItem>
+            </AnimateItem>
           </div>
         </ScrollArea>
       </DialogContent>

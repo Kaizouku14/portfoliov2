@@ -1,19 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
 import { ProjectCardProps } from "@/types";
-import { motion } from "motion/react";
+import { AnimateItem } from "@/components/shared/animate-element";
 import Link from "next/link";
 import ProjectInfoDialog from "./project-dialog";
 
 export const ProjectCard = ({ data }: { data: ProjectCardProps }) => {
   return (
-    <motion.div
+    <AnimateItem
       className="md:h-88 w-75 md:w-105 p-4 flex flex-col gap-2 "
       layout
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
+      direction="up"
+      distance={50}
+      duration={0.8}
     >
       <ProjectInfoDialog data={data} />
       <div className="flex justify-between items-center gap-2">
@@ -45,6 +47,6 @@ export const ProjectCard = ({ data }: { data: ProjectCardProps }) => {
           )}
         </div>
       </div>
-    </motion.div>
+    </AnimateItem>
   );
 };

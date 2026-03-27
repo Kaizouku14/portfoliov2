@@ -6,6 +6,7 @@ import LoadingBubble from "./loading-bubble";
 import { Profile } from "@/components/shared/profile";
 import { ChatBubbleProps } from "@/types";
 import { motion, AnimatePresence } from "motion/react";
+import { AnimateItem } from "@/components/shared/animate-element";
 import { User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
@@ -22,16 +23,18 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, isLoading }) => {
       <div className="flex w-full flex-col gap-4 px-4 py-6 backdrop-blur-sm">
         <AnimatePresence initial={false}>
           {messages?.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+            <AnimateItem
+              direction="up"
+              distance={10}
+              initial="hidden"
+              animate="visible"
               className="flex items-start gap-3"
             >
               <Profile />
               <div className="bg-linear-to-br from-primary/10 to-primary/5 text-foreground max-w-[85%] rounded-2xl rounded-tl-none px-4 py-3 text-sm border border-primary/10 shadow-sm leading-relaxed ">
                 Hello! I&apos;m Al-v. How can I help you today?
               </div>
-            </motion.div>
+            </AnimateItem>
           )}
 
           {messages?.map((message) => (
@@ -91,13 +94,15 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, isLoading }) => {
           ))}
 
           {isLoading && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+            <AnimateItem
+              direction="up"
+              distance={10}
+              initial="hidden"
+              animate="visible"
               exit={{ opacity: 0, transition: { duration: 0.2 } }}
             >
               <LoadingBubble />
-            </motion.div>
+            </AnimateItem>
           )}
         </AnimatePresence>
         <div ref={bottomRef} className="h-2" />

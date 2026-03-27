@@ -1,48 +1,14 @@
 "use client";
 
 import { useCallback, useRef } from "react";
-import { motion, Variants } from "motion/react";
 import { Download, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeroHeader from "@/components/layout/header";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { heroContent } from "@/data";
 import { MENU } from "@/constants";
+import { AnimateContainer, AnimateItem } from "@/components/shared/animate-element";
 import LightRays from "../ui/LightRays";
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut" as const,
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut" as const,
-    },
-  },
-};
-
-const descriptionVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-    },
-  },
-};
 
 const BottomGradient = () => (
   <div className="absolute bottom-0 w-full h-10 bg-[linear-gradient(to_top,oklch(0.129_0.042_264.695),transparent)]" />
@@ -82,20 +48,22 @@ const HeroSection = () => {
         fadeDistance={1}
         saturation={1}
       />
-      <motion.div
+      <AnimateContainer
         className="flex flex-col items-center md:p-8 md:w-7xl z-10"
-        variants={containerVariants}
+        delayChildren={0}
+        staggerChildren={0.2}
         initial="hidden"
         animate="visible"
       >
-        <motion.h1
+        <AnimateItem
+          as="h1"
           className="text-5xl md:text-6xl lg:text-7xl font-black"
-          variants={itemVariants}
+          duration={0.6}
         >
           {heroContent.title}
-        </motion.h1>
+        </AnimateItem>
 
-        <motion.div variants={itemVariants}>
+        <AnimateItem duration={0.6}>
           <TypingAnimation
             className="mt-2 text-base sm:text-2xl"
             loop
@@ -103,18 +71,19 @@ const HeroSection = () => {
             cursorStyle="underscore"
             words={heroContent.typingWords}
           />
-        </motion.div>
+        </AnimateItem>
 
-        <motion.p
+        <AnimateItem
+          as="p"
           className="mt-4 w-80 md:w-full text-sm md:text-xl max-w-xl sm:max-w-2xl opacity-80 text-muted-foreground"
-          variants={descriptionVariants}
+          duration={0.6}
         >
           {heroContent.description}
-        </motion.p>
+        </AnimateItem>
 
-        <motion.div
+        <AnimateItem
           className="flex gap-2 items-center mt-4"
-          variants={itemVariants}
+          duration={0.6}
         >
           <Button
             className="flex items-center text-muted-foreground"
@@ -128,8 +97,8 @@ const HeroSection = () => {
             <FolderOpen className="size-5" />
             <span className="font-semibold">View My Work</span>
           </Button>
-        </motion.div>
-      </motion.div>
+        </AnimateItem>
+      </AnimateContainer>
       <BottomGradient />
     </section>
   );

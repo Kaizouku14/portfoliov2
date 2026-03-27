@@ -1,5 +1,5 @@
 import { ElementType } from "react";
-import { motion } from "motion/react";
+import { AnimateItem } from "@/components/shared/animate-element";
 
 interface SkillCardProps {
   name: string;
@@ -9,17 +9,19 @@ interface SkillCardProps {
 
 const SkillCard = ({ name, icon: Icon, description }: SkillCardProps) => {
   return (
-    <motion.div
+    <AnimateItem
       className="p-4 h-50 w-80 flex flex-col gap-2"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
+      direction="up"
+      distance={50}
+      duration={0.8}
     >
       <Icon className="size-6 text-primary" />
       <span className="text-2xl font-bold">{name}</span>
       <p className="text-muted-foreground">{description}</p>
-    </motion.div>
+    </AnimateItem>
   );
 };
 
