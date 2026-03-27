@@ -89,11 +89,11 @@ export const PROJECTS: ProjectCardProps[] = [
     name: "SJDM Christian Ministry RMS",
     description:
       "Member and event management system for SJDM Christian Ministries, donated to the church as our contribution to their community. Handles their daily operations end-to-end. (Screenshots omitted for client privacy)",
-    image: "/globe.svg",
+    image: "/private_project_placeholder.svg",
     media: [
       {
         type: "image",
-        url: "/globe.svg",
+        url: "/private_project_placeholder.svg",
         alt: "System Description and Mockups",
       },
     ],
@@ -135,11 +135,11 @@ export const PROJECTS: ProjectCardProps[] = [
     description:
       "Internship project. MJA's legacy finance system was getting hard to maintain, so we rebuilt it — modern Next.js dashboard, Turso backend, and a careful migration with sensitive data on the line. (No screenshots for privacy reasons)",
     link: "",
-    image: "/globe.svg",
+    image: "/private_project_placeholder.svg",
     media: [
       {
         type: "image",
-        url: "/globe.svg",
+        url: "/private_project_placeholder.svg",
         alt: "MJA Finance Preview",
       },
     ],
@@ -170,14 +170,9 @@ export const PROJECTS: ProjectCardProps[] = [
     name: "InnControl",
     description:
       "Final project for System Analysis and Design. BSA Twin Tower was managing bookings and check-ins manually — InnControl fixed that with one system for bookings, check-ins, and reports. (No screenshots for privacy reasons)",
-    image: "/globe.svg",
+    image: "/private_project_placeholder.svg",
     media: [
-      { type: "image", url: "/globe.svg", alt: "InnControl Dashboard Mockup" },
-      {
-        type: "image",
-        url: "/project-placeholder-1.png",
-        alt: "InnControl Feature Preview",
-      },
+      { type: "image", url: "/private_project_placeholder.svg", alt: "InnControl Dashboard Mockup" },
     ],
     technologies: [
       TECH.REACT,

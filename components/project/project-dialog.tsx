@@ -43,9 +43,9 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
         </div>
       </DialogTrigger>
       <DialogContent className="sm:max-w-6xl  p-0" showCloseButton={true}>
-        <ScrollArea className="h-120 md:h-140 rounded-sm md:max-h-[90vh] p-0 ">
+        <ScrollArea className="h-120 md:h-145 rounded-sm md:max-h-[91vh] p-0 ">
           <div className="grid md:grid-cols-2 gap-0 h-full">
-            <div className="bg-muted/30 h-fit md:h-140 p-6 flex items-center justify-center">
+            <div className="bg-muted/30 h-fit md:h-145 p-6 flex items-center justify-center">
               <div className="w-full max-w-xl relative">
                 <Carousel className="w-full group">
                   <CarouselContent>
@@ -122,9 +122,9 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
                   animate="visible"
                   className="space-y-4"
                 >
-                  <DialogDescription className="text-base leading-relaxed">
-                    {data.description}
-                  </DialogDescription>
+                    <DialogDescription className="text-base leading-relaxed">
+                      {data.description}
+                    </DialogDescription>
                 </AnimateItem>
               </DialogHeader>
 
@@ -135,10 +135,10 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
                 delay={0.3}
                 initial="hidden"
                 animate="visible"
-                className="flex flex-col gap-4 mt-8 flex-1"
+                className="flex flex-col gap-2.5 mt-6 flex-1"
               >
                 <h3 className="text-lg font-semibold">Technologies</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {data.technologies.map((tech, index) => (
                     <motion.div
                       key={index}
