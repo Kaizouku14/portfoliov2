@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { MENU } from "@/constants";
 import { PROJECTS } from "@/data";
 import { cn } from "@/lib/utils";
+import { SectionWrapper } from "@/components/layout/section";
 
 const GradientOverlay = ({ className }: { className?: string }) => (
   <motion.div
@@ -113,10 +114,7 @@ const Projects = () => {
   );
 
   return (
-    <section
-      id={MENU.PROJECTS}
-      className="h-auto flex flex-col md:px-12 px-8 py-4 justify-center"
-    >
+    <SectionWrapper id={MENU.PROJECTS} className="h-auto py-4">
       <Animate text="Projects" className="text-5xl font-semibold mb-12" />
 
       <div className="relative">
@@ -154,7 +152,7 @@ const Projects = () => {
           </Button>
         </motion.div>
       )}
-    </section>
+    </SectionWrapper>
   );
 };
 

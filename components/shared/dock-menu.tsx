@@ -46,14 +46,20 @@ const DockMenu = () => {
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                size="icon"
-                variant="ghost"
-                className="rounded-full size-12"
-                onClick={toggleChat}
-              >
-                <BotMessageSquare />
-              </Button>
+              <div className="relative">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="rounded-full size-12"
+                  onClick={toggleChat}
+                >
+                  <BotMessageSquare />
+                </Button>
+                <span className="absolute top-1 right-1 flex size-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full size-3 bg-primary"></span>
+                </span>
+              </div>
             </TooltipTrigger>
             <TooltipContent>
               <p>Chat with Al-v</p>

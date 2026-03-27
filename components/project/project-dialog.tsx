@@ -37,7 +37,6 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
               src={data.image}
               alt={data.name}
               fill
-              priority
               className="object-cover transform hover:scale-105 transition-transform duration-500 ease-in-out"
             />
           </div>

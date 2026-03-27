@@ -8,6 +8,7 @@ import { TypingAnimation } from "@/components/ui/typing-animation";
 import { heroContent } from "@/data";
 import { MENU } from "@/constants";
 import { AnimateContainer, AnimateItem } from "@/components/shared/animate-element";
+import { SectionWrapper } from "@/components/layout/section";
 import LightRays from "../ui/LightRays";
 
 const BottomGradient = () => (
@@ -29,10 +30,10 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section
-      id={MENU.HOME}
-      className="relative min-h-screen flex flex-col justify-center items-center w-full text-center py-10"
-    >
+      <SectionWrapper
+        id={MENU.HOME}
+        className="min-h-screen items-center text-center px-4 md:px-8"
+      >
       <HeroHeader />
       <LightRays
         raysOrigin="top-center"
@@ -100,7 +101,7 @@ const HeroSection = () => {
         </AnimateItem>
       </AnimateContainer>
       <BottomGradient />
-    </section>
+      </SectionWrapper>
   );
 };
 

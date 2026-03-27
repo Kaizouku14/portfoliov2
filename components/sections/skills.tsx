@@ -6,6 +6,7 @@ import Animate from "@/components/shared/animate";
 import { AnimateContainer, AnimateItem } from "@/components/shared/animate-element";
 import TechStackTree from "@/components/shared/tech-stacks";
 import SkillCard from "@/components/skill/skill-card";
+import { SectionWrapper } from "@/components/layout/section";
 import { SKILLS } from "@/data";
 
 const MemoizedSkillCard = memo(SkillCard);
@@ -25,10 +26,7 @@ const Skill = () => {
   );
 
   return (
-    <section
-      id={MENU.SKILL}
-      className="md:h-screen relative flex flex-col md:px-12 px-8 justify-center"
-    >
+    <SectionWrapper id={MENU.SKILL} className="md:min-h-screen">
       <Animate text="Skills" className="text-5xl font-semibold mb-12" />
 
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl gap-8 md:gap-12">
@@ -44,7 +42,7 @@ const Skill = () => {
 
         <TechStackTree />
       </div>
-    </section>
+    </SectionWrapper>
   );
 };
 
