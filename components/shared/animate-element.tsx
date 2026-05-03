@@ -60,7 +60,7 @@ AnimateContainer.displayName = "AnimateContainer";
 
 // ─── AnimateItem ──────────────────────────────────────────────────────────────
 
-interface AnimateItemProps extends HTMLMotionProps<any> {
+interface AnimateItemProps extends Omit<HTMLMotionProps<"div">, "as"> {
   children?: React.ReactNode;
   duration?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
@@ -114,9 +114,10 @@ export const AnimateItem = React.forwardRef<HTMLElement, AnimateItemProps>(
       },
     };
 
-    const MotionComponent = motion.create(Component);
+    const MotionComponent = React.useMemo(() => motion.create(Component as React.ElementType), [Component]);
 
     return (
+      // eslint-disable-next-line react-hooks/static-components
       <MotionComponent
         ref={ref}
         variants={itemVariants}

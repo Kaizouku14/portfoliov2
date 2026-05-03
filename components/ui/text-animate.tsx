@@ -1,6 +1,6 @@
 "use client"
 
-import { ElementType, memo } from "react"
+import { ElementType, memo, useMemo } from "react"
 import { AnimatePresence, motion, MotionProps, Variants } from "motion/react"
 
 import { cn } from "@/lib/utils"
@@ -317,7 +317,8 @@ const TextAnimateBase = ({
   accessible = true,
   ...props
 }: TextAnimateProps) => {
-  const MotionComponent = motion.create(Component)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const MotionComponent = useMemo(() => motion.create(Component as any), [Component]) as any
 
   let segments: string[] = []
   switch (by) {
