@@ -18,6 +18,7 @@ import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { AnimateItem } from "@/components/shared/animate-element";
+import { VARIANTS, DURATION } from "@/lib/motion";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Carousel,
@@ -142,9 +143,10 @@ const ProjectInfoDialog = ({ data }: { data: ProjectCardProps }) => {
                   {data.technologies.map((tech, index) => (
                     <motion.div
                       key={index}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0.4 + index * 0.05 }}
+                      variants={VARIANTS.scaleIn}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: 0.4 + index * 0.05, duration: DURATION.fast }}
                       whileHover={{ scale: 1.05 }}
                     >
                       <Badge

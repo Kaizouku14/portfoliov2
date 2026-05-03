@@ -1,8 +1,16 @@
 "use client";
 
 import React from "react";
-import { motion, type HTMLMotionProps, type Variants } from "motion/react";
+import {
+  motion,
+  useReducedMotion,
+  type HTMLMotionProps,
+  type Variants,
+} from "motion/react";
 import { cn } from "@/lib/utils";
+import { DURATION, EASE, VARIANTS } from "@/lib/motion";
+
+// ─── AnimateContainer ─────────────────────────────────────────────────────────
 
 interface AnimateContainerProps extends HTMLMotionProps<"div"> {
   children?: React.ReactNode;
@@ -11,18 +19,27 @@ interface AnimateContainerProps extends HTMLMotionProps<"div"> {
   once?: boolean;
 }
 
-export const AnimateContainer = React.forwardRef<HTMLDivElement, AnimateContainerProps>(
-  ({ children, className, delayChildren = 0.1, staggerChildren = 0.1, once = true, ...props }, ref) => {
-    const containerVariants: Variants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          delayChildren,
-          staggerChildren,
-        },
-      },
-    };
+export const AnimateContainer = React.forwardRef<
+  HTMLDivElement,
+  AnimateContainerProps
+>(
+  (
+    {
+      children,
+      className,
+      delayChildren = 0.1,
+      staggerChildren = 0.1,
+      once = true,
+      ...props
+    },
+    ref,
+  ) => {
+    const shouldReduceMotion = useReducedMotion();
+
+    const containerVariants: Variants = shouldReduceMotion
+      ? // When reduced motion is preferred: no stagger, instant reveal
+        { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+      : VARIANTS.staggerContainer(delayChildren, staggerChildren);
 
     return (
       <motion.div
@@ -37,9 +54,11 @@ export const AnimateContainer = React.forwardRef<HTMLDivElement, AnimateContaine
         {children}
       </motion.div>
     );
-  }
+  },
 );
 AnimateContainer.displayName = "AnimateContainer";
+
+// ─── AnimateItem ──────────────────────────────────────────────────────────────
 
 interface AnimateItemProps extends HTMLMotionProps<any> {
   children?: React.ReactNode;
@@ -51,21 +70,46 @@ interface AnimateItemProps extends HTMLMotionProps<any> {
 }
 
 export const AnimateItem = React.forwardRef<HTMLElement, AnimateItemProps>(
-  ({ children, className, duration = 0.5, direction = "up", distance = 20, delay, as: Component = "div", ...props }, ref) => {
+  (
+    {
+      children,
+      className,
+      duration = DURATION.base,
+      direction = "up",
+      distance = 24,
+      delay,
+      as: Component = "div",
+      ...props
+    },
+    ref,
+  ) => {
+    const shouldReduceMotion = useReducedMotion();
+
     const itemVariants: Variants = {
       hidden: {
         opacity: 0,
-        y: direction === "up" ? distance : direction === "down" ? -distance : 0,
-        x: direction === "left" ? distance : direction === "right" ? -distance : 0,
+        // Collapse translate to 0 for users who prefer reduced motion
+        y:
+          !shouldReduceMotion && direction === "up"
+            ? distance
+            : !shouldReduceMotion && direction === "down"
+              ? -distance
+              : 0,
+        x:
+          !shouldReduceMotion && direction === "left"
+            ? distance
+            : !shouldReduceMotion && direction === "right"
+              ? -distance
+              : 0,
       },
       visible: {
         opacity: 1,
         y: 0,
         x: 0,
         transition: {
-          duration,
-          ease: "easeOut",
-          delay,
+          duration: shouldReduceMotion ? DURATION.instant : duration,
+          ease: EASE.out,
+          delay: shouldReduceMotion ? 0 : delay,
         },
       },
     };
@@ -82,6 +126,6 @@ export const AnimateItem = React.forwardRef<HTMLElement, AnimateItemProps>(
         {children}
       </MotionComponent>
     );
-  }
+  },
 );
 AnimateItem.displayName = "AnimateItem";

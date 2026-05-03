@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import Animate from "@/components/shared/animate";
+import { AnimateItem } from "@/components/shared/animate-element";
+import { TRANSITION } from "@/lib/motion";
 import { ProjectCard } from "@/components/project/project-card";
 import { Button } from "@/components/ui/button";
 import { MENU } from "@/constants";
@@ -122,7 +124,7 @@ const Projects = () => {
           ref={containerRef}
           className={containerClassName}
           layout
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={TRANSITION.slow}
         >
           <AnimatePresence mode="popLayout">
             {PROJECTS.map((project, index) => (
@@ -137,11 +139,12 @@ const Projects = () => {
       </div>
 
       {isOverflowing && (
-        <motion.div
+        <AnimateItem
+          direction="none"
           className="flex justify-center mt-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
+          delay={0.5}
+          initial="hidden"
+          animate="visible"
         >
           <Button
             ref={viewButtonRef}
@@ -150,7 +153,7 @@ const Projects = () => {
           >
             {seeMore ? <SeeLessContent /> : <SeeMoreContent />}
           </Button>
-        </motion.div>
+        </AnimateItem>
       )}
     </SectionWrapper>
   );

@@ -28,7 +28,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     highlights: [
       "Specialization: Web and Mobile Application Development",
       "Dean's List Awardee — A.Y. 2024–2025 & 2025–2026",
-      "Magna Cum Laude",
+      "Latin Honors — Magna Cum Laude",
     ],
   },
 ];

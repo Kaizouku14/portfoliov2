@@ -1,7 +1,7 @@
 import { SITE_CONFIG } from "@/constants";
 
 export { PROJECTS } from "./projects";
-export { SKILLS, MAIN_STACK } from "./skills";
+export { MAIN_STACK } from "./skills";
 export { EXPERIENCE } from "./experience";
 export type { ExperienceItem } from "./experience";
 

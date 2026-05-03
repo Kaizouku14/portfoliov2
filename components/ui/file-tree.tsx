@@ -160,7 +160,7 @@ const TreeIndicator = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEle
         dir={direction}
         ref={ref}
         className={cn(
-          "bg-slate-400 dark:bg-muted absolute left-1.5 h-full w-px rounded-md py-3 duration-300 ease-in-out hover:bg-slate-300 rtl:right-1.5",
+          "bg-border/50 absolute left-1.5 h-full w-px rounded-full py-3 duration-300 ease-in-out hover:bg-border/80 rtl:right-1.5",
           className,
         )}
         {...props}
@@ -176,34 +176,42 @@ type FolderProps = {
   element: string;
   isSelectable?: boolean;
   isSelect?: boolean;
+  /** Per-folder Tailwind text color class — e.g. "text-sky-400/90" */
+  accentColor?: string;
 } & React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>;
 
 const Folder = forwardRef<HTMLDivElement, FolderProps & React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, element, value, isSelectable = true, isSelect, children, ...props }, ref) => {
+  ({ className, element, value, isSelectable = true, isSelect, accentColor, children, ...props }, ref) => {
     const { direction, handleExpand, expandedItems, indicator, setExpandedItems, openIcon, closeIcon } = useTree();
+    const isExpanded = expandedItems?.includes(value);
+    const iconClass = cn("size-4 shrink-0 transition-colors", accentColor ?? "text-muted-foreground");
 
     return (
       <AccordionPrimitive.Item {...props} value={value} ref={ref} className="relative h-full overflow-hidden">
         <AccordionPrimitive.Trigger
-          className={cn(`flex items-center gap-1 rounded-md text-sm`, className, {
-            "bg-muted rounded-md": isSelect && isSelectable,
-            "cursor-pointer": isSelectable,
-            "cursor-not-allowed opacity-80": !isSelectable,
-          })}
+          className={cn(
+            "flex w-full items-center gap-1.5 rounded-md px-1.5 py-1 text-sm transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/40",
+            className,
+            {
+              "bg-muted": isSelect && isSelectable,
+              "cursor-pointer": isSelectable,
+              "cursor-not-allowed opacity-80": !isSelectable,
+            },
+          )}
           disabled={!isSelectable}
           onClick={() => handleExpand(value)}
         >
-          {expandedItems?.includes(value)
-            ? (openIcon ?? <FolderOpenIcon className="size-4" />)
-            : (closeIcon ?? <FolderIcon className="size-4" />)}
-          <span>{element}</span>
+          {isExpanded
+            ? (openIcon ?? <FolderOpenIcon className={iconClass} />)
+            : (closeIcon ?? <FolderIcon className={iconClass} />)}
+          <span className={cn("font-medium", accentColor)}>{element}</span>
         </AccordionPrimitive.Trigger>
         <AccordionPrimitive.Content className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down relative h-full overflow-hidden text-sm">
           {element && indicator && <TreeIndicator aria-hidden="true" />}
           <AccordionPrimitive.Root
             dir={direction}
             type="multiple"
-            className="ml-5 flex flex-col gap-1 py-1 rtl:mr-5"
+            className="ml-5 flex flex-col gap-0.5 py-0.5 rtl:mr-5"
             defaultValue={expandedItems}
             value={expandedItems}
             onValueChange={(value) => {
@@ -238,18 +246,18 @@ const File = forwardRef<
       type="button"
       disabled={!isSelectable}
       className={cn(
-        "flex w-fit items-center gap-1 rounded-md pr-1 text-sm duration-200 ease-in-out rtl:pr-0 rtl:pl-1",
+        "flex w-full items-center gap-2 rounded-md px-2 py-1 text-sm transition-colors hover:bg-muted/30 rtl:pr-0 rtl:pl-2",
         {
-          "bg-muted": isSelected && isSelectable,
+          "bg-muted/60": isSelected && isSelectable,
         },
-        isSelectable ? "cursor-pointer" : "cursor-not-allowed opacity-50",
+        isSelectable ? "cursor-pointer" : "cursor-default",
         direction === "rtl" ? "rtl" : "ltr",
         className,
       )}
       onClick={() => selectItem(value)}
       {...props}
     >
-      {fileIcon ?? <FileIcon className="size-4" />}
+      {fileIcon ?? <FileIcon className="size-3.5 text-muted-foreground" />}
       {children}
     </button>
   );
