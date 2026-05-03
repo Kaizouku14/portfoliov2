@@ -1,45 +1,20 @@
 "use client";
 
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import { MENU } from "@/constants";
 import Animate from "@/components/shared/animate";
-import { AnimateContainer, AnimateItem } from "@/components/shared/animate-element";
 import TechStackTree from "@/components/shared/tech-stacks";
-import SkillCard from "@/components/skill/skill-card";
+import { ExperienceTimeline } from "@/components/skill/experience-card";
 import { SectionWrapper } from "@/components/layout/section";
-import { SKILLS } from "@/data";
-
-const MemoizedSkillCard = memo(SkillCard);
+import { EXPERIENCE } from "@/data";
 
 const Skill = () => {
-  const skillCards = useMemo(
-    () =>
-      SKILLS.map((skill) => (
-        <MemoizedSkillCard
-          key={skill.name}
-          name={skill.name}
-          icon={skill.icon}
-          description={skill.description}
-        />
-      )),
-    [],
-  );
-
   return (
     <SectionWrapper id={MENU.SKILL} className="md:min-h-screen">
-      <Animate text="Skills" className="text-5xl font-semibold mb-12" />
+      <Animate text="Skills & Experience" className="text-5xl font-semibold mb-12" />
 
-      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl gap-8 md:gap-12">
-        <AnimateContainer
-          className="grid md:grid-cols-2 gap-4 md:gap-6"
-          delayChildren={0.2}
-          staggerChildren={0.1}
-          initial="hidden"
-          whileInView="visible"
-        >
-          {skillCards}
-        </AnimateContainer>
-
+      <div className="flex flex-col md:flex-row items-start justify-between w-full max-w-7xl gap-8 md:gap-16">
+        <ExperienceTimeline items={EXPERIENCE} />
         <TechStackTree />
       </div>
     </SectionWrapper>

@@ -17,6 +17,13 @@ import {
   SiPostgresql,
   SiExpress,
   SiNestjs,
+  SiDocker,
+  SiGithubactions,
+  SiRedis,
+  SiFirebase,
+  SiMongodb,
+  SiReactquery,
+  SiLinux,
 } from "react-icons/si";
 import { RiJavaLine } from "react-icons/ri";
 
@@ -31,6 +38,7 @@ export const MAIN_STACK = {
     { name: "React", icon: SiReact },
     { name: "Next.js", icon: SiNextdotjs },
     { name: "Tailwind CSS", icon: SiTailwindcss },
+    { name: "TanStack Query", icon: SiReactquery },
   ],
   Backend: [
     { name: "Node.js", icon: SiNodedotjs },
@@ -40,10 +48,16 @@ export const MAIN_STACK = {
     { name: "Better-auth", icon: Fingerprint },
     { name: "Turso (SQLite)", icon: SiTurso },
     { name: "Neon (PostgreSQL)", icon: SiPostgresql },
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "Firebase", icon: SiFirebase },
+    { name: "Upstash Redis", icon: SiRedis },
   ],
-  "CI/CD": [
+  Tools: [
     { name: "Git", icon: SiGit },
     { name: "Vercel", icon: SiVercel },
+    { name: "Docker", icon: SiDocker },
+    { name: "GitHub Actions", icon: SiGithubactions },
+    { name: "Linux", icon: SiLinux },
   ],
 };
 

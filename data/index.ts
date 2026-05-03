@@ -2,6 +2,8 @@ import { SITE_CONFIG } from "@/constants";
 
 export { PROJECTS } from "./projects";
 export { SKILLS, MAIN_STACK } from "./skills";
+export { EXPERIENCE } from "./experience";
+export type { ExperienceItem } from "./experience";
 
 export const heroHeader = {
   name: SITE_CONFIG.shortName,

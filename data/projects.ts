@@ -107,7 +107,7 @@ export const PROJECTS: ProjectCardProps[] = [
       TECH.BETTER_AUTH,
       TECH.TAILWIND,
     ],
-    github: "https://github.com/xyugen/sjdmchristianministries-rms",
+    github: "https://github.com/Kaizouku14",
     collaborators: [
       { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
@@ -184,7 +184,7 @@ export const PROJECTS: ProjectCardProps[] = [
       TECH.LUCIA,
       TECH.TAILWIND,
     ],
-    github: "https://github.com/Kaizouku14/InnControl",
+    github: "https://github.com/Kaizouku14",
     collaborators: [
       { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
