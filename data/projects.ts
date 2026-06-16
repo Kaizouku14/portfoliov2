@@ -14,6 +14,7 @@ import {
   SiEthereum,
   SiTrpc,
   SiFastify,
+  SiSupabase,
 } from "react-icons/si";
 import { DrizzleIcon } from "@/components/icons/drizzle-orm";
 import { ProjectCardProps } from "@/types";
@@ -35,6 +36,7 @@ const TECH = {
   SVELTE: { name: "Svelte kit", icon: SiSvelte },
   WEB3: { name: "Web3", icon: SiEthereum },
   TRPC: { name: "TRPC", icon: SiTrpc },
+  SUPABASE: { name: "Supabase", icon: SiSupabase },
 } as const;
 
 export const PROJECTS: ProjectCardProps[] = [
@@ -89,7 +91,7 @@ export const PROJECTS: ProjectCardProps[] = [
     name: "SJDM Christian Ministry RMS",
     description:
       "Member and event management system for SJDM Christian Ministries, donated to the church as our contribution to their community. Handles their daily operations end-to-end. (Screenshots omitted for client privacy)",
-    image: "/private_project_placeholder.svg",
+    image: "/sjdm.png",
     media: [
       {
         type: "image",
@@ -107,7 +109,7 @@ export const PROJECTS: ProjectCardProps[] = [
       TECH.BETTER_AUTH,
       TECH.TAILWIND,
     ],
-    github: "https://github.com/Kaizouku14",
+    github: "",
     collaborators: [
       { profileUrl: "https://github.com/Kaizouku14", imageUrl: "/me.jpg" },
       {
@@ -135,7 +137,7 @@ export const PROJECTS: ProjectCardProps[] = [
     description:
       "Internship project. MJA's legacy finance system was getting hard to maintain, so we rebuilt it — modern Next.js dashboard, Turso backend, and a careful migration with sensitive data on the line. (No screenshots for privacy reasons)",
     link: "",
-    image: "/private_project_placeholder.svg",
+    image: "/mja.png",
     media: [
       {
         type: "image",
@@ -172,7 +174,11 @@ export const PROJECTS: ProjectCardProps[] = [
       "Final project for System Analysis and Design. BSA Twin Tower was managing bookings and check-ins manually — InnControl fixed that with one system for bookings, check-ins, and reports. (No screenshots for privacy reasons)",
     image: "/private_project_placeholder.svg",
     media: [
-      { type: "image", url: "/private_project_placeholder.svg", alt: "InnControl Dashboard Mockup" },
+      {
+        type: "image",
+        url: "/private_project_placeholder.svg",
+        alt: "InnControl Dashboard Mockup",
+      },
     ],
     technologies: [
       TECH.REACT,
@@ -334,6 +340,35 @@ export const PROJECTS: ProjectCardProps[] = [
     collaborators: [],
   },
 
+  {
+    id: "10",
+    name: "MediCare",
+    description:
+      "Started as an idea to help Filipino families manage chronic illness, turned into a full AI-powered caregiving platform. Built patient profiles, medical document analysis, personalized meal planning, expense tracking, and an AI assistant with RAG-powered memory using PostgreSQL and vector search.",
+    link: "https://medicare-ai-brown.vercel.app/",
+    image: "/medicare/medicare.png",
+    media: [
+      {
+        type: "image",
+        url: "/medicare/medicare-1.png",
+        alt: "MediCare Preview 1",
+      },
+      {
+        type: "image",
+        url: "/medicare/medicare-2.png",
+        alt: "MediCare Preview 2",
+      },
+    ],
+    technologies: [
+      TECH.NEXTJS,
+      TECH.TYPESCRIPT,
+      TECH.NODEJS,
+      TECH.SUPABASE,
+      TECH.TAILWIND,
+    ],
+    github: "https://github.com/Kaizouku14/medicare",
+    collaborators: [],
+  },
   {
     id: "9",
     name: "Kanban Board",

@@ -22,7 +22,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     role: "BS Information Technology",
     company: "Bulacan State University – Sarmiento Campus",
-    period: "Aug. 2022 – Present",
+    period: "Aug. 2022 – Jun. 2026",
     type: "education",
     location: "Bulacan, Philippines",
     highlights: [
