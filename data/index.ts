@@ -11,11 +11,19 @@ export const heroHeader = {
 };
 
 export const heroContent = {
-  title: "I build fast, reliable web applications.",
-  typingWords: [
-    "Writing clean, maintainable code",
-    "Designing user-centric interfaces",
-    "Solving real problems with technology",
-  ],
-  description: "I'm a full-stack developer specializing in React, Next.js, and creating digital experiences that just work without the fluff.",
+  title: "I build performant web experiences that solve real problems.",
+  description: "Full-stack developer crafting production-grade applications with modern TypeScript, React, and Node.js ecosystems for the Filipino tech community.",
 };
+
+export const aboutContent = {
+  title: "Engineering with purpose.",
+  body: "I'm a BS Information Technology student at Bulacan State University, specializing in web and mobile development. I build full-stack applications that bridge the gap between technical complexity and human usability — from scholarship platforms to AI-powered caregiving tools. Every project starts with a real problem and ends with clean, maintainable code.",
+  highlights: [
+    { label: "Experience", value: "2+ years" },
+    { label: "Projects", value: "10+" },
+    { label: "Focus", value: "Full-Stack Web" },
+    { label: "Award", value: "Magna Cum Laude" },
+  ],
+};
+
+

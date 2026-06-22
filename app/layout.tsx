@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SITE_CONFIG } from "@/constants";
 import { heroContent } from "@/data";
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const sans = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -61,7 +68,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("antialiased ", nunito.variable)}>{children}</body>
+      <body className={cn(sans.variable, mono.variable)}>{children}</body>
     </html>
   );
 }

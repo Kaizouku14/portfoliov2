@@ -1,22 +1,28 @@
 import HeroSection from "@/components/sections/home";
 import Skill from "@/components/sections/skills";
 import Projects from "@/components/sections/projects";
-import DockMenu from "@/components/shared/dock-menu";
-import Chat from "@/components/chat/chat-dialog";
+import { AboutSection } from "@/components/sections/about";
+import { ContactSection } from "@/components/sections/contact";
+import { ChatFeatureSection } from "@/components/sections/chat-feature";
+import { Navigation } from "@/components/layout/navigation";
 import Footer from "@/components/layout/footer";
+import Chat from "@/components/chat/chat-dialog";
 
 const Main = () => {
   return (
-    <main className="flex flex-col relative z-0 ">
-      <HeroSection />
-      <Skill />
-      <Projects />
+    <>
+      <Navigation />
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <Skill />
+        <Projects />
+        <ChatFeatureSection />
+        <ContactSection />
+      </main>
       <Footer />
-      <div className="fixed bottom-2 w-full z-10">
-        <DockMenu />
-      </div>
       <Chat />
-    </main>
+    </>
   );
 };
 
