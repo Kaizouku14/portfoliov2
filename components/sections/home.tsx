@@ -7,7 +7,10 @@ import HeroHeader from "@/components/layout/header";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { heroContent } from "@/data";
 import { MENU } from "@/constants";
-import { AnimateContainer, AnimateItem } from "@/components/shared/animate-element";
+import {
+  AnimateContainer,
+  AnimateItem,
+} from "@/components/shared/animate-element";
 import { SectionWrapper } from "@/components/layout/section";
 import LightRays from "../ui/LightRays";
 
@@ -19,7 +22,7 @@ const HeroSection = () => {
   const projectsRef = useRef<HTMLElement | null>(null);
 
   const handleDownloadCV = useCallback(() => {
-    window.open("/cv.pdf", "_blank");
+    window.open("/CV.pdf", "_blank");
   }, []);
 
   const handleViewWork = useCallback(() => {
@@ -30,10 +33,10 @@ const HeroSection = () => {
   }, []);
 
   return (
-      <SectionWrapper
-        id={MENU.HOME}
-        className="min-h-screen items-center text-center px-4 md:px-8"
-      >
+    <SectionWrapper
+      id={MENU.HOME}
+      className="min-h-screen items-center text-center px-4 md:px-8"
+    >
       <HeroHeader />
       <LightRays
         raysOrigin="top-center"
@@ -82,10 +85,7 @@ const HeroSection = () => {
           {heroContent.description}
         </AnimateItem>
 
-        <AnimateItem
-          className="flex gap-2 items-center mt-4"
-          duration={0.6}
-        >
+        <AnimateItem className="flex gap-2 items-center mt-4" duration={0.6}>
           <Button
             className="flex items-center text-muted-foreground"
             variant="ghost"
@@ -101,7 +101,7 @@ const HeroSection = () => {
         </AnimateItem>
       </AnimateContainer>
       <BottomGradient />
-      </SectionWrapper>
+    </SectionWrapper>
   );
 };
 
