@@ -22,7 +22,7 @@ const HeroSection = () => {
   const projectsRef = useRef<HTMLElement | null>(null);
 
   const handleDownloadCV = useCallback(() => {
-    window.open("/CV.pdf", "_blank");
+    window.open("/cv.pdf", "_blank");
   }, []);
 
   const handleViewWork = useCallback(() => {
