@@ -1,6 +1,5 @@
 "use client";
 
-import React, { type Ref } from "react";
 import {
   m,
   useReducedMotion,
@@ -10,14 +9,11 @@ import {
 import { cn } from "@/lib/utils";
 import { DURATION, EASE } from "@/lib/motion";
 
-interface AnimateItemProps extends Omit<HTMLMotionProps<"div">, "as"> {
-  children?: React.ReactNode;
+interface AnimateItemProps extends HTMLMotionProps<"div"> {
   duration?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
   distance?: number;
   delay?: number;
-  as?: React.ElementType;
-  ref?: Ref<HTMLElement>;
 }
 
 export function AnimateItem({
@@ -27,8 +23,6 @@ export function AnimateItem({
   direction = "up",
   distance = 24,
   delay,
-  as: Component = "div",
-  ref,
   ...props
 }: AnimateItemProps) {
   const shouldReduceMotion = useReducedMotion();
@@ -63,8 +57,6 @@ export function AnimateItem({
 
   return (
     <m.div
-      as={Component}
-      ref={ref}
       variants={itemVariants}
       className={cn(className)}
       {...props}

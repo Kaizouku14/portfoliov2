@@ -123,7 +123,7 @@ type TerminalUIState = {
 };
 
 type TerminalUIAction =
-  | { type: "START_TYPING"; text: string }
+  | { type: "START_TYPING" }
   | { type: "ADVANCE_TYPING"; text: string }
   | { type: "COMPLETE_TYPING" }
   | { type: "CANCEL_TYPING" }
