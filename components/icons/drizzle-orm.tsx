@@ -10,20 +10,20 @@ export const DrizzleIcon = ({ className }: { className?: string }) => (
       width="5.25"
       height="22.28"
       rx="2.63"
-      transform="matrix(0.873028 0.48767 -0.497212 0.867629 16.0791 30.3292)"
+      transform="matrix(0.87 0.49 -0.5 0.87 16.08 30.33)"
     />
-    <rect width="5.25" height="22.28" rx="2.63" transform="matrix(0.873028 0.48767 -0.497212 0.867629 34.3301 19)" />
+    <rect width="5.25" height="22.28" rx="2.63" transform="matrix(0.87 0.49 -0.5 0.87 34.33 19)" />
     <rect
       width="5.25"
       height="22.28"
       rx="2.63"
-      transform="matrix(0.873028 0.48767 -0.497212 0.867629 62.4131 19.0005)"
+      transform="matrix(0.87 0.49 -0.5 0.87 62.41 19)"
     />
     <rect
       width="5.25"
       height="22.28"
       rx="2.63"
-      transform="matrix(0.873028 0.48767 -0.497212 0.867629 44.1562 30.3292)"
+      transform="matrix(0.87 0.49 -0.5 0.87 44.16 30.33)"
     />
   </svg>
 );

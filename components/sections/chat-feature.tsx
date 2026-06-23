@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import { BotMessageSquare, Sparkles } from "lucide-react";
 import { useChatStore } from "@/store/use-chat.store";
 
@@ -12,7 +12,7 @@ export function ChatFeatureSection() {
     <section className="px-6 mt-6  md:px-10 py-32 md:py-40 border-t border-border">
       <div className="max-w-350 mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <motion.div
+          <m.div
             initial={reduce ? false : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -36,6 +36,7 @@ export function ChatFeatureSection() {
             </p>
 
             <button
+              type="button"
               onClick={toggleChat}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg
                 bg-primary text-primary-foreground font-medium text-sm
@@ -45,9 +46,9 @@ export function ChatFeatureSection() {
               <Sparkles className="size-4" />
               Open AI Chat
             </button>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={reduce ? false : { opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -102,7 +103,7 @@ export function ChatFeatureSection() {
             </div>
 
             <div className="absolute -bottom-2 -right-2 size-24 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import { MAIN_STACK, EXPERIENCE } from "@/data";
 
 function SkillCategory({
@@ -16,7 +16,7 @@ function SkillCategory({
   const reduce = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -41,7 +41,7 @@ function SkillCategory({
           </span>
         ))}
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -55,7 +55,7 @@ function ExperienceEntry({
   const reduce = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -76,9 +76,9 @@ function ExperienceEntry({
         </div>
         <p className="text-xs text-primary font-medium">{item.company}</p>
         <ul className="space-y-1.5">
-          {item.highlights.map((point, i) => (
+          {item.highlights.map((point) => (
             <li
-              key={i}
+              key={`${item.role}-${point}`}
               className="text-sm text-muted-foreground leading-relaxed flex gap-2"
             >
               <span className="text-primary/40 mt-1.5 shrink-0">—</span>
@@ -87,7 +87,7 @@ function ExperienceEntry({
           ))}
         </ul>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -110,7 +110,7 @@ const Skills = () => {
             </div>
             <div>
               {EXPERIENCE.map((item, i) => (
-                <ExperienceEntry key={i} item={item} index={i} />
+                <ExperienceEntry key={item.company + item.period} item={item} index={i} />
               ))}
             </div>
           </div>

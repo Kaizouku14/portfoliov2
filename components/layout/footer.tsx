@@ -1,11 +1,22 @@
+"use client";
+
+import { useSyncExternalStore } from "react";
 import { SITE_CONFIG } from "@/constants";
 
+const getCurrentYear = () => new Date().getFullYear();
+
 const Footer = () => {
+  const year = useSyncExternalStore(
+    () => () => {},
+    getCurrentYear,
+    getCurrentYear,
+  );
+
   return (
     <footer className="border-t border-border">
       <div className="max-w-350 mx-auto px-6 md:px-10 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-xs text-muted-foreground font-mono">
-          &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights
+          &copy; {year} {SITE_CONFIG.name}. All rights
           reserved.
         </p>
         <div className="flex items-center gap-6">

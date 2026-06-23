@@ -14,7 +14,7 @@ export const ChatHeader = () => {
           <h3 className="text-sm font-bold truncate">Al-v Manda</h3>
           <div className="flex items-center justify-between gap-4 text-xs text-muted-foreground w-60">
             <p className="flex items-center gap-1">
-              <span className="size-1.5 bg-chart-2 rounded-full animate-pulse" />
+              <span className="size-1.5 bg-green-700 rounded-full animate-pulse" />
               Active now
             </p>
             <span className="whitespace-nowrap text-muted-foreground">

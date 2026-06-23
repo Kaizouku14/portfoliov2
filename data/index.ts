@@ -1,14 +1,7 @@
-import { SITE_CONFIG } from "@/constants";
-
 export { PROJECTS } from "./projects";
 export { MAIN_STACK } from "./skills";
 export { EXPERIENCE } from "./experience";
 export type { ExperienceItem } from "./experience";
-
-export const heroHeader = {
-  name: SITE_CONFIG.shortName,
-  profession: SITE_CONFIG.profession,
-};
 
 export const heroContent = {
   title: "I build performant web experiences that solve real problems.",

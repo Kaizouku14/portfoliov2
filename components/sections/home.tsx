@@ -2,7 +2,7 @@
 
 import { useCallback, useRef } from "react";
 import { ArrowRight } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import { heroContent } from "@/data";
 import { MENU, SITE_CONFIG } from "@/constants";
 import { HeroParticles } from "@/components/canvas/hero-particles";
@@ -24,21 +24,21 @@ const HeroSection = () => {
 
       <div className="w-full max-w-350 mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center pt-24 pb-16">
-          <motion.div
+          <m.div
             initial={reduce ? false : { opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-6"
           >
             <div className="space-y-3">
-              <motion.p
+              <m.p
                 initial={reduce ? false : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-sm font-mono text-primary tracking-wide"
               >
                 {SITE_CONFIG.name}
-              </motion.p>
+              </m.p>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter leading-[1.05] text-balance">
                 {heroContent.title}
@@ -50,7 +50,7 @@ const HeroSection = () => {
             </div>
 
             <div className="flex flex-wrap gap-3 pt-2">
-              <motion.button
+              <m.button
                 onClick={handleViewWork}
                 whileHover={reduce ? {} : { scale: 1.02 }}
                 whileTap={reduce ? {} : { scale: 0.98 }}
@@ -61,9 +61,9 @@ const HeroSection = () => {
               >
                 View Projects
                 <ArrowRight className="size-4" />
-              </motion.button>
+              </m.button>
 
-              <motion.a
+              <m.a
                 href="/CV.pdf"
                 target="_blank"
                 whileHover={reduce ? {} : { scale: 1.02 }}
@@ -74,11 +74,11 @@ const HeroSection = () => {
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Resume
-              </motion.a>
+              </m.a>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={reduce ? false : { opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -87,7 +87,7 @@ const HeroSection = () => {
             <div className="absolute inset-0">
               <HeroParticles />
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

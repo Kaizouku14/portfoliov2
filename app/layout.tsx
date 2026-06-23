@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { LazyMotion, domAnimation } from "motion/react";
 import { cn } from "@/lib/utils";
 import { SITE_CONFIG } from "@/constants";
 import { heroContent } from "@/data";
@@ -68,7 +69,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(sans.variable, mono.variable)}>{children}</body>
+      <body className={cn(sans.variable, mono.variable)}>
+          <LazyMotion features={domAnimation}>{children}</LazyMotion>
+        </body>
     </html>
   );
 }

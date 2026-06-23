@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useRef, useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useCallback, useRef, useEffect, useState, useReducer } from "react";
+import { m, useReducedMotion } from "motion/react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SITE_CONFIG } from "@/constants";
 import ReactMarkdown from "react-markdown";
@@ -93,9 +93,10 @@ function evalCommand(base: string, rest: string): string | null {
     case "help":
       return [
         "Available commands:",
-        ...COMMANDS.filter((c) => c !== "help" && c !== "clear").map(
-          (c) => `  ${c}`,
-        ),
+        ...COMMANDS.reduce<string[]>((acc, c) => {
+          if (c !== "help" && c !== "clear") acc.push(`  ${c}`);
+          return acc;
+        }, []),
       ].join("\n");
 
     default:
@@ -104,25 +105,176 @@ function evalCommand(base: string, rest: string): string | null {
 }
 
 interface Line {
+  id: number;
   text: string;
   isOutput: boolean;
 }
 
+let nextLineId = 0;
+function createLine(text: string, isOutput: boolean): Line {
+  return { id: nextLineId++, text, isOutput };
+}
+
+type TerminalUIState = {
+  typingText: string;
+  isTyping: boolean;
+  isAIResponding: boolean;
+  aiStreamText: string;
+};
+
+type TerminalUIAction =
+  | { type: "START_TYPING"; text: string }
+  | { type: "ADVANCE_TYPING"; text: string }
+  | { type: "COMPLETE_TYPING" }
+  | { type: "CANCEL_TYPING" }
+  | { type: "START_AI" }
+  | { type: "STREAM_AI"; text: string }
+  | { type: "STOP_AI" };
+
+function terminalUIReducer(
+  state: TerminalUIState,
+  action: TerminalUIAction,
+): TerminalUIState {
+  switch (action.type) {
+    case "START_TYPING":
+      return { ...state, isTyping: true, typingText: "" };
+    case "ADVANCE_TYPING":
+      return { ...state, typingText: action.text };
+    case "COMPLETE_TYPING":
+      return { ...state, isTyping: false, typingText: "" };
+    case "CANCEL_TYPING":
+      return { ...state, isTyping: false, typingText: "" };
+    case "START_AI":
+      return { ...state, isAIResponding: true, aiStreamText: "" };
+    case "STREAM_AI":
+      return { ...state, aiStreamText: action.text };
+    case "STOP_AI":
+      return { ...state, isAIResponding: false, aiStreamText: "" };
+    default:
+      return state;
+  }
+}
+
+function TerminalHeader({ isAIResponding }: { isAIResponding: boolean }) {
+  return (
+    <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-card/30 select-none">
+      <span className="text-[11px] font-mono text-muted-foreground/60">
+        ~/portfolio
+      </span>
+      <div className="flex items-center gap-2">
+        {isAIResponding && (
+          <span className="flex items-center gap-1.5 text-[11px] font-mono text-career-highlight/90">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-career-highlight animate-pulse" />
+            thinking
+          </span>
+        )}
+        <span className="text-[10px] font-mono text-muted-foreground/30">
+          bash
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function TerminalLines({
+  lines,
+  uiState,
+  input,
+  onInputChange,
+  onKeyDown,
+  inputRef,
+  reduce,
+}: {
+  lines: Line[];
+  uiState: TerminalUIState;
+  input: string;
+  onInputChange: (v: string) => void;
+  onKeyDown: (e: React.KeyboardEvent) => void;
+  inputRef: React.RefObject<HTMLInputElement | null>;
+  reduce: boolean | null;
+}) {
+  return (
+    <div className="p-4 font-mono text-[13px] leading-relaxed space-y-1">
+      {lines.map((line) => (
+        <m.div
+          key={line.id}
+          initial={reduce ? false : { opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.12, ease: [0.16, 1, 0.3, 1] }}
+          className={
+            line.isOutput ? "text-muted-foreground" : "text-foreground/80"
+          }
+          style={{ whiteSpace: "pre-wrap" }}
+        >
+          <ReactMarkdown
+            components={{
+              a: ({ children, ...props }) => (
+                <a
+                  {...props}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline font-bold"
+                >
+                  {children}
+                </a>
+              ),
+            }}
+          >
+            {line.text}
+          </ReactMarkdown>
+        </m.div>
+      ))}
+
+      {uiState.isTyping && (
+        <div className="text-muted-foreground">
+          {uiState.typingText}
+          <span className="inline-block w-[3px] h-[1em] bg-career-highlight/70 animate-pulse ml-px align-middle" />
+        </div>
+      )}
+
+      {uiState.isAIResponding && (
+        <div className="text-muted-foreground">
+          {uiState.aiStreamText || (
+            <span className="inline-block w-0.5 h-[1em] bg-career-highlight/70 animate-pulse" />
+          )}
+        </div>
+      )}
+
+      <div className="flex items-center gap-2 pt-0.5">
+        <span className="text-career-highlight shrink-0">$</span>
+        <input
+          ref={inputRef}
+          type="text"
+          value={input}
+          onChange={(e) => onInputChange(e.target.value)}
+          onKeyDown={onKeyDown}
+          className="flex-1 bg-transparent outline-none text-foreground/80 disabled:opacity-50"
+          spellCheck={false}
+          autoComplete="off"
+          aria-label="Terminal input"
+          disabled={uiState.isAIResponding}
+        />
+        <span className="inline-block w-0.5 h-[1em] bg-career-highlight/70 animate-pulse" />
+      </div>
+    </div>
+  );
+}
+
 export function LiveTerminal() {
   const [input, setInput] = useState("");
-  const [history, setHistory] = useState<string[]>([]);
-  const [historyIdx, setHistoryIdx] = useState(-1);
+  const historyRef = useRef<string[]>([]);
+  const historyIdxRef = useRef(-1);
+
   const [lines, setLines] = useState<Line[]>([
-    {
-      text: "Welcome. Type 'help' to see available commands.",
-      isOutput: true,
-    },
+    createLine("Welcome. Type 'help' to see available commands.", true),
   ]);
-  const [typingText, setTypingText] = useState("");
-  const [typingTarget, setTypingTarget] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const [isAIResponding, setIsAIResponding] = useState(false);
-  const [aiStreamText, setAiStreamText] = useState("");
+  const [uiState, dispatch] = useReducer(terminalUIReducer, {
+    typingText: "",
+    isTyping: false,
+    isAIResponding: false,
+    aiStreamText: "",
+  });
+  const typingTargetRef = useRef("");
 
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -140,45 +292,43 @@ export function LiveTerminal() {
         viewport.scrollTop = viewport.scrollHeight;
       }
     }
-  }, [lines, typingText, aiStreamText, isAIResponding]);
+  }, [lines, uiState.typingText, uiState.aiStreamText, uiState.isAIResponding]);
 
   useEffect(() => {
-    if (!isTyping || !typingTarget || reduce) {
-      setTypingText("");
-      setIsTyping(false);
+    if (!uiState.isTyping || !typingTargetRef.current || reduce) {
+      dispatch({ type: "CANCEL_TYPING" });
       return;
     }
-    if (typingText.length >= typingTarget.length) {
-      setLines((prev) => [...prev, { text: typingTarget, isOutput: true }]);
-      setTypingText("");
-      setIsTyping(false);
+    if (uiState.typingText.length >= typingTargetRef.current.length) {
+      setLines((prev) => [
+        ...prev,
+        createLine(typingTargetRef.current, true),
+      ]);
+      dispatch({ type: "COMPLETE_TYPING" });
       return;
     }
     typingTimerRef.current = setTimeout(() => {
-      setTypingText(typingTarget.slice(0, typingText.length + 1));
+      dispatch({
+        type: "ADVANCE_TYPING",
+        text: typingTargetRef.current.slice(0, uiState.typingText.length + 1),
+      });
     }, 18);
     return () => {
       if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
     };
-  }, [isTyping, typingTarget, typingText, reduce]);
+  }, [uiState.isTyping, uiState.typingText, reduce]);
 
-  useEffect(() => {
-    return () => {
-      if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
-      if (runTimeoutRef.current) clearTimeout(runTimeoutRef.current);
-    };
-  }, []);
+  // Cleanup handled inline in run() and the typing effect's return callback
 
   const typeLine = useCallback(
     (text: string) => {
       if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
       if (reduce) {
-        setLines((prev) => [...prev, { text, isOutput: true }]);
+        setLines((prev) => [...prev, createLine(text, true)]);
         return;
       }
-      setTypingText("");
-      setTypingTarget(text);
-      setIsTyping(true);
+      typingTargetRef.current = text;
+      dispatch({ type: "START_TYPING" });
     },
     [reduce],
   );
@@ -186,8 +336,7 @@ export function LiveTerminal() {
   const askAI = useCallback(async (question: string) => {
     const startedAt = Date.now();
     isAIRespondingRef.current = true;
-    setIsAIResponding(true);
-    setAiStreamText("");
+    dispatch({ type: "START_AI" });
 
     try {
       const res = await fetch("/api/terminal-chat", {
@@ -201,12 +350,11 @@ export function LiveTerminal() {
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let text = "";
-
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
         text += decoder.decode(value, { stream: true });
-        setAiStreamText(text);
+        dispatch({ type: "STREAM_AI", text });
       }
 
       const elapsed = Date.now() - startedAt;
@@ -215,17 +363,15 @@ export function LiveTerminal() {
         await new Promise<void>((r) => setTimeout(r, MIN_DISPLAY - elapsed));
       }
 
-      setLines((prev) => [...prev, { text, isOutput: true }]);
-      setAiStreamText("");
+      setLines((prev) => [...prev, createLine(text, true)]);
     } catch {
       setLines((prev) => [
         ...prev,
-        { text: "Error: failed to get response", isOutput: true },
+        createLine("Error: failed to get response", true),
       ]);
-      setAiStreamText("");
     } finally {
       isAIRespondingRef.current = false;
-      setIsAIResponding(false);
+      dispatch({ type: "STOP_AI" });
     }
   }, []);
 
@@ -252,17 +398,16 @@ export function LiveTerminal() {
       const trimmed = raw.trim();
       if (!trimmed) return;
 
-      setHistory((prev) => [...prev, trimmed]);
-      setHistoryIdx(-1);
-      setLines((prev) => [...prev, { text: `$ ${trimmed}`, isOutput: false }]);
+      historyRef.current = [...historyRef.current, trimmed];
+      historyIdxRef.current = -1;
+      setLines((prev) => [...prev, createLine(`$ ${trimmed}`, false)]);
 
       if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
       if (runTimeoutRef.current) {
         clearTimeout(runTimeoutRef.current);
         runTimeoutRef.current = null;
       }
-      setTypingText("");
-      setIsTyping(false);
+      dispatch({ type: "CANCEL_TYPING" });
 
       if (trimmed.toLowerCase() === "clear") {
         setLines([]);
@@ -277,14 +422,14 @@ export function LiveTerminal() {
         if (!rest) {
           setLines((prev) => [
             ...prev,
-            { text: "Usage: ask <question>", isOutput: true },
+            createLine("Usage: ask <question>", true),
           ]);
           return;
         }
         if (isAIRespondingRef.current) {
           setLines((prev) => [
             ...prev,
-            { text: "Already processing...", isOutput: true },
+            createLine("Already processing...", true),
           ]);
           return;
         }
@@ -316,6 +461,7 @@ export function LiveTerminal() {
 
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
+      const h = historyRef.current;
       if (e.key === "Enter") {
         run(input);
         setInput("");
@@ -324,24 +470,26 @@ export function LiveTerminal() {
 
       if (e.key === "ArrowUp") {
         e.preventDefault();
-        if (history.length === 0) return;
+        if (h.length === 0) return;
         const nextIdx =
-          historyIdx === -1 ? history.length - 1 : Math.max(0, historyIdx - 1);
-        setHistoryIdx(nextIdx);
-        setInput(history[nextIdx]);
+          historyIdxRef.current === -1
+            ? h.length - 1
+            : Math.max(0, historyIdxRef.current - 1);
+        historyIdxRef.current = nextIdx;
+        setInput(h[nextIdx]);
         return;
       }
 
       if (e.key === "ArrowDown") {
         e.preventDefault();
-        if (historyIdx === -1) return;
-        const nextIdx = historyIdx + 1;
-        if (nextIdx >= history.length) {
-          setHistoryIdx(-1);
+        if (historyIdxRef.current === -1) return;
+        const nextIdx = historyIdxRef.current + 1;
+        if (nextIdx >= h.length) {
+          historyIdxRef.current = -1;
           setInput("");
         } else {
-          setHistoryIdx(nextIdx);
-          setInput(history[nextIdx]);
+          historyIdxRef.current = nextIdx;
+          setInput(h[nextIdx]);
         }
         return;
       }
@@ -356,7 +504,7 @@ export function LiveTerminal() {
         return;
       }
     },
-    [input, history, historyIdx, run],
+    [input, run],
   );
 
   return (
@@ -364,87 +512,26 @@ export function LiveTerminal() {
       className="relative rounded-xl border border-border bg-card/50 overflow-hidden cursor-text
          transition-colors duration-300"
       onClick={() => inputRef.current?.focus()}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ")
+          inputRef.current?.focus();
+      }}
+      role="application"
+      tabIndex={-1}
     >
-      <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-card/30 select-none">
-        <span className="text-[11px] font-mono text-muted-foreground/60">
-          ~/portfolio
-        </span>
-        <div className="flex items-center gap-2">
-          {isAIResponding && (
-            <span className="flex items-center gap-1.5 text-[11px] font-mono text-career-highlight/90">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-career-highlight animate-pulse" />
-              thinking
-            </span>
-          )}
-          <span className="text-[10px] font-mono text-muted-foreground/30">
-            bash
-          </span>
-        </div>
-      </div>
+      <TerminalHeader isAIResponding={uiState.isAIResponding} />
 
       <div ref={containerRef}>
         <ScrollArea className="h-75">
-          <div className="p-4 font-mono text-[13px] leading-relaxed space-y-1">
-            {lines.map((line, i) => (
-              <motion.div
-                key={i}
-                initial={reduce ? false : { opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className={
-                  line.isOutput ? "text-muted-foreground" : "text-foreground/80"
-                }
-                style={{ whiteSpace: "pre-wrap" }}
-              >
-                <ReactMarkdown
-                  components={{
-                    a: ({ ...props }) => (
-                      <a
-                        {...props}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline font-bold"
-                      />
-                    ),
-                  }}
-                >
-                  {line.text}
-                </ReactMarkdown>
-              </motion.div>
-            ))}
-
-            {isTyping && (
-              <div className="text-muted-foreground">
-                {typingText}
-                <span className="inline-block w-[3px] h-[1em] bg-career-highlight/70 animate-pulse ml-px align-middle" />
-              </div>
-            )}
-
-            {isAIResponding && (
-              <div className="text-muted-foreground">
-                {aiStreamText || (
-                  <span className="inline-block w-0.5 h-[1em] bg-career-highlight/70 animate-pulse" />
-                )}
-              </div>
-            )}
-
-            <div className="flex items-center gap-2 pt-0.5">
-              <span className="text-career-highlight shrink-0">$</span>
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={onKeyDown}
-                className="flex-1 bg-transparent outline-none text-foreground/80 disabled:opacity-50"
-                spellCheck={false}
-                autoComplete="off"
-                aria-label="Terminal input"
-                disabled={isAIResponding}
-              />
-              <span className="inline-block w-0.5 h-[1em] bg-career-highlight/70 animate-pulse" />
-            </div>
-          </div>
+          <TerminalLines
+            lines={lines}
+            uiState={uiState}
+            input={input}
+            onInputChange={setInput}
+            onKeyDown={onKeyDown}
+            inputRef={inputRef}
+            reduce={reduce}
+          />
         </ScrollArea>
       </div>
     </div>

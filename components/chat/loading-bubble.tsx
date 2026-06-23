@@ -1,5 +1,5 @@
 import { Profile } from "@/components/shared/profile";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 
 const LoadingBubble = () => {
   return (
@@ -8,7 +8,7 @@ const LoadingBubble = () => {
       <div className="bg-linear-to-br from-primary/10 to-primary/5 border border-primary/10 text-foreground rounded-2xl rounded-tl-none px-4 py-3 shadow-sm mt-1">
         <div className="flex gap-1.5 items-center h-4">
           {[0, 1, 2].map((i) => (
-            <motion.span
+            <m.span
               key={i}
               className="size-1.5 bg-primary/40 rounded-full"
               animate={{

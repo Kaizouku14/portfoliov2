@@ -31,7 +31,7 @@ export const EASE = {
 
 // ─── Distance presets (in px) ─────────────────────────────────────────────────
 
-export const DISTANCE = {
+const DISTANCE = {
   xs: 6,
   sm: 10,
   md: 24,
@@ -40,7 +40,7 @@ export const DISTANCE = {
 
 // ─── Reusable transition objects ──────────────────────────────────────────────
 
-export const TRANSITION = {
+const TRANSITION = {
   fast: { duration: DURATION.fast, ease: EASE.out } satisfies Transition,
   base: { duration: DURATION.base, ease: EASE.out } satisfies Transition,
   slow: { duration: DURATION.slow, ease: EASE.out } satisfies Transition,

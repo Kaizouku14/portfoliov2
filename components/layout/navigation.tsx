@@ -32,12 +32,13 @@ export function Navigation() {
       )}
     >
       <nav className="flex items-center justify-between max-w-350 mx-auto px-6 md:px-10 h-16 md:h-18">
-        <a
-          href="#"
-          className="text-base md:text-lg font-semibold tracking-tight hover:text-primary transition-colors"
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="text-base md:text-lg font-semibold tracking-tight hover:text-primary transition-colors cursor-pointer bg-transparent"
         >
           {SITE_CONFIG.shortName}.<span className="text-primary">dev</span>
-        </a>
+        </button>
 
         <div className="flex items-center gap-4">
           <ul className="hidden md:flex items-center gap-6">
@@ -54,6 +55,7 @@ export function Navigation() {
           </ul>
 
           <button
+            type="button"
             onClick={toggleChat}
             className="flex items-center justify-center size-9 rounded-lg
               border border-border hover:border-foreground/20

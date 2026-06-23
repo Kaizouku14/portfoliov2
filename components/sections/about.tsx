@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants, useReducedMotion } from "motion/react";
+import { m, type Variants, useReducedMotion } from "motion/react";
 import { aboutContent } from "@/data";
 
 const statVariants: Variants = {
@@ -24,7 +24,7 @@ export function AboutSection() {
       <div className="max-w-350 mx-auto">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-20">
           <div className="lg:col-span-1">
-            <motion.p
+            <m.p
               initial={reduce ? false : { opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.5 }}
@@ -32,12 +32,12 @@ export function AboutSection() {
               className="text-xs font-mono text-primary tracking-wider uppercase sticky top-28"
             >
               About
-            </motion.p>
+            </m.p>
           </div>
 
           {/* Right content */}
           <div className="lg:col-span-4 space-y-12">
-            <motion.h2
+            <m.h2
               initial={reduce ? false : { opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -45,9 +45,9 @@ export function AboutSection() {
               className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight max-w-[20ch]"
             >
               {aboutContent.title}
-            </motion.h2>
+            </m.h2>
 
-            <motion.p
+            <m.p
               initial={reduce ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -59,11 +59,11 @@ export function AboutSection() {
               className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-[55ch]"
             >
               {aboutContent.body}
-            </motion.p>
+            </m.p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4">
               {aboutContent.highlights.map((item, i) => (
-                <motion.div
+                <m.div
                   key={item.label}
                   custom={i}
                   initial={reduce ? false : "hidden"}
@@ -78,7 +78,7 @@ export function AboutSection() {
                   <p className="text-xs text-muted-foreground font-mono uppercase tracking-wider">
                     {item.label}
                   </p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>

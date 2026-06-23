@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
@@ -30,7 +30,7 @@ import {
 import { Safari } from "@/components/ui/safari";
 import { AvatarCircles } from "@/components/ui/avatar-circles";
 import { AnimateItem } from "@/components/shared/animate-element";
-import { motion } from "motion/react";
+
 import { VARIANTS, DURATION } from "@/lib/motion";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -50,9 +50,10 @@ function CaseStudyCard({
       data-index={index}
     >
       <div className="w-full max-w-350 mx-auto">
-        <div
+        <button
+          type="button"
           onClick={onSelect}
-          className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center cursor-pointer group"
+          className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center cursor-pointer group text-left"
         >
           <div className="relative order-2 lg:order-1">
             <div className="relative aspect-4/3 rounded-2xl overflow-hidden border border-border bg-card transition-shadow duration-500 group-hover:shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_0_30px_-8px_rgba(99,102,241,0.15)]">
@@ -84,9 +85,9 @@ function CaseStudyCard({
             </p>
 
             <div className="flex flex-wrap gap-2">
-              {project.technologies.slice(0, 4).map((tech, i) => (
+              {project.technologies.slice(0, 4).map((tech) => (
                 <span
-                  key={i}
+                  key={tech.name}
                   className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono bg-secondary text-secondary-foreground/80"
                 >
                   <tech.icon className="size-3" />
@@ -126,7 +127,7 @@ function CaseStudyCard({
               )}
             </div>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );
@@ -152,8 +153,8 @@ function ProjectDialog({
               <div className="w-full max-w-xl relative">
                 <Carousel className="w-full group">
                   <CarouselContent>
-                    {project.media.map((item, idx) => (
-                      <CarouselItem key={idx}>
+                    {project.media.map((item) => (
+                      <CarouselItem key={item.url}>
                         {item.type === "video" ? (
                           <Safari
                             url={project.link}
@@ -208,14 +209,14 @@ function ProjectDialog({
               <div className="flex flex-col gap-2.5 mt-6 flex-1">
                 <h3 className="text-lg font-semibold">Technologies</h3>
                 <div className="flex flex-wrap gap-1.5">
-                  {project.technologies.map((tech, index) => (
-                    <motion.div
-                      key={index}
+                  {project.technologies.map((tech, idx) => (
+                    <m.div
+                      key={tech.name}
                       variants={VARIANTS.scaleIn}
                       initial="hidden"
                       animate="visible"
                       transition={{
-                        delay: 0.4 + index * 0.05,
+                        delay: 0.4 + idx * 0.05,
                         duration: DURATION.fast,
                       }}
                       whileHover={{ scale: 1.05 }}
@@ -227,7 +228,7 @@ function ProjectDialog({
                         <tech.icon className="size-4" />
                         <span className="text-sm">{tech.name}</span>
                       </Badge>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </div>
               </div>
@@ -239,7 +240,7 @@ function ProjectDialog({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <motion.div
+                    <m.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -247,7 +248,7 @@ function ProjectDialog({
                         <Github className="size-4" />
                         GitHub
                       </Button>
-                    </motion.div>
+                    </m.div>
                   </Link>
                 )}
                 {project.link && (
@@ -256,7 +257,7 @@ function ProjectDialog({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <motion.div
+                    <m.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -264,21 +265,21 @@ function ProjectDialog({
                         <ExternalLink className="size-4" />
                         Live Demo
                       </Button>
-                    </motion.div>
+                    </m.div>
                   </Link>
                 )}
               </div>
 
               <DialogFooter className="mt-8 pt-6 border-t">
                 <DialogClose asChild>
-                  <motion.div
+                  <m.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <Button type="button" variant="ghost">
                       Close
                     </Button>
-                  </motion.div>
+                  </m.div>
                 </DialogClose>
               </DialogFooter>
             </div>

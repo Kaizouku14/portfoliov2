@@ -5,7 +5,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import LoadingBubble from "./loading-bubble";
 import { Profile } from "@/components/shared/profile";
 import { ChatBubbleProps } from "@/types";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { AnimateItem } from "@/components/shared/animate-element";
 import { User } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -38,7 +38,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, isLoading }) => {
           )}
 
           {messages?.map((message) => (
-            <motion.div
+            <m.div
               key={message.id}
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -62,18 +62,20 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, isLoading }) => {
                   if (part.type === "text")
                     return (
                       <div
-                        key={i}
+                        key={`${part.type}-${i}`}
                         className="whitespace-pre-wrap prose prose-sm dark:prose-invert"
                       >
                         <ReactMarkdown
                           components={{
-                            a: ({ ...props }) => (
+                            a: ({ children, ...props }) => (
                               <a
                                 {...props}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-blue-600 hover:underline font-bold"
-                              />
+                              >
+                                {children}
+                              </a>
                             ),
                           }}
                         >
@@ -90,7 +92,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ messages, isLoading }) => {
                   <User className="size-5" />
                 </div>
               )}
-            </motion.div>
+            </m.div>
           ))}
 
           {isLoading && (

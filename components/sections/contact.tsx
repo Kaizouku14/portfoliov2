@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { contactContent } from "@/constants";
 import { LiveTerminal } from "@/components/terminal/live-terminal";
@@ -15,7 +15,7 @@ export function ContactSection() {
     >
       <div className="max-w-350 mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <motion.div
+          <m.div
             initial={reduce ? false : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -70,9 +70,9 @@ export function ContactSection() {
                 <ArrowUpRight className="size-4" />
               </a>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={reduce ? false : { opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -80,7 +80,7 @@ export function ContactSection() {
             className="hidden lg:block"
           >
             <LiveTerminal />
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

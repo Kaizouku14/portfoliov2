@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, type Variants, useReducedMotion } from "motion/react";
+import { m, type Variants, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
 import {
   Dialog,
@@ -65,9 +65,9 @@ function MoreProjectCard({ project }: { project: ProjectCardProps }) {
           </div>
 
           <div className="flex flex-wrap gap-1.5">
-            {project.technologies.slice(0, 3).map((tech, i) => (
+            {project.technologies.slice(0, 3).map((tech) => (
               <span
-                key={i}
+                key={tech.name}
                 className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono bg-secondary text-secondary-foreground/70"
               >
                 <tech.icon className="size-2.5" />
@@ -106,8 +106,8 @@ function MoreProjectCard({ project }: { project: ProjectCardProps }) {
               <div className="w-full max-w-xl relative">
                 <Carousel className="w-full group">
                   <CarouselContent>
-                    {project.media.map((item, idx) => (
-                      <CarouselItem key={idx}>
+                    {project.media.map((item) => (
+                      <CarouselItem key={item.url}>
                         {item.type === "video" ? (
                           <Safari url={project.link} videoSrc={item.url} mode="simple" />
                         ) : (
@@ -152,8 +152,8 @@ function MoreProjectCard({ project }: { project: ProjectCardProps }) {
                 <h3 className="text-lg font-semibold">Technologies</h3>
                 <div className="flex flex-wrap gap-1.5">
                   {project.technologies.map((tech, index) => (
-                    <motion.div
-                      key={index}
+                    <m.div
+                      key={tech.name}
                       variants={VARIANTS.scaleIn}
                       initial="hidden"
                       animate="visible"
@@ -164,7 +164,7 @@ function MoreProjectCard({ project }: { project: ProjectCardProps }) {
                         <tech.icon className="size-4" />
                         <span className="text-sm">{tech.name}</span>
                       </Badge>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </div>
               </div>
@@ -172,33 +172,33 @@ function MoreProjectCard({ project }: { project: ProjectCardProps }) {
               <div className="flex gap-3 mt-8">
                 {project.github && (
                   <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <Button variant="outline" className="gap-2">
                         <Github className="size-4" />
                         GitHub
                       </Button>
-                    </motion.div>
+                    </m.div>
                   </Link>
                 )}
                 {project.link && (
                   <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <Button variant="default" className="gap-2">
                         <ExternalLink className="size-4" />
                         Live Demo
                       </Button>
-                    </motion.div>
+                    </m.div>
                   </Link>
                 )}
               </div>
 
               <DialogFooter className="mt-8 pt-6 border-t">
                 <DialogClose asChild>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button type="button" variant="ghost">
                       Close
                     </Button>
-                  </motion.div>
+                  </m.div>
                 </DialogClose>
               </DialogFooter>
             </div>
@@ -221,7 +221,7 @@ const Projects = () => {
   return (
     <section className="relative mt-24 md:mt-32">
       <div className="px-6 md:px-10 max-w-[1400px] mx-auto mb-16 md:mb-20">
-        <motion.div
+        <m.div
           initial={reduce ? false : "hidden"}
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -237,14 +237,14 @@ const Projects = () => {
           <p className="text-muted-foreground max-w-[40ch] text-sm sm:text-base">
             A curated selection of applications I&apos;ve built — from solo projects to team collaborations.
           </p>
-        </motion.div>
+        </m.div>
       </div>
 
       <CaseStudyStack projects={featured} />
 
       {more.length > 0 && (
         <div className="px-6 md:px-10 max-w-[1400px] mx-auto pt-32 md:pt-40">
-          <motion.div
+          <m.div
             initial={reduce ? false : "hidden"}
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
@@ -257,11 +257,11 @@ const Projects = () => {
             <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">
               More projects
             </h3>
-          </motion.div>
+          </m.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {more.map((project, i) => (
-              <motion.div
+              <m.div
                 key={project.id}
                 initial={reduce ? false : { opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -273,7 +273,7 @@ const Projects = () => {
                 }}
               >
                 <MoreProjectCard project={project} />
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
