@@ -38,27 +38,24 @@ gsap.registerPlugin(ScrollTrigger);
 function CaseStudyCard({
   project,
   index,
-  isLast,
   onSelect,
 }: {
   project: ProjectCardProps;
   index: number;
-  isLast: boolean;
   onSelect: () => void;
 }) {
   return (
     <div
-      className="case-study-card bg-background sticky top-0 min-h-[100dvh] flex items-center justify-center py-20 px-6 md:px-10"
+      className="case-study-card bg-background sticky top-0 min-h-dvh flex items-center justify-center py-20 px-6 md:px-10"
       data-index={index}
     >
-      <div className="w-full max-w-[1400px] mx-auto">
+      <div className="w-full max-w-350 mx-auto">
         <div
           onClick={onSelect}
           className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center cursor-pointer group"
         >
-          {/* Visual */}
           <div className="relative order-2 lg:order-1">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border bg-card transition-shadow duration-500 group-hover:shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_0_30px_-8px_rgba(99,102,241,0.15)]">
+            <div className="relative aspect-4/3 rounded-2xl overflow-hidden border border-border bg-card transition-shadow duration-500 group-hover:shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_0_30px_-8px_rgba(99,102,241,0.15)]">
               {project.image && (
                 <Image
                   src={project.image}
@@ -103,7 +100,10 @@ function CaseStudyCard({
               )}
             </div>
 
-            <div className="flex gap-3 pt-1" onClick={(e) => e.stopPropagation()}>
+            <div
+              className="flex gap-3 pt-1"
+              onClick={(e) => e.stopPropagation()}
+            >
               {project.link && (
                 <Link
                   href={project.link}
@@ -155,9 +155,17 @@ function ProjectDialog({
                     {project.media.map((item, idx) => (
                       <CarouselItem key={idx}>
                         {item.type === "video" ? (
-                          <Safari url={project.link} videoSrc={item.url} mode="simple" />
+                          <Safari
+                            url={project.link}
+                            videoSrc={item.url}
+                            mode="simple"
+                          />
                         ) : (
-                          <Safari url={project.link} imageSrc={item.url} mode="simple" />
+                          <Safari
+                            url={project.link}
+                            imageSrc={item.url}
+                            mode="simple"
+                          />
                         )}
                       </CarouselItem>
                     ))}
@@ -206,10 +214,16 @@ function ProjectDialog({
                       variants={VARIANTS.scaleIn}
                       initial="hidden"
                       animate="visible"
-                      transition={{ delay: 0.4 + index * 0.05, duration: DURATION.fast }}
+                      transition={{
+                        delay: 0.4 + index * 0.05,
+                        duration: DURATION.fast,
+                      }}
                       whileHover={{ scale: 1.05 }}
                     >
-                      <Badge className="rounded-md gap-2 px-3 py-1.5" variant="outline">
+                      <Badge
+                        className="rounded-md gap-2 px-3 py-1.5"
+                        variant="outline"
+                      >
                         <tech.icon className="size-4" />
                         <span className="text-sm">{tech.name}</span>
                       </Badge>
@@ -220,8 +234,15 @@ function ProjectDialog({
 
               <div className="flex gap-3 mt-8">
                 {project.github && (
-                  <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                       <Button variant="outline" className="gap-2">
                         <Github className="size-4" />
                         GitHub
@@ -230,8 +251,15 @@ function ProjectDialog({
                   </Link>
                 )}
                 {project.link && (
-                  <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                       <Button variant="default" className="gap-2">
                         <ExternalLink className="size-4" />
                         Live Demo
@@ -243,7 +271,10 @@ function ProjectDialog({
 
               <DialogFooter className="mt-8 pt-6 border-t">
                 <DialogClose asChild>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
                     <Button type="button" variant="ghost">
                       Close
                     </Button>
@@ -261,7 +292,8 @@ function ProjectDialog({
 export function CaseStudyStack({ projects }: { projects: ProjectCardProps[] }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
-  const [selectedProject, setSelectedProject] = useState<ProjectCardProps | null>(null);
+  const [selectedProject, setSelectedProject] =
+    useState<ProjectCardProps | null>(null);
 
   const handleClose = useCallback(() => setSelectedProject(null), []);
 
@@ -320,7 +352,6 @@ export function CaseStudyStack({ projects }: { projects: ProjectCardProps[] }) {
             key={project.id}
             project={project}
             index={i}
-            isLast={i === projects.length - 1}
             onSelect={() => setSelectedProject(project)}
           />
         ))}

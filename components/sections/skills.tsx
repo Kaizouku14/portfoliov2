@@ -20,7 +20,11 @@ function SkillCategory({
       initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.08,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       className="space-y-3"
     >
       <p className="text-xs font-mono text-primary tracking-wider uppercase">
@@ -55,19 +59,28 @@ function ExperienceEntry({
       initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.12,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       className="relative pl-8 pb-10 last:pb-0 border-l border-border"
     >
       <div className="absolute left-0 top-0 w-3 h-3 -translate-x-1/2 rounded-full border-2 border-primary bg-background" />
       <div className="space-y-2">
         <div className="flex items-center gap-3 flex-wrap">
           <h3 className="font-semibold text-sm">{item.role}</h3>
-          <span className="text-xs font-mono text-muted-foreground">{item.period}</span>
+          <span className="text-xs font-mono text-muted-foreground">
+            {item.period}
+          </span>
         </div>
         <p className="text-xs text-primary font-medium">{item.company}</p>
         <ul className="space-y-1.5">
           {item.highlights.map((point, i) => (
-            <li key={i} className="text-sm text-muted-foreground leading-relaxed flex gap-2">
+            <li
+              key={i}
+              className="text-sm text-muted-foreground leading-relaxed flex gap-2"
+            >
               <span className="text-primary/40 mt-1.5 shrink-0">—</span>
               <span className="mt-2">{point}</span>
             </li>
@@ -79,16 +92,13 @@ function ExperienceEntry({
 }
 
 const Skills = () => {
-  const categories = useMemo(
-    () => Object.entries(MAIN_STACK),
-    [],
-  );
+  const categories = useMemo(() => Object.entries(MAIN_STACK), []);
 
   return (
     <section className="px-6 md:px-10 py-32 md:py-40 border-t border-border">
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-350 mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-                    {/* Experience */}
+          {/* Experience */}
           <div className="space-y-10">
             <div className="space-y-3">
               <p className="text-xs font-mono text-primary tracking-wider uppercase">
@@ -126,8 +136,6 @@ const Skills = () => {
               ))}
             </div>
           </div>
-
-
         </div>
       </div>
     </section>

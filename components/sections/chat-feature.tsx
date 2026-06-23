@@ -10,7 +10,7 @@ export function ChatFeatureSection() {
 
   return (
     <section className="px-6 mt-6  md:px-10 py-32 md:py-40 border-t border-border">
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-350 mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 30 }}
@@ -30,8 +30,9 @@ export function ChatFeatureSection() {
             </h2>
 
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-[45ch]">
-              I built an AI that knows everything about my work, experience, and skills.
-              Ask it anything — it&apos;s like having a conversation with me without the small talk.
+              I built an AI that knows everything about my work, experience, and
+              skills. Ask it anything — it&apos;s like having a conversation
+              with me without the small talk.
             </p>
 
             <button
@@ -70,7 +71,7 @@ export function ChatFeatureSection() {
                     <BotMessageSquare className="size-3 text-primary" />
                   </div>
                   <p className="text-sm text-muted-foreground bg-secondary rounded-2xl rounded-tl-sm px-4 py-2.5">
-                    Hi! I can tell you about Al-v&apos;s projects, experience, skills, or anything else. What would you like to know?
+                    Hello! I&apos;m Al-v. How can I help you today?
                   </p>
                 </div>
 
@@ -79,7 +80,9 @@ export function ChatFeatureSection() {
                     What projects has Al-v built?
                   </p>
                   <div className="size-6 rounded-full bg-secondary flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-xs font-mono font-bold text-muted-foreground">A</span>
+                    <span className="text-xs font-mono font-bold text-muted-foreground">
+                      A
+                    </span>
                   </div>
                 </div>
 
@@ -88,7 +91,11 @@ export function ChatFeatureSection() {
                     <BotMessageSquare className="size-3 text-primary" />
                   </div>
                   <p className="text-sm text-muted-foreground bg-secondary rounded-2xl rounded-tl-sm px-4 py-2.5">
-                    Al-v has built 10+ projects including ScholarLink (a scholarship platform for Bulacan State University), Sail (a real-time multiplayer word game), Aurafy (an AI music & study companion), and MediCare (an AI-powered caregiving platform). Which one would you like to know more about?
+                    Al-v has built 10+ projects including ScholarLink (a
+                    scholarship platform for Bulacan State University), Sail (a
+                    real-time multiplayer word game), Aurafy (an AI music &
+                    study companion), and MediCare (an AI-powered caregiving
+                    platform). Which one would you like to know more about?
                   </p>
                 </div>
               </div>

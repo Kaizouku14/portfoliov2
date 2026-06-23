@@ -3,9 +3,10 @@ import { SITE_CONFIG } from "@/constants";
 const Footer = () => {
   return (
     <footer className="border-t border-border">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="max-w-350 mx-auto px-6 md:px-10 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-xs text-muted-foreground font-mono">
-          &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
+          &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights
+          reserved.
         </p>
         <div className="flex items-center gap-6">
           <a

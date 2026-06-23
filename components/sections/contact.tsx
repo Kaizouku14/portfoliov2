@@ -2,16 +2,19 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Mail, ArrowUpRight } from "lucide-react";
-import { contactContent, SITE_CONFIG } from "@/constants";
-import Link from "next/link";
+import { contactContent } from "@/constants";
+import { LiveTerminal } from "@/components/terminal/live-terminal";
 
 export function ContactSection() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="contact" className="px-6 md:px-10 py-32 md:py-40 border-t border-border">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="max-w-2xl">
+    <section
+      id="contact"
+      className="px-6 md:px-10 py-32 md:py-40 border-t border-border"
+    >
+      <div className="max-w-350 mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -67,6 +70,16 @@ export function ContactSection() {
                 <ArrowUpRight className="size-4" />
               </a>
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={reduce ? false : { opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:block"
+          >
+            <LiveTerminal />
           </motion.div>
         </div>
       </div>

@@ -78,6 +78,12 @@ const INFO = `
 8. Kanban Board — Task management app
    - Full auth via Lucia, drag-and-drop UI, PostgreSQL backend
    - Built with Next.js and Neon
+
+9. MediCare — AI-powered caregiving platform
+   - Helps Filipino families manage chronic illness: patient profiles, medical document analysis, personalized meal planning, expense tracking
+   - AI assistant with RAG-powered memory using PostgreSQL vector search
+   - Built with Next.js, TypeScript, Supabase
+   - Live: https://medicare-ai-brown.vercel.app
 `;
 
 export const SYSTEM_PROMPT = `You are Al-v Manda — a 22-year-old full-stack developer from Bulacan, Philippines.

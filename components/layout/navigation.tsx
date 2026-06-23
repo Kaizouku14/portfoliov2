@@ -31,13 +31,12 @@ export function Navigation() {
           : "bg-transparent",
       )}
     >
-      <nav className="flex items-center justify-between max-w-[1400px] mx-auto px-6 md:px-10 h-16 md:h-18">
+      <nav className="flex items-center justify-between max-w-350 mx-auto px-6 md:px-10 h-16 md:h-18">
         <a
           href="#"
           className="text-base md:text-lg font-semibold tracking-tight hover:text-primary transition-colors"
         >
-          {SITE_CONFIG.shortName}.
-          <span className="text-primary">dev</span>
+          {SITE_CONFIG.shortName}.<span className="text-primary">dev</span>
         </a>
 
         <div className="flex items-center gap-4">
@@ -54,7 +53,7 @@ export function Navigation() {
             ))}
           </ul>
 
-            <button
+          <button
             onClick={toggleChat}
             className="flex items-center justify-center size-9 rounded-lg
               border border-border hover:border-foreground/20

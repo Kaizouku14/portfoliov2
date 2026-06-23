@@ -8,7 +8,11 @@ const statVariants: Variants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as const },
+    transition: {
+      duration: 0.5,
+      delay: i * 0.1,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
   }),
 };
 
@@ -17,9 +21,8 @@ export function AboutSection() {
 
   return (
     <section id="about" className="px-6 md:px-10 py-32 md:py-40">
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-350 mx-auto">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-20">
-          {/* Left label */}
           <div className="lg:col-span-1">
             <motion.p
               initial={reduce ? false : { opacity: 0, x: -20 }}
@@ -48,7 +51,11 @@ export function AboutSection() {
               initial={reduce ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: 0.5,
+                delay: 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-[55ch]"
             >
               {aboutContent.body}
