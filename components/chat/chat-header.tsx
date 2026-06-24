@@ -17,7 +17,7 @@ export const ChatHeader = () => {
               <span className="size-1.5 bg-green-700 rounded-full animate-pulse" />
               Active now
             </p>
-            <span className="whitespace-nowrap text-muted-foreground">
+            <span className="whitespace-nowrap text-muted-foreground  text-xs">
               Powered by Groq
             </span>
           </div>
@@ -25,7 +25,7 @@ export const ChatHeader = () => {
       </div>
       <Button
         size="icon"
-        className="p-2.5 bg-background hover:bg-accent/80 transition-colors duration-200"
+        className="p-2.5 bg-transparent hover:bg-accent/80 transition-colors duration-200"
         onClick={toggleChat}
       >
         <X className="size-5 text-foreground" />
